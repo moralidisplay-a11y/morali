@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MORALI — מתקני תצוגה ועיצוב לחנויות | יוצרים חנויות שמוכרות יותר</title>
-<meta name="description" content="MORALI — פתרונות תצוגה, מידוף ועיצוב מקצועי לחנויות. בובות ראווה, סטנדים, דלפקים, קולבים ותכנון חנות מלא. מעל 8,500 פרויקטים בכל הארץ.">
+<meta name="description" content="MORALI — פתרונות תצוגה, מידוף ועיצוב מקצועי לחנויות. בובות ראווה, סטנדים, דלפקים, קולבים ותכנון חנות מלא. מעל 8,500 פרויקטים בכל הארץ. הרצל 113, תל אביב · 050-555-9491">
+<link rel="canonical" href="https://index-three-bice.vercel.app/">
+<meta property="og:title" content="MORALI — יוצרים חנויות שמוכרות יותר">
+<meta property="og:description" content="מתקני תצוגה, מידוף ועיצוב לחנויות — תכנון, ייצור והתקנה בכל הארץ.">
+<meta property="og:url" content="https://index-three-bice.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://index-three-bice.vercel.app/hero.jpg">
+<meta property="og:locale" content="he_IL">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"MORALI מתקני תצוגה","description":"מתקני תצוגה, מידוף ועיצוב לחנויות — תכנון, ייצור והתקנה בכל הארץ.","telephone":"+972505559491","email":"moralidisplay@gmail.com","url":"https://index-three-bice.vercel.app","image":"https://index-three-bice.vercel.app/hero.jpg","address":{"@type":"PostalAddress","streetAddress":"הרצל 113","addressLocality":"תל אביב","addressCountry":"IL"},"openingHours":"Su-Th 08:00-17:00","priceRange":"₪₪"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -167,6 +175,57 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
 .header.scrolled .icon-btn{color:var(--black)}
 .header.scrolled .icon-btn:hover{background:rgba(7,7,7,.06)}
 .menu-toggle{display:none}
+/* mega menu */
+.nav-drop{position:relative;display:inline-flex}
+.mega-home{
+  position:absolute;top:100%;inset-inline-start:-18px;z-index:60;
+  background:#fff;border:1px solid var(--border);border-radius:18px;
+  box-shadow:var(--shadow-lift);padding:16px;
+  display:grid;grid-template-columns:repeat(2,190px);gap:2px;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:all .3s var(--ease);
+}
+.nav-drop:hover .mega-home,.nav-drop:focus-within .mega-home{opacity:1;visibility:visible;transform:none}
+.mega-home a{
+  padding:9px 14px;border-radius:10px;font-size:14px;font-weight:600;
+  color:#333!important;display:block;
+}
+.mega-home a::after{display:none}
+.mega-home a:hover{background:var(--bg);color:var(--gold)!important}
+/* trust + lead */
+.trust-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:980px;margin-inline:auto;
+}
+.trust-grid span{
+  background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px 14px;
+  text-align:center;font-weight:800;font-size:17px;letter-spacing:.06em;color:#9a917f;
+  transition:all .35s var(--ease);
+}
+.trust-grid span:hover{color:var(--black);border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-soft)}
+.lead-wrap{
+  background:var(--black);color:#fff;border-radius:30px;padding:52px;
+  position:relative;overflow:hidden;
+}
+.lead-wrap::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(520px 300px at 88% 8%,rgba(199,154,75,.18),transparent 60%);
+}
+.lead-wrap>*{position:relative}
+.lf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+.lf-full{grid-column:1/-1}
+.lead-wrap label{display:block;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:6px;font-weight:600}
+.lead-wrap input,.lead-wrap select,.lead-wrap textarea{
+  width:100%;padding:13px 16px;border-radius:12px;font-size:15px;font-family:inherit;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;outline:none;
+}
+.lead-wrap input:focus,.lead-wrap select:focus,.lead-wrap textarea:focus{border-color:var(--gold)}
+.lead-wrap select option{color:#111}
+.lead-wrap textarea{min-height:90px;resize:vertical}
+@media (max-width:780px){
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .lf-grid{grid-template-columns:1fr}
+  .lead-wrap{padding:34px 24px}
+}
 
 /* Mobile drawer */
 .drawer{
@@ -885,11 +944,11 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
     <div class="topbar-items">
       <span><svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7zM7.5 18a1.5 1.5 0 1 0 0-.01M17.5 18a1.5 1.5 0 1 0 0-.01"/></svg>משלוחים לכל הארץ</span>
       <span><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-6H6a6 6 0 1 1 12 0h-3v6h3a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7z"/></svg>ייעוץ מקצועי חינם</span>
-      <span><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg>איסוף עצמי: מרכז לוגיסטי ראש העין</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg>הרצל 113, תל אביב — אולם תצוגה</span>
     </div>
     <div class="topbar-contact">
-      <a href="tel:050-1234567" aria-label="התקשרו אלינו">050-1234567 ☎</a>
-      <a href="https://wa.me/972501234567" aria-label="WhatsApp">WhatsApp</a>
+      <a href="tel:050-555-9491" aria-label="התקשרו אלינו">050-555-9491 ☎</a>
+      <a href="https://wa.me/972505559491" aria-label="WhatsApp">WhatsApp</a>
     </div>
   </div>
 </div>
@@ -902,20 +961,27 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
       <small>מתקני תצוגה ועיצוב לחנויות</small>
     </a>
     <nav class="nav" aria-label="ניווט ראשי">
-      <a href="#" class="active">בית</a>
-      <a href="#categories">קטגוריות</a>
-      <a href="#products">מוצרים</a>
-      <a href="#projects">פרויקטים</a>
-      <a href="#planner">פתרונות לעסק</a>
-      <a href="#inspiration">השראה</a>
-      <a href="#knowledge">מרכז ידע</a>
-      <a href="#contact">צור קשר</a>
+      <a href="/" class="active">בית</a>
+      <span class="nav-drop"><a href="/categories">קטגוריות ▾</a>
+        <span class="mega-home">
+          <a href="/categories/mannequins">בובות ראווה</a><a href="/categories/shelving">מידוף לחנויות</a>
+          <a href="/categories/display-stands">סטנדים לתצוגה</a><a href="/categories/hangers">קולבים לחנויות</a>
+          <a href="/categories/counters">דלפקים</a><a href="/categories/slatwall">קירות מחורצים</a>
+          <a href="/categories/baskets-carts">סלסלות ועגלות</a><a href="/categories/rails">מערכות תלייה</a>
+        </span>
+      </span>
+      <a href="/products">מוצרים</a>
+      <a href="/projects">פרויקטים</a>
+      <a href="/inspiration">השראה</a>
+      <a href="/blog">מרכז ידע</a>
+      <a href="/about">אודות</a>
+      <a href="/contact">צור קשר</a>
     </nav>
     <div class="header-actions">
       <button class="icon-btn" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
       <button class="icon-btn" aria-label="מועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
       <button class="icon-btn" aria-label="סל הצעת מחיר"><svg viewBox="0 0 24 24"><path d="M6 7h12l1.2 12a1.8 1.8 0 0 1-1.8 2H6.6a1.8 1.8 0 0 1-1.8-2zM9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="badge">3</span></button>
-      <a class="btn btn-gold" href="#contact">קבל הצעת מחיר</a>
+      <a class="btn btn-gold" href="/quote">קבל הצעת מחיר</a>
       <button class="icon-btn menu-toggle" id="menuToggle" aria-label="תפריט"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
@@ -925,15 +991,16 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
   <div class="drawer-bg" data-close-drawer></div>
   <nav class="drawer-panel" aria-label="תפריט נייד">
     <button class="drawer-close" data-close-drawer aria-label="סגירת תפריט">×</button>
-    <a href="#">בית</a>
-    <a href="#categories">קטגוריות</a>
-    <a href="#products">מוצרים</a>
-    <a href="#projects">פרויקטים</a>
-    <a href="#planner">פתרונות לעסק</a>
-    <a href="#inspiration">השראה</a>
-    <a href="#knowledge">מרכז ידע</a>
-    <a href="#contact">צור קשר</a>
-    <a href="#contact" style="color:var(--gold-light)">קבל הצעת מחיר ←</a>
+    <a href="/">בית</a>
+    <a href="/categories">קטגוריות</a>
+    <a href="/products">מוצרים</a>
+    <a href="/projects">פרויקטים</a>
+    <a href="/inspiration">השראה</a>
+    <a href="/blog">מרכז ידע</a>
+    <a href="/planner.html">מתכנן חנות AI</a>
+    <a href="/about">אודות</a>
+    <a href="/contact">צור קשר</a>
+    <a href="/quote" style="color:var(--gold-light)">קבל הצעת מחיר ←</a>
   </nav>
 </div>
 
@@ -949,8 +1016,8 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
       <h1 class="reveal in d1">יוצרים חנויות<br><span class="gold">שמוכרות יותר.</span></h1>
       <p class="hero-sub reveal in d2">פתרונות תצוגה, מידוף ועיצוב מקצועי לעסקים שרוצים להוביל — מתכנון ראשוני ועד התקנה מלאה.</p>
       <div class="hero-ctas reveal in d3">
-        <a class="btn btn-gold" href="#contact">קבלו הצעת מחיר</a>
-        <a class="btn btn-ghost" href="#projects">לצפייה בפרויקטים</a>
+        <a class="btn btn-gold" href="/quote">קבלו הצעת מחיר</a>
+        <a class="btn btn-ghost" href="/projects">לצפייה בפרויקטים</a>
       </div>
       <button class="video-chip reveal in d4" data-toast="סרטון התהליך ייפתח כאן בגרסה החיה">
         <span class="play-ic"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
@@ -970,24 +1037,24 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
 <!-- ============ 04 QUICK ACTIONS ============ -->
 <div class="quick container">
   <div class="quick-grid reveal">
-    <a class="qcard" href="#planner">
+    <a class="qcard" href="/planner.html">
       <span class="ai-pill">AI</span>
       <span class="qicon"><svg viewBox="0 0 24 24"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 16l.7 1.6L7.4 18l-1.7.7L5 20.4l-.7-1.7L2.6 18l1.7-.4z"/></svg></span>
       תכנון חנות AI
     </a>
-    <a class="qcard" href="#categories">
+    <a class="qcard" href="/categories">
       <span class="qicon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></span>
       קטגוריות מוצרים
     </a>
-    <a class="qcard" href="#projects">
+    <a class="qcard" href="/projects">
       <span class="qicon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
       פרויקטים
     </a>
-    <a class="qcard" href="#inspiration">
+    <a class="qcard" href="/inspiration">
       <span class="qicon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.7.5 1 1.3 1.1 2.1h4.8c.1-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z"/></svg></span>
       השראה
     </a>
-    <a class="qcard" href="#contact">
+    <a class="qcard" href="/contact">
       <span class="qicon"><svg viewBox="0 0 24 24"><path d="M21 14a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
       ייעוץ מקצועי
     </a>
@@ -1150,40 +1217,40 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
       <p>כל מה שחנות צריכה — מייצור ויבוא ישיר, זמין במלאי.</p>
     </div>
     <div class="cat-grid">
-      <a class="cat-card ph reveal" href="#products">
+      <a class="cat-card ph reveal" href="/products">
         <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&q=80&auto=format&fit=crop" alt="מערכות תלייה לחנויות בגדים" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>מערכות תלייה</b><small>42 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal d1" href="#products">
+      <a class="cat-card ph reveal d1" href="/products">
         <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900&q=80&auto=format&fit=crop" alt="בובות ראווה לחלונות תצוגה" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>בובות ראווה</b><small>28 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal d2" href="#products">
+      <a class="cat-card ph reveal d2" href="/products">
         <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=900&q=80&auto=format&fit=crop" alt="קירות מחורצים ופתרונות קיר" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>קירות מחורצים</b><small>19 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal d3" href="#products">
+      <a class="cat-card ph reveal d3" href="/products">
         <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=900&q=80&auto=format&fit=crop" alt="מידוף מקצועי לחנויות" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>מידוף לחנויות</b><small>56 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal" href="#products">
+      <a class="cat-card ph reveal" href="/products">
         <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=900&q=80&auto=format&fit=crop" alt="סטנדים לתצוגת מוצרים" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>סטנדים</b><small>34 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal d1" href="#products">
+      <a class="cat-card ph reveal d1" href="/products">
         <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=900&q=80&auto=format&fit=crop" alt="דלפקים ועמדות קופה" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>דלפקים</b><small>21 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal d2" href="#products">
+      <a class="cat-card ph reveal d2" href="/products">
         <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=900&q=80&auto=format&fit=crop" alt="קולבים מעוצבים לחנויות" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>קולבים</b><small>47 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
-      <a class="cat-card ph reveal d3" href="#products">
+      <a class="cat-card ph reveal d3" href="/products">
         <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" alt="סלסלות ועגלות קניות" onerror="this.remove()" loading="lazy">
         <div class="cat-info"><div><b>סלסלות ועגלות</b><small>23 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
       </a>
     </div>
-    <div class="center-cta reveal"><a class="btn btn-line" href="#">לכל הקטגוריות ←</a></div>
+    <div class="center-cta reveal"><a class="btn btn-line" href="/categories">לכל הקטגוריות ←</a></div>
   </div>
 </section>
 
@@ -1331,7 +1398,7 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
         </div>
       </article>
     </div>
-    <div class="center-cta reveal"><a class="btn btn-dark" href="#">לכל המוצרים ←</a></div>
+    <div class="center-cta reveal"><a class="btn btn-dark" href="/products">לכל המוצרים ←</a></div>
   </div>
 </section>
 
@@ -1371,7 +1438,7 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
         <button class="car-btn" data-car="projCarousel" data-dir="prev" aria-label="הבא"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
       </div>
     </div>
-    <div class="center-cta reveal"><a class="btn btn-ghost" href="#">לצפייה בכל הפרויקטים ←</a></div>
+    <div class="center-cta reveal"><a class="btn btn-ghost" href="/projects">לצפייה בכל הפרויקטים ←</a></div>
   </div>
 </section>
 
@@ -1453,7 +1520,7 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
       <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=80&auto=format&fit=crop" alt="השראה — סופרמרקט בוטיק" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>סופר שכונתי מודרני</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
       <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=80&auto=format&fit=crop" alt="השראה — חלון ראווה" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>חלון ראווה שעוצר</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
     </div>
-    <div class="center-cta reveal"><a class="btn btn-line" href="#">לצפייה בכל ההשראות ←</a></div>
+    <div class="center-cta reveal"><a class="btn btn-line" href="/inspiration">לצפייה בכל ההשראות ←</a></div>
   </div>
 </section>
 
@@ -1547,22 +1614,55 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
       <p>מדריכים מקצועיים מהשטח — בחינם, בלי אותיות קטנות.</p>
     </div>
     <div class="know-grid">
-      <a class="kcard reveal" href="#">
+      <a class="kcard reveal" href="/blog/how-to-plan-fashion-store">
         <div class="kimg ph"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80&auto=format&fit=crop" alt="מדריך תכנון חנות" onerror="this.remove()" loading="lazy"></div>
         <div class="kbody"><small>מדריך · 8 דק׳ קריאה</small><b>איך לתכנן חנות שמוכרת יותר — שלב אחר שלב</b><span class="klink">לקריאה ←</span></div>
       </a>
-      <a class="kcard reveal d1" href="#">
+      <a class="kcard reveal d1" href="/blog/choosing-store-shelving">
         <div class="kimg ph"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=700&q=80&auto=format&fit=crop" alt="מדריך בחירת מדפים" onerror="this.remove()" loading="lazy"></div>
         <div class="kbody"><small>מדריך · 6 דק׳ קריאה</small><b>איך לבחור מדפים לחנות בגדים בלי לטעות</b><span class="klink">לקריאה ←</span></div>
       </a>
-      <a class="kcard reveal d2" href="#">
+      <a class="kcard reveal d2" href="/blog/store-design-mistakes">
         <div class="kimg ph"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=700&q=80&auto=format&fit=crop" alt="טעויות בעיצוב חנויות" onerror="this.remove()" loading="lazy"></div>
         <div class="kbody"><small>טיפים · 5 דק׳ קריאה</small><b>7 טעויות נפוצות בעיצוב חנויות (ואיך נמנעים)</b><span class="klink">לקריאה ←</span></div>
       </a>
-      <a class="kcard reveal d3" href="#">
+      <a class="kcard reveal d3" href="/blog/store-design-cost">
         <div class="kimg ph"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80&auto=format&fit=crop" alt="כמה עולה להקים חנות" onerror="this.remove()" loading="lazy"></div>
         <div class="kbody"><small>תמחור · 10 דק׳ קריאה</small><b>כמה באמת עולה להקים חנות מעוצבת ב־2026?</b><span class="klink">לקריאה ←</span></div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15.5 TRUST + LEAD ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">סומכים עלינו</span>
+      <h2>לקוחות שבחרו בנו</h2>
+      <p>רשתות, בוטיקים ועסקים פרטיים בכל הארץ. (הלוגואים להמחשה — מתעדכנים ללקוחות אמיתיים)</p>
+    </div>
+    <div class="trust-grid reveal">
+      <span>URBAN&nbsp;TLV</span><span>פארם&nbsp;פלוס</span><span>FLORA</span><span>קידס&nbsp;סטור</span>
+      <span>SPORT&nbsp;LINE</span><span>בוטיק&nbsp;לולה</span><span>מרקט&nbsp;סיטי</span><span>GLOW</span>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top:0" id="lead">
+  <div class="container">
+    <div class="lead-wrap reveal">
+      <span class="eyebrow" style="color:var(--gold-light)">מדברים תכלס</span>
+      <h2 style="color:#fff">קבלו ייעוץ ללא התחייבות</h2>
+      <p style="color:rgba(255,255,255,.65);margin-top:8px">מלאו פרטים — מתכנן מומחה יחזור אליכם עוד היום.</p>
+      <form class="lf-grid" id="leadFormHome">
+        <div><label>שם מלא *</label><input name="name" required placeholder="ישראל ישראלי"></div>
+        <div><label>טלפון *</label><input name="phone" required type="tel" inputmode="tel" placeholder="050-0000000"></div>
+        <div><label>שם העסק</label><input name="biz" placeholder="לדוגמה: בוטיק לולה"></div>
+        <div><label>תחום העסק</label><select name="field"><option>חנות בגדים</option><option>חנות פרחים</option><option>קוסמטיקה</option><option>פארם</option><option>קיוסק</option><option>סופרמרקט</option><option>אחר</option></select></div>
+        <div class="lf-full"><label>הודעה</label><textarea name="msg" placeholder="ספרו לנו בקצרה מה אתם צריכים…"></textarea></div>
+        <div class="lf-full"><button class="btn btn-gold" style="width:100%" type="submit">קבלו ייעוץ ללא התחייבות ←</button></div>
+      </form>
+      <p style="font-size:12.5px;color:rgba(255,255,255,.4);margin-top:12px">השליחה פותחת WhatsApp עם הפרטים — או חייגו ישירות: 050-555-9491</p>
     </div>
   </div>
 </section>
@@ -1577,8 +1677,8 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
         <h2>רוצים לשדרג את החנות?</h2>
         <p>אנחנו כאן כדי להפוך את החנות שלכם לנכס שמוכר יותר. שיחת ייעוץ ראשונה — עלינו.</p>
         <div class="hero-ctas">
-          <a class="btn btn-gold" href="tel:050-1234567">דברו איתנו · 050-1234567</a>
-          <a class="btn btn-ghost" href="https://wa.me/972501234567">קבלו הצעת מחיר ב־WhatsApp</a>
+          <a class="btn btn-gold" href="tel:050-555-9491">דברו איתנו · 050-555-9491</a>
+          <a class="btn btn-ghost" href="https://wa.me/972505559491">קבלו הצעת מחיר ב־WhatsApp</a>
         </div>
       </div>
     </div>
@@ -1593,9 +1693,9 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
         <a href="#" class="logo"><b>MORALI</b><small>מתקני תצוגה ועיצוב לחנויות</small></a>
         <p class="footer-about">פתרונות מלאים לעסקים שרוצים למכור יותר — מתכנון ועיצוב, דרך ייצור ויבוא, ועד התקנה מקצועית בשטח.</p>
         <div class="f-contact">
-          <a href="tel:050-1234567"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>050-1234567</a>
-          <a href="mailto:info@morali.co.il"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>info@morali.co.il</a>
-          <a href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.8 7-11a7 7 0 1 0-14 0c0 5.2 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>ראש העין, ישראל</a>
+          <a href="tel:050-555-9491"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>050-555-9491</a>
+          <a href="mailto:moralidisplay@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>moralidisplay@gmail.com</a>
+          <a href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.8 7-11a7 7 0 1 0-14 0c0 5.2 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>הרצל 113, תל אביב</a>
           <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>א׳–ה׳ · 08:00–17:00</a>
         </div>
         <div class="socials">
@@ -1607,12 +1707,12 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
       <div>
         <h4>קטגוריות</h4>
         <ul>
-          <li><a href="#categories">מדפים</a></li>
-          <li><a href="#categories">סטנדים</a></li>
-          <li><a href="#categories">קולבים</a></li>
-          <li><a href="#categories">בובות ראווה</a></li>
-          <li><a href="#categories">דלפקים</a></li>
-          <li><a href="#categories">סלסלות ועגלות</a></li>
+          <li><a href="/categories">מדפים</a></li>
+          <li><a href="/categories">סטנדים</a></li>
+          <li><a href="/categories">קולבים</a></li>
+          <li><a href="/categories">בובות ראווה</a></li>
+          <li><a href="/categories">דלפקים</a></li>
+          <li><a href="/categories">סלסלות ועגלות</a></li>
         </ul>
       </div>
       <div>
@@ -1621,7 +1721,7 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
           <li><a href="#">שאלות ותשובות</a></li>
           <li><a href="#">משלוחים והחזרות</a></li>
           <li><a href="#">אחריות ושירות</a></li>
-          <li><a href="#knowledge">מרכז ידע</a></li>
+          <li><a href="/blog">מרכז ידע</a></li>
           <li><a href="#">תנאי שימוש</a></li>
           <li><a href="#">מדיניות פרטיות</a></li>
         </ul>
@@ -1644,7 +1744,7 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
 
 <!-- Floating actions -->
 <div class="float-actions">
-  <a class="fab fab-wa" href="https://wa.me/972501234567" aria-label="WhatsApp">
+  <a class="fab fab-wa" href="https://wa.me/972505559491" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.5.5 0 0 0 0-.5c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.7 11.4 11.4 0 0 0 4.4 3.9 5 5 0 0 0 3 .9 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.1-.3-.2-.6-.3z"/></svg>
   </a>
   <a class="fab fab-ai" href="/planner.html">
@@ -1656,11 +1756,11 @@ h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
 <!-- Mobile bottom nav -->
 <nav class="bottom-nav" aria-label="ניווט תחתון">
   <ul>
-    <li><a href="#" class="active"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>בית</a></li>
-    <li><a href="#categories"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>קטגוריות</a></li>
+    <li><a href="/" class="active"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>בית</a></li>
+    <li><a href="/categories"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>קטגוריות</a></li>
     <li><a href="/planner.html" class="bn-ai"><span><svg viewBox="0 0 24 24"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/></svg></span>AI</a></li>
-    <li><a href="#products"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg>מוצרים</a></li>
-    <li><a href="#contact"><svg viewBox="0 0 24 24"><path d="M21 14a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>צור קשר</a></li>
+    <li><a href="/products"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg>מוצרים</a></li>
+    <li><a href="/contact"><svg viewBox="0 0 24 24"><path d="M21 14a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>צור קשר</a></li>
   </ul>
 </nav>
 
@@ -1821,6 +1921,15 @@ document.getElementById('newsForm').addEventListener('submit',ev=>{
   ev.preventDefault();
   showToast('<b>נרשמתם בהצלחה!</b> נשלח רק דברים ששווים פתיחה');
   ev.target.reset();
+});
+
+/* ===== Lead form ===== */
+document.getElementById('leadFormHome').addEventListener('submit',ev=>{
+  ev.preventDefault();
+  const d=new FormData(ev.target);
+  const txt=encodeURIComponent('היי MORALI! אשמח לייעוץ:\nשם: '+d.get('name')+'\nטלפון: '+d.get('phone')+'\nעסק: '+(d.get('biz')||'-')+' ('+d.get('field')+')\n'+(d.get('msg')||''));
+  window.open('https://wa.me/972505559491?text='+txt,'_blank');
+  showToast('<b>הפרטים מוכנים!</b> שלחו את ההודעה שנפתחה ב-WhatsApp');
 });
 </script>
 </body>
