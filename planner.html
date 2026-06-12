@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מתכנן חנות חכם — MORALI | תכנון AI חינם לחנות שלכם</title>
+<meta name="description" content="ספרו לנו על העסק, העלו תמונה של הקיר — וקבלו תכנון חנות חכם: סקיצת הצבה, מתקנים מומלצים ומחיר משוער. חינם.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#070707;--black2:#111;--white:#fff;--bg:#F7F4EF;
+  --gold:#C79A4B;--gold-l:#E6C27A;--gray:#6B6B6B;
+  --border:rgba(255,255,255,.12);--ease:cubic-bezier(.22,.8,.26,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Heebo',system-ui,sans-serif;background:var(--black);color:#fff;
+  min-height:100vh;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(800px 400px at 85% -5%,rgba(199,154,75,.14),transparent 60%);
+}
+::selection{background:var(--gold);color:var(--black)}
+a{color:inherit}
+button,input,select{font-family:inherit}
+select option{color:var(--black)}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 20px 80px;position:relative}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes spinGold{to{transform:rotate(360deg)}}
+@keyframes scanLine{0%{top:-20%}100%{top:120%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Header */
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.logo{line-height:1.05;text-decoration:none}
+.logo b{font-size:24px;font-weight:900;letter-spacing:.14em;display:block}
+.logo small{font-size:11px;color:var(--gold-l)}
+.back{
+  font-size:14px;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;
+  border:1px solid var(--border);padding:9px 20px;border-radius:99px;transition:all .3s;
+}
+.back:hover{color:var(--gold-l);border-color:var(--gold)}
+
+.hero{text-align:center;margin-bottom:42px;animation:fadeUp .7s ease both}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:.2em;color:var(--gold);margin-bottom:14px}
+.eyebrow::before,.eyebrow::after{content:"";width:30px;height:1px;background:var(--gold)}
+h1{font-size:clamp(30px,5vw,50px);font-weight:800;line-height:1.15}
+h1 .gold{background:linear-gradient(120deg,var(--gold-l),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:rgba(255,255,255,.6);max-width:520px;margin:16px auto 0;font-size:17px;font-weight:300}
+
+.grid{display:grid;grid-template-columns:minmax(300px,480px);gap:24px;justify-content:center;align-items:start}
+.grid.has-result{grid-template-columns:340px 1fr}
+@media (max-width:900px){.grid.has-result{grid-template-columns:1fr}}
+
+.panel{
+  background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:22px;
+  padding:28px;backdrop-filter:blur(6px);animation:fadeUp .7s .1s ease both;
+}
+.panel-label{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--gold-l);margin-bottom:22px}
+.field{margin-bottom:18px}
+.field>label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:7px}
+.field b{color:var(--gold-l)}
+select,input[type=number]{
+  width:100%;padding:13px 16px;border-radius:13px;font-size:15px;
+  background:rgba(255,255,255,.07);border:1px solid var(--border);color:#fff;outline:none;appearance:none;
+}
+select:focus,input:focus{border-color:var(--gold)}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  padding:8px 16px;border-radius:99px;font-size:13.5px;font-weight:700;cursor:pointer;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);border:1px solid var(--border);transition:all .25s;
+}
+.chip.on{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--black);border-color:transparent}
+
+.upload{
+  width:100%;padding:26px 16px;border-radius:14px;cursor:pointer;text-align:center;
+  background:rgba(255,255,255,.03);border:1.5px dashed rgba(230,194,122,.45);
+  color:rgba(255,255,255,.7);font-size:14.5px;font-weight:600;
+}
+.upload span{font-size:24px;display:block;margin-bottom:6px}
+.upload small{font-size:12.5px;opacity:.6;font-weight:400}
+.preview{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--gold)}
+.preview img{width:100%;height:140px;object-fit:cover;display:block}
+.preview .x{
+  position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;border:none;
+  background:rgba(7,7,7,.8);color:#fff;cursor:pointer;font-size:16px;font-weight:700;
+}
+.preview .tag{
+  position:absolute;bottom:8px;right:10px;font-size:12px;font-weight:700;color:var(--gold-l);
+  background:rgba(7,7,7,.7);padding:3px 10px;border-radius:99px;
+}
+
+.cta{
+  width:100%;padding:16px 24px;border-radius:999px;font-size:17px;font-weight:800;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--black);
+  box-shadow:0 10px 32px rgba(199,154,75,.4);transition:all .3s;
+}
+.cta:disabled{opacity:.7;cursor:wait}
+.cta:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 44px rgba(199,154,75,.5)}
+
+/* Results */
+.results{display:none;flex-direction:column;gap:20px;min-width:0;animation:fadeUp .6s ease both}
+.results.show{display:flex}
+.card{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:22px;padding:26px}
+.card h3{font-size:17px;font-weight:800;margin-bottom:16px}
+.loading-card{padding:70px 30px;text-align:center;position:relative;overflow:hidden}
+.loading-card .scan{position:absolute;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,rgba(230,194,122,.18),transparent);animation:scanLine 3s linear infinite}
+.spinner{width:54px;height:54px;margin:0 auto 22px;border-radius:50%;border:3px solid rgba(230,194,122,.25);border-top-color:var(--gold-l);animation:spinGold 1s linear infinite}
+.load-msg{font-size:19px;font-weight:700;color:var(--gold-l)}
+.load-sub{font-size:14px;color:rgba(255,255,255,.5);margin-top:8px}
+.err{background:rgba(210,72,79,.12);border:1px solid rgba(210,72,79,.4);border-radius:18px;padding:22px;font-size:15.5px}
+
+.style-pill{font-size:12px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--black);padding:4px 14px;border-radius:99px}
+.meta{font-size:13px;color:rgba(255,255,255,.55)}
+.concept{font-size:18px;font-weight:700;line-height:1.5;margin-top:12px}
+.wall-box{margin-top:16px;display:flex;gap:14px;background:rgba(230,194,122,.07);border:1px solid rgba(230,194,122,.25);border-radius:14px;padding:16px}
+.wall-box img{width:74px;height:74px;object-fit:cover;border-radius:10px;flex-shrink:0}
+.wall-box h4{font-size:12px;font-weight:800;color:var(--gold-l);margin-bottom:4px}
+.wall-box p{font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.85)}
+
+.plan-card{background:#fff;color:var(--black)}
+.plan-card .hint{font-size:12.5px;color:var(--gray)}
+.plan-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+#planSvg{width:100%;height:auto;display:block}
+
+.prow{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
+.prow:last-of-type{border-bottom:none}
+.qty{width:40px;height:40px;border-radius:12px;background:rgba(230,194,122,.15);color:var(--gold-l);display:grid;place-items:center;font-weight:800;font-size:14px;flex-shrink:0}
+.prow .info{flex:1;min-width:0}
+.prow .info b{font-size:15.5px;display:block}
+.prow .info span{font-size:13px;color:rgba(255,255,255,.5)}
+.prow .sum{text-align:left;flex-shrink:0}
+.prow .sum b{font-size:16px;display:block}
+.prow .sum span{font-size:12px;color:rgba(255,255,255,.45)}
+.total{
+  display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding:16px 20px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(199,154,75,.18),rgba(230,194,122,.08));border:1px solid rgba(230,194,122,.35);
+}
+.total b{font-weight:900;font-size:24px;color:var(--gold-l)}
+.disc{font-size:12px;color:rgba(255,255,255,.4);margin-top:10px}
+.tip{display:flex;gap:12px;margin-bottom:10px;font-size:15px;line-height:1.6;color:rgba(255,255,255,.8)}
+.tip i{color:var(--gold-l);font-weight:900;font-style:normal}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-wa{
+  flex:1;min-width:220px;text-align:center;padding:16px 24px;border-radius:999px;text-decoration:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--black);font-weight:800;font-size:16px;
+  box-shadow:0 10px 32px rgba(199,154,75,.4);
+}
+.btn-again{
+  padding:16px 28px;border-radius:999px;background:rgba(255,255,255,.06);cursor:pointer;
+  border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:700;font-size:15px;
+}
+footer{text-align:center;margin-top:60px;font-size:12.5px;color:rgba(255,255,255,.35)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="/"><b>MORALI</b><small>מתקני תצוגה ועיצוב לחנויות</small></a>
+    <a class="back" href="/">→ חזרה לאתר</a>
+  </div>
+
+  <div class="hero">
+    <span class="eyebrow">מתכנן חנות חכם</span>
+    <h1>ספרו לנו על החנות —<br><span class="gold">ונראה לכם איך היא תיראה.</span></h1>
+    <p>ניתוח חכם של החלל, סקיצת הצבה מקצועית ורשימת מתקנים מדויקת מהקטלוג שלנו — תוך שניות, חינם.</p>
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- ===== טופס ===== -->
+    <div class="panel">
+      <div class="panel-label">פרטי העסק</div>
+
+      <div class="field">
+        <label for="biz">תחום העסק</label>
+        <select id="biz">
+          <option value="fashion">חנות בגדים</option>
+          <option value="flowers">חנות פרחים</option>
+          <option value="cosmetics">קוסמטיקה</option>
+          <option value="pharm">פארם</option>
+          <option value="kiosk">קיוסק</option>
+          <option value="market">סופרמרקט</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="area">שטח החנות: <b id="areaVal">50 מ"ר</b> <span id="dims" style="opacity:.5"></span></label>
+        <input type="range" id="area" min="20" max="300" step="5" value="50">
+      </div>
+
+      <div class="field">
+        <label>מה אתם צריכים? (אפשר כמה)</label>
+        <div class="chips" id="needs">
+          <button class="chip on" data-n="מידוף">מידוף</button>
+          <button class="chip on" data-n="סטנדים">סטנדים</button>
+          <button class="chip" data-n="רלסים / תלייה">רלסים / תלייה</button>
+          <button class="chip" data-n="דלפק">דלפק</button>
+          <button class="chip" data-n="בובות ראווה">בובות ראווה</button>
+          <button class="chip" data-n="קיר תצוגה">קיר תצוגה</button>
+          <button class="chip" data-n="סלסלות ועגלות">סלסלות ועגלות</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="budget">תקציב משוער</label>
+        <select id="budget">
+          <option value="low">עד 10,000 ₪</option>
+          <option value="mid" selected>10,000–25,000 ₪</option>
+          <option value="high">25,000–60,000 ₪</option>
+          <option value="open">גמיש — תציעו לי</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>תמונה של הקיר / החלל (לא חובה — אבל שווה)</label>
+        <input type="file" id="file" accept="image/jpeg,image/png,image/webp" style="display:none">
+        <button class="upload" id="uploadBtn" type="button">
+          <span>📷</span>לחצו להעלאת תמונת הקיר<br>
+          <small>ה-AI ינתח את החלל וימליץ מה למקם בו</small>
+        </button>
+        <div class="preview" id="preview" style="display:none">
+          <img id="previewImg" alt="הקיר שהעליתם">
+          <button class="x" id="removePhoto" aria-label="הסרת תמונה">×</button>
+          <span class="tag">✓ התמונה תנותח ע"י ה-AI</span>
+        </div>
+      </div>
+
+      <button class="cta" id="go">✦ צרו לי תכנון חכם</button>
+    </div>
+
+    <!-- ===== תוצאות ===== -->
+    <div class="results" id="results">
+      <div class="card loading-card" id="loadingCard" style="display:none">
+        <div class="scan"></div>
+        <div class="spinner"></div>
+        <div class="load-msg" id="loadMsg">מנתחים את החלל שלכם…</div>
+        <div class="load-sub" id="loadSub"></div>
+      </div>
+      <div class="err" id="errBox" style="display:none"></div>
+      <div id="resultBody" style="display:none">
+        <div class="card" style="margin-bottom:20px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <span class="style-pill" id="stylePill"></span>
+            <span class="meta" id="metaLine"></span>
+          </div>
+          <div class="concept" id="concept"></div>
+          <div class="wall-box" id="wallBox" style="display:none">
+            <img id="wallImg" alt="">
+            <div><h4>ניתוח הקיר שלכם</h4><p id="wallText"></p></div>
+          </div>
+        </div>
+
+        <div class="card plan-card" style="margin-bottom:20px">
+          <div class="plan-head">
+            <h3 style="margin:0">סקיצת הצבה ראשונית</h3>
+            <span class="hint">— — קו מקווקו = מסלול הלקוח</span>
+          </div>
+          <div id="planSvg"></div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px">
+          <h3>המתקנים המומלצים — מהקטלוג של MORALI</h3>
+          <div id="prodList"></div>
+          <div class="total"><span style="font-weight:700;font-size:15.5px">סה"כ משוער</span><b id="grandTotal"></b></div>
+          <div class="disc">* תכנון ראשוני להמחשה. המחיר הסופי נקבע בהצעת מחיר מסודרת — כולל הובלה והתקנה.</div>
+        </div>
+
+        <div class="card" id="tipsCard" style="margin-bottom:20px">
+          <h3>טיפים מהמתכנן</h3>
+          <div id="tipsList"></div>
+        </div>
+
+        <div class="actions">
+          <a class="btn-wa" id="waBtn" target="_blank" rel="noreferrer">שלחו לי הצעת מחיר על התכנון הזה ←</a>
+          <button class="btn-again" id="again">🔄 תכנון אחר</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>MORALI · מתכנן החנויות החכם · התכנון הראשוני חינם, תמיד</footer>
+</div>
+
+<script>
+const GOLD='#C79A4B',GOLD_L='#E6C27A',BLACK='#070707';
+const BIZ_LABELS={fashion:'חנות בגדים',flowers:'חנות פרחים',cosmetics:'קוסמטיקה',pharm:'פארם',kiosk:'קיוסק',market:'סופרמרקט'};
+const ils=n=>'₪'+Math.round(n).toLocaleString('he-IL');
+
+/* שטח + מידות */
+const areaEl=document.getElementById('area');
+function updArea(){
+  const a=+areaEl.value;
+  const w=Math.round(Math.sqrt(a*1.6)*10)/10, d=Math.round(a/w*10)/10;
+  document.getElementById('areaVal').textContent=a+' מ"ר';
+  document.getElementById('dims').textContent='(~'+w+'×'+d+' מ\')';
+}
+areaEl.addEventListener('input',updArea);updArea();
+
+/* צ'יפים */
+document.querySelectorAll('#needs .chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+
+/* תמונה — כיווץ לפני שליחה כדי לחסוך נפח */
+let photo=null;
+const fileEl=document.getElementById('file');
+document.getElementById('uploadBtn').addEventListener('click',()=>fileEl.click());
+fileEl.addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const img=new Image();
+  img.onload=()=>{
+    const MAX=1280,scale=Math.min(1,MAX/Math.max(img.width,img.height));
+    const cv=document.createElement('canvas');
+    cv.width=Math.round(img.width*scale);cv.height=Math.round(img.height*scale);
+    cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+    const dataUrl=cv.toDataURL('image/jpeg',0.85);
+    photo={b64:dataUrl.split(',')[1],type:'image/jpeg',preview:dataUrl};
+    document.getElementById('previewImg').src=dataUrl;
+    document.getElementById('preview').style.display='block';
+    document.getElementById('uploadBtn').style.display='none';
+  };
+  img.src=URL.createObjectURL(f);
+});
+document.getElementById('removePhoto').addEventListener('click',()=>{
+  photo=null;fileEl.value='';
+  document.getElementById('preview').style.display='none';
+  document.getElementById('uploadBtn').style.display='block';
+});
+
+/* טעינה */
+const LOAD_MSGS=['מנתחים את החלל שלכם…','מתאימים מוצרים מהקטלוג…','משרטטים סקיצת הצבה…','בונים מסלול לקוח…'];
+let loadIv=null;
+
+/* סקיצה SVG */
+function renderPlan(layout,path,W,D){
+  const PAD=36,S=Math.min(560/W,420/D);
+  const vw=W*S+PAD*2,vh=D*S+PAD*2;
+  const X=m=>PAD+m*S,Y=m=>PAD+m*S;
+  let s='<svg viewBox="0 0 '+vw+' '+vh+'" role="img" aria-label="סקיצת הצבה" style="width:100%;height:auto;display:block">';
+  s+='<rect x="'+X(0)+'" y="'+Y(0)+'" width="'+(W*S)+'" height="'+(D*S)+'" fill="#F7F4EF" rx="4"/>';
+  for(let i=1;i<=Math.floor(W);i++)s+='<line x1="'+X(i)+'" y1="'+Y(0)+'" x2="'+X(i)+'" y2="'+Y(D)+'" stroke="#E8E2D8"/>';
+  for(let i=1;i<=Math.floor(D);i++)s+='<line x1="'+X(0)+'" y1="'+Y(i)+'" x2="'+X(W)+'" y2="'+Y(i)+'" stroke="#E8E2D8"/>';
+  s+='<rect x="'+X(0)+'" y="'+Y(0)+'" width="'+(W*S)+'" height="'+(D*S)+'" fill="none" stroke="'+BLACK+'" stroke-width="5" rx="4"/>';
+  s+='<line x1="'+X(W/2-0.6)+'" y1="'+Y(D)+'" x2="'+X(W/2+0.6)+'" y2="'+Y(D)+'" stroke="'+GOLD+'" stroke-width="7" stroke-linecap="round"/>';
+  s+='<text x="'+X(W/2)+'" y="'+(Y(D)+22)+'" text-anchor="middle" font-size="12" fill="'+GOLD+'" font-weight="700" font-family="Heebo">כניסה</text>';
+  if(path&&path.length>1){
+    const d='M '+path.map(p=>X(p.x)+' '+Y(p.y)).join(' L ');
+    s+='<path d="'+d+'" fill="none" stroke="'+GOLD+'" stroke-width="2.5" stroke-dasharray="7 7" opacity=".85" stroke-linecap="round">'+
+       '<animate attributeName="stroke-dashoffset" from="56" to="0" dur="2.2s" repeatCount="indefinite"/></path>';
+  }
+  (layout||[]).forEach(it=>{
+    const w=(it.w||1)*S,d=(it.d||0.6)*S,cx=X(it.x)+w/2,cy=Y(it.y)+d/2;
+    const isWall=(it.catalogId||'').includes('wall')||(it.catalogId||'').includes('slat');
+    const rot=it.rotate?(' transform="rotate('+it.rotate+' '+cx+' '+cy+')"'):'';
+    const label=(it.label||'').replace(/[<>&"]/g,'');
+    s+='<g'+rot+'><rect x="'+X(it.x)+'" y="'+Y(it.y)+'" width="'+w+'" height="'+d+'" rx="5" fill="'+(isWall?BLACK:'#fff')+'" stroke="'+(isWall?GOLD:BLACK)+'" stroke-width="2"/>'+
+       '<rect x="'+X(it.x)+'" y="'+Y(it.y)+'" width="'+w+'" height="'+d+'" rx="5" fill="'+GOLD+'" opacity=".12"/>'+
+       '<text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" font-size="'+Math.max(9,Math.min(12,w/7))+'" fill="'+(isWall?GOLD_L:BLACK)+'" font-weight="700" font-family="Heebo">'+label+'</text></g>';
+  });
+  s+='<text x="'+X(W/2)+'" y="'+(Y(0)-12)+'" text-anchor="middle" font-size="13" fill="#6B6B6B" font-family="Heebo">'+W+' מ\'</text>';
+  s+='</svg>';
+  document.getElementById('planSvg').innerHTML=s;
+}
+
+/* יצירת תכנון */
+const grid=document.getElementById('grid'),results=document.getElementById('results');
+const loadingCard=document.getElementById('loadingCard'),errBox=document.getElementById('errBox'),resultBody=document.getElementById('resultBody');
+
+async function generate(){
+  const go=document.getElementById('go');
+  go.disabled=true;go.textContent='מתכננים…';
+  grid.classList.add('has-result');results.classList.add('show');
+  resultBody.style.display='none';errBox.style.display='none';loadingCard.style.display='block';
+  document.getElementById('loadSub').textContent=photo?'כולל ניתוח תמונת הקיר שהעליתם':'מבוסס על נתוני העסק שהזנתם';
+  let step=0;clearInterval(loadIv);
+  loadIv=setInterval(()=>{step=(step+1)%LOAD_MSGS.length;document.getElementById('loadMsg').textContent=LOAD_MSGS[step]},2200);
+  loadingCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  const payload={
+    biz:document.getElementById('biz').value,
+    area:+areaEl.value,
+    needs:[...document.querySelectorAll('#needs .chip.on')].map(c=>c.dataset.n),
+    budget:document.getElementById('budget').value,
+    photoB64:photo?photo.b64:null,
+    photoType:photo?photo.type:null
+  };
+
+  try{
+    const res=await fetch('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const data=await res.json();
+    if(!res.ok||!data.ok)throw new Error(data.message||'שגיאה');
+    render(data,payload);
+  }catch(e){
+    console.error(e);
+    errBox.textContent=(e.message&&e.message!=='שגיאה')?e.message:'משהו השתבש בתכנון. נסו שוב — או דברו איתנו ונתכנן יחד.';
+    errBox.style.display='block';
+  }finally{
+    clearInterval(loadIv);loadingCard.style.display='none';
+    go.disabled=false;go.textContent='✦ צרו לי תכנון חכם';
+  }
+}
+
+function render(d,payload){
+  document.getElementById('stylePill').textContent='סגנון: '+d.style;
+  document.getElementById('metaLine').textContent=BIZ_LABELS[payload.biz]+' · '+payload.area+' מ"ר';
+  document.getElementById('concept').textContent=d.concept;
+  const wb=document.getElementById('wallBox');
+  if(d.wallAnalysis&&photo){
+    document.getElementById('wallImg').src=photo.preview;
+    document.getElementById('wallText').textContent=d.wallAnalysis;
+    wb.style.display='flex';
+  }else wb.style.display='none';
+
+  renderPlan(d.layout,d.path,d.storeW,d.storeD);
+
+  const list=document.getElementById('prodList');list.innerHTML='';
+  d.priced.forEach(p=>{
+    const row=document.createElement('div');row.className='prow';
+    row.innerHTML='<span class="qty">×'+p.qty+'</span>'+
+      '<div class="info"><b></b><span></span></div>'+
+      '<div class="sum"><b>'+ils(p.total)+'</b>'+(p.qty>1?'<span>'+ils(p.price)+' ליח\'</span>':'')+'</div>';
+    row.querySelector('.info b').textContent=p.name;
+    row.querySelector('.info span').textContent=p.cat+' · '+p.reason;
+    list.appendChild(row);
+  });
+  document.getElementById('grandTotal').textContent=ils(d.grandTotal);
+
+  const tips=document.getElementById('tipsList');tips.innerHTML='';
+  (d.tips||[]).forEach(t=>{
+    const div=document.createElement('div');div.className='tip';
+    div.innerHTML='<i>✦</i>';
+    const span=document.createElement('span');span.textContent=t;div.appendChild(span);
+    tips.appendChild(div);
+  });
+  document.getElementById('tipsCard').style.display=(d.tips&&d.tips.length)?'block':'none';
+
+  const waText=encodeURIComponent(
+    'היי MORALI! קיבלתי תכנון מהמתכנן החכם:\n'+BIZ_LABELS[payload.biz]+', '+payload.area+' מ"ר\n'+
+    d.priced.map(p=>'• '+p.name+' x'+p.qty).join('\n')+
+    '\nסה"כ משוער: '+ils(d.grandTotal)+'\nאשמח להצעת מחיר מסודרת 🙏'
+  );
+  document.getElementById('waBtn').href='https://wa.me/972501234567?text='+waText;
+
+  resultBody.style.display='block';
+  resultBody.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('go').addEventListener('click',generate);
+document.getElementById('again').addEventListener('click',generate);
+</script>
+</body>
+</html>
