@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORALI — מתקני תצוגה ועיצוב לחנויות | יוצרים חנויות שמוכרות יותר</title>
+<meta name="description" content="MORALI — פתרונות תצוגה, מידוף ועיצוב מקצועי לחנויות. בובות ראווה, סטנדים, דלפקים, קולבים ותכנון חנות מלא. מעל 8,500 פרויקטים בכל הארץ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MORALI — Premium Digital Showroom
+   Design tokens
+============================================================ */
+:root{
+  --black:#070707;
+  --black-2:#111111;
+  --black-3:#1a1a1a;
+  --white:#ffffff;
+  --bg:#F7F4EF;
+  --gold:#C79A4B;
+  --gold-light:#E6C27A;
+  --gold-dim:rgba(199,154,75,.14);
+  --gray:#6B6B6B;
+  --border:#E8E2D8;
+  --radius-card:22px;
+  --radius-cat:28px;
+  --shadow-soft:0 10px 40px rgba(7,7,7,.08);
+  --shadow-lift:0 24px 60px rgba(7,7,7,.16);
+  --section-pad:140px;
+  --ease:cubic-bezier(.22,.8,.26,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Heebo',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--black);
+  font-size:18px;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+::selection{background:var(--gold);color:var(--black)}
+
+h1{font-size:clamp(40px,5.4vw,72px);font-weight:800;line-height:1.12;letter-spacing:-.01em}
+h2{font-size:clamp(32px,4vw,54px);font-weight:700;line-height:1.18;letter-spacing:-.01em}
+h3{font-size:clamp(22px,2.2vw,34px);font-weight:700}
+
+.container{width:min(1280px,92%);margin-inline:auto}
+.section{padding-block:var(--section-pad)}
+.section-head{max-width:680px;margin:0 auto 64px;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:18px;
+}
+.eyebrow::before,.eyebrow::after{content:"";width:34px;height:1px;background:var(--gold)}
+.section-head p{color:var(--gray);margin-top:14px;font-size:19px}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 36px;border-radius:999px;font-weight:700;font-size:17px;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s,color .3s;
+  white-space:nowrap;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--black);
+  box-shadow:0 8px 28px rgba(199,154,75,.35);
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(199,154,75,.5)}
+.btn-ghost{
+  background:rgba(255,255,255,.06);color:var(--white);
+  border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(8px);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-3px)}
+.btn-dark{background:var(--black);color:var(--white)}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(7,7,7,.3)}
+.btn-line{border:1.5px solid var(--border);color:var(--black);background:var(--white)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}
+.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* Image fallback shimmer */
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,#1c1812,#3a2f1d 45%,#161310)}
+.ph::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 70% 10%,rgba(230,194,122,.22),transparent 55%);
+}
+.ph img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+
+/* ============================================================
+   01 — Top utility bar
+============================================================ */
+.topbar{
+  background:var(--black);color:#d8d3c8;font-size:13.5px;
+  position:relative;z-index:60;
+}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;min-height:42px;gap:20px}
+.topbar-items{display:flex;gap:28px;align-items:center}
+.topbar-items span{display:inline-flex;align-items:center;gap:8px}
+.topbar svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.8;flex:none}
+.topbar-contact{display:flex;gap:18px;align-items:center;font-weight:600;color:#fff}
+.topbar-contact a:hover{color:var(--gold-light)}
+
+/* ============================================================
+   02 — Header
+============================================================ */
+.header{
+  position:fixed;inset-inline:0;top:0;z-index:50;
+  transition:background .4s var(--ease),box-shadow .4s,padding .4s;
+  padding-block:18px;
+}
+.header.over-hero{margin-top:42px}
+.header .container{display:flex;align-items:center;gap:36px}
+.logo{display:flex;flex-direction:column;line-height:1.05}
+.logo b{font-size:27px;font-weight:900;letter-spacing:.14em;color:var(--white);transition:color .4s}
+.logo small{font-size:11.5px;color:var(--gold-light);font-weight:500;letter-spacing:.04em}
+.nav{display:flex;gap:28px;margin-inline-start:auto}
+.nav a{
+  font-size:15.5px;font-weight:600;color:rgba(255,255,255,.85);
+  position:relative;padding-block:6px;transition:color .3s;
+}
+.nav a::after{
+  content:"";position:absolute;bottom:0;inset-inline:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease);
+}
+.nav a:hover{color:var(--white)}
+.nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
+.header-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  color:rgba(255,255,255,.9);transition:background .3s,color .3s;position:relative;
+}
+.icon-btn:hover{background:rgba(255,255,255,.12)}
+.icon-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+.icon-btn .badge{
+  position:absolute;top:2px;inset-inline-start:2px;width:17px;height:17px;border-radius:50%;
+  background:var(--gold);color:var(--black);font-size:11px;font-weight:800;display:grid;place-items:center;
+}
+.header .btn{padding:12px 26px;font-size:15px}
+
+.header.scrolled{
+  background:rgba(255,255,255,.94);backdrop-filter:blur(14px);
+  box-shadow:0 6px 30px rgba(7,7,7,.08);padding-block:12px;margin-top:0;
+}
+.header.scrolled .logo b{color:var(--black)}
+.header.scrolled .logo small{color:var(--gold)}
+.header.scrolled .nav a{color:#333}
+.header.scrolled .nav a:hover{color:var(--black)}
+.header.scrolled .icon-btn{color:var(--black)}
+.header.scrolled .icon-btn:hover{background:rgba(7,7,7,.06)}
+.menu-toggle{display:none}
+
+/* Mobile drawer */
+.drawer{
+  position:fixed;inset:0;z-index:90;visibility:hidden;pointer-events:none;
+}
+.drawer.open{visibility:visible;pointer-events:auto}
+.drawer-bg{position:absolute;inset:0;background:rgba(7,7,7,.55);opacity:0;transition:opacity .4s}
+.drawer.open .drawer-bg{opacity:1}
+.drawer-panel{
+  position:absolute;top:0;bottom:0;inset-inline-start:0;width:min(340px,86%);
+  background:var(--black);color:#fff;padding:34px 30px;
+  transform:translateX(100%);transition:transform .45s var(--ease);
+  display:flex;flex-direction:column;gap:6px;overflow-y:auto;
+}
+[dir="rtl"] .drawer-panel{transform:translateX(-100%)}
+.drawer.open .drawer-panel{transform:none}
+.drawer-panel a{padding:13px 4px;font-size:18px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.08)}
+.drawer-panel a:hover{color:var(--gold-light)}
+.drawer-close{align-self:flex-start;color:#fff;font-size:30px;margin-bottom:14px}
+
+/* ============================================================
+   03 — Hero
+============================================================ */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;
+  color:var(--white);overflow:hidden;background:var(--black);
+}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:heroZoom 22s ease-in-out infinite alternate}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.09)}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to left,rgba(7,7,7,.88) 8%,rgba(7,7,7,.62) 42%,rgba(7,7,7,.2) 78%),
+             linear-gradient(to top,rgba(7,7,7,.92),transparent 38%);
+}
+.hero .container{position:relative;z-index:2;padding-top:130px;padding-bottom:170px}
+.hero-content{max-width:650px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;
+  color:var(--gold-light);letter-spacing:.18em;margin-bottom:24px;
+}
+.hero-tag::before{content:"";width:46px;height:1.5px;background:var(--gold)}
+.hero h1 .gold{
+  background:linear-gradient(120deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{font-size:21px;color:rgba(255,255,255,.82);margin:26px 0 38px;max-width:520px;font-weight:300}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.video-chip{
+  display:inline-flex;align-items:center;gap:14px;margin-top:34px;
+  padding:10px 22px 10px 12px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(10px);transition:background .3s,transform .3s;
+  color:#fff;font-weight:600;font-size:15px;
+}
+.video-chip:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.play-ic{
+  width:46px;height:46px;border-radius:50%;flex:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  display:grid;place-items:center;position:relative;
+}
+.play-ic::after{
+  content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid rgba(230,194,122,.5);animation:pulse 2.4s ease-out infinite;
+}
+@keyframes pulse{from{transform:scale(.85);opacity:1}to{transform:scale(1.35);opacity:0}}
+.play-ic svg{width:16px;height:16px;fill:var(--black);transform:translateX(-1px)}
+.hero-stats{
+  display:flex;gap:0;margin-top:54px;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.16);padding-top:34px;
+}
+.hstat{padding-inline-end:44px;margin-inline-end:44px;border-inline-end:1px solid rgba(255,255,255,.14)}
+.hstat:last-child{border:none;margin:0;padding:0}
+.hstat b{font-size:clamp(28px,2.6vw,40px);font-weight:800;color:var(--gold-light);display:block;line-height:1.1}
+.hstat span{font-size:14px;color:rgba(255,255,255,.7)}
+.scroll-hint{
+  position:absolute;bottom:120px;inset-inline-start:50%;transform:translateX(50%);
+  width:26px;height:44px;border:1.5px solid rgba(255,255,255,.4);border-radius:14px;z-index:2;
+}
+.scroll-hint::after{
+  content:"";position:absolute;top:8px;inset-inline-start:50%;margin-inline-start:-2px;
+  width:4px;height:8px;border-radius:4px;background:var(--gold-light);
+  animation:scrollDot 1.8s ease-in-out infinite;
+}
+@keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(14px);opacity:.2}}
+
+/* ============================================================
+   04 — Quick actions (overlapping hero)
+============================================================ */
+.quick{position:relative;z-index:5;margin-top:-86px}
+.quick-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:18px;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(18px);
+  border:1px solid rgba(232,226,216,.9);border-radius:26px;
+  padding:22px;box-shadow:var(--shadow-lift);
+}
+.qcard{
+  display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;
+  padding:24px 14px;border-radius:18px;transition:background .3s,transform .35s var(--ease);
+  font-weight:700;font-size:15.5px;position:relative;
+}
+.qcard:hover{background:var(--gold-dim);transform:translateY(-5px)}
+.qicon{
+  width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+  background:var(--black);color:var(--gold-light);transition:transform .35s var(--ease),background .3s;
+}
+.qcard:hover .qicon{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);transform:rotate(-6deg) scale(1.06)}
+.qicon svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.7}
+.qcard .ai-pill{
+  position:absolute;top:12px;inset-inline-end:12px;font-size:10.5px;font-weight:800;
+  background:var(--gold);color:var(--black);padding:2px 9px;border-radius:99px;letter-spacing:.08em;
+}
+
+/* ============================================================
+   05 — AI Store Planner
+============================================================ */
+.planner-wrap{
+  background:var(--black);border-radius:34px;overflow:hidden;position:relative;
+  color:#fff;box-shadow:var(--shadow-lift);
+}
+.planner-wrap::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(700px 360px at 12% 0%,rgba(199,154,75,.16),transparent 60%);
+}
+.planner-head{padding:64px 64px 0;position:relative}
+.planner-head h2{color:#fff}
+.planner-head p{color:rgba(255,255,255,.65);margin-top:12px;max-width:560px}
+.planner-grid{
+  display:grid;grid-template-columns:330px 1fr 330px;gap:26px;
+  padding:44px 64px 64px;position:relative;align-items:stretch;
+}
+.panel{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;padding:28px;backdrop-filter:blur(6px);
+}
+.panel-label{
+  font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--gold-light);
+  text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;
+}
+.panel-label svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13.5px;color:rgba(255,255,255,.6);margin-bottom:7px;font-weight:600}
+.field select,.field input{
+  width:100%;padding:13px 16px;border-radius:13px;font-family:inherit;font-size:15px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;
+  appearance:none;outline:none;transition:border-color .3s,background .3s;
+}
+.field select:focus,.field input:focus{border-color:var(--gold);background:rgba(255,255,255,.1)}
+.field select option{color:var(--black)}
+.field input::placeholder{color:rgba(255,255,255,.35)}
+.planner-cta{width:100%;margin-top:6px}
+.planner-viz{
+  border-radius:22px;overflow:hidden;position:relative;min-height:380px;
+  border:1px solid rgba(255,255,255,.1);
+}
+.planner-viz .scan{
+  position:absolute;inset-inline:0;height:90px;z-index:3;top:-90px;
+  background:linear-gradient(to bottom,transparent,rgba(230,194,122,.28),transparent);
+  animation:scan 4.5s linear infinite;
+}
+@keyframes scan{to{transform:translateY(calc(380px + 180px))}}
+.planner-viz .grid-lines{
+  position:absolute;inset:0;z-index:2;opacity:.5;
+  background-image:linear-gradient(rgba(230,194,122,.1) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(230,194,122,.1) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+.viz-tag{
+  position:absolute;z-index:4;background:rgba(7,7,7,.78);backdrop-filter:blur(6px);
+  border:1px solid rgba(230,194,122,.45);color:#fff;font-size:12.5px;font-weight:600;
+  padding:6px 13px;border-radius:99px;display:flex;align-items:center;gap:7px;
+  animation:floatTag 5s ease-in-out infinite;
+}
+.viz-tag i{width:7px;height:7px;border-radius:50%;background:var(--gold-light);display:inline-block}
+@keyframes floatTag{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.result-card{display:flex;flex-direction:column}
+.result-rows{flex:1}
+.rrow{
+  padding:15px 0;border-bottom:1px solid rgba(255,255,255,.09);
+  display:flex;flex-direction:column;gap:3px;
+}
+.rrow:last-child{border:none}
+.rrow span{font-size:12.5px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.04em}
+.rrow b{font-size:17px;font-weight:700;color:#fff}
+.rrow b.gold{color:var(--gold-light)}
+.result-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px}
+.typing b{border-inline-end:2px solid var(--gold-light);animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+
+/* ============================================================
+   06 — Before / After
+============================================================ */
+.ba-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:38px}
+.chip{
+  padding:10px 24px;border-radius:999px;font-size:15px;font-weight:700;
+  border:1.5px solid var(--border);background:var(--white);color:var(--gray);
+  transition:all .3s var(--ease);
+}
+.chip:hover{border-color:var(--gold);color:var(--black)}
+.chip.active{background:var(--black);border-color:var(--black);color:var(--gold-light)}
+.ba-stage{
+  position:relative;border-radius:30px;overflow:hidden;aspect-ratio:16/8.2;
+  box-shadow:var(--shadow-lift);user-select:none;touch-action:none;background:#111;
+}
+.ba-img{position:absolute;inset:0}
+.ba-img img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-before{filter:grayscale(.55) brightness(.82) contrast(.92)}
+.ba-after{clip-path:inset(0 0 0 50%)}
+[dir="rtl"] .ba-after{clip-path:inset(0 50% 0 0)}
+.ba-handle{
+  position:absolute;top:0;bottom:0;inset-inline-start:50%;width:2px;background:var(--gold-light);
+  z-index:5;cursor:ew-resize;
+}
+.ba-handle::before{
+  content:"⇄";position:absolute;top:50%;inset-inline-start:50%;transform:translate(50%,-50%);
+  width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);
+  font-size:22px;font-weight:900;box-shadow:0 8px 30px rgba(7,7,7,.4);
+}
+.ba-label{
+  position:absolute;top:24px;z-index:4;padding:8px 20px;border-radius:99px;
+  font-size:14px;font-weight:800;backdrop-filter:blur(8px);
+}
+.ba-label.before{inset-inline-end:24px;background:rgba(7,7,7,.65);color:#fff}
+.ba-label.after{inset-inline-start:24px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black)}
+.ba-caption{display:flex;justify-content:space-between;margin-top:20px;color:var(--gray);font-size:15px;gap:20px;flex-wrap:wrap}
+.ba-caption b{color:var(--black)}
+
+/* ============================================================
+   07 — ROI Calculator
+============================================================ */
+.roi{display:grid;grid-template-columns:1fr 1.15fr;gap:0;border-radius:32px;overflow:hidden;box-shadow:var(--shadow-lift)}
+.roi-form{background:var(--white);padding:56px}
+.roi-form h2{font-size:clamp(28px,3vw,40px)}
+.roi-form>p{color:var(--gray);margin:12px 0 32px}
+.roi-form .field label{color:var(--gray)}
+.roi-form .field select,.roi-form .field input{
+  background:var(--bg);border:1.5px solid var(--border);color:var(--black);
+}
+.roi-form .field select:focus,.roi-form .field input:focus{border-color:var(--gold);background:#fff}
+.range-wrap{display:flex;align-items:center;gap:16px}
+.range-wrap input[type=range]{
+  flex:1;height:4px;border-radius:99px;background:var(--border);appearance:none;padding:0;border:none;
+}
+.range-wrap input[type=range]::-webkit-slider-thumb{
+  appearance:none;width:22px;height:22px;border-radius:50%;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  border:3px solid #fff;box-shadow:0 3px 12px rgba(7,7,7,.25);
+}
+.range-val{min-width:90px;font-weight:800;color:var(--gold);font-size:17px;text-align:center}
+.roi-out{
+  background:var(--black);color:#fff;padding:56px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.roi-out::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(420px 300px at 85% 15%,rgba(199,154,75,.2),transparent 65%);
+}
+.roi-out h3{color:var(--gold-light);font-size:15px;letter-spacing:.2em;font-weight:800;margin-bottom:30px;position:relative}
+.roi-metric{position:relative;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.roi-metric:last-of-type{border:none}
+.roi-metric span{font-size:14px;color:rgba(255,255,255,.55);display:block;margin-bottom:4px}
+.roi-metric b{font-size:clamp(26px,2.6vw,38px);font-weight:800;color:#fff}
+.roi-metric b em{font-style:normal;color:var(--gold-light)}
+.roi-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:12px;overflow:hidden}
+.roi-bar i{
+  display:block;height:100%;border-radius:99px;width:0;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  transition:width 1.2s var(--ease);
+}
+.roi-disc{position:relative;font-size:12.5px;color:rgba(255,255,255,.4);margin-top:26px}
+
+/* ============================================================
+   08 — Categories
+============================================================ */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.cat-card{
+  position:relative;border-radius:var(--radius-cat);overflow:hidden;aspect-ratio:4/5;
+  box-shadow:var(--shadow-soft);transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+  display:block;
+}
+.cat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lift)}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.cat-card:hover img{transform:scale(1.07)}
+.cat-card::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(7,7,7,.82) 8%,rgba(7,7,7,.12) 52%,transparent);
+  transition:background .4s;
+}
+.cat-info{
+  position:absolute;z-index:2;bottom:0;inset-inline:0;padding:26px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:10px;color:#fff;
+}
+.cat-info b{font-size:21px;font-weight:800;display:block}
+.cat-info small{font-size:13px;color:rgba(255,255,255,.65)}
+.cat-arrow{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;
+  border:1.5px solid rgba(255,255,255,.4);transition:all .35s var(--ease);
+}
+.cat-card:hover .cat-arrow{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:transparent;color:var(--black);transform:rotate(-45deg)}
+.cat-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.center-cta{text-align:center;margin-top:52px}
+
+/* ============================================================
+   09 — Products
+============================================================ */
+.prod-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.pcard{
+  background:var(--white);border-radius:var(--radius-card);overflow:hidden;
+  border:1px solid var(--border);transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  position:relative;display:flex;flex-direction:column;
+}
+.pcard:hover{transform:translateY(-7px);box-shadow:var(--shadow-lift);border-color:transparent}
+.pcard-img{position:relative;aspect-ratio:1/1.04;overflow:hidden;background:#efece6}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.pcard:hover .pcard-img img{transform:scale(1.06)}
+.pbadge{
+  position:absolute;top:14px;inset-inline-start:14px;z-index:2;
+  font-size:12px;font-weight:800;padding:5px 14px;border-radius:99px;
+}
+.pbadge.new{background:var(--black);color:var(--gold-light)}
+.pbadge.hot{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black)}
+.pbadge.rec{background:#fff;color:var(--black);border:1px solid var(--border)}
+.fav{
+  position:absolute;top:12px;inset-inline-end:12px;z-index:2;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.92);display:grid;place-items:center;color:#999;
+  transition:color .3s,transform .3s;opacity:0;transform:translateY(-6px);
+}
+.pcard:hover .fav{opacity:1;transform:none}
+.fav:hover,.fav.on{color:#d2484f}
+.fav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.fav.on svg{fill:#d2484f}
+.quickview{
+  position:absolute;bottom:0;inset-inline:0;z-index:2;padding:13px;
+  background:rgba(7,7,7,.82);color:var(--gold-light);font-weight:700;font-size:14px;text-align:center;
+  transform:translateY(100%);transition:transform .4s var(--ease);backdrop-filter:blur(6px);width:100%;
+}
+.pcard:hover .quickview{transform:none}
+.pcard-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pcard-body small{font-size:12.5px;color:var(--gray);font-weight:600;letter-spacing:.05em}
+.pcard-body b{font-size:16.5px;font-weight:700;line-height:1.4}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:10px}
+.price{font-size:19px;font-weight:800}
+.price s{font-size:14px;color:#b3aca0;font-weight:500;margin-inline-start:8px}
+.add-btn{
+  width:40px;height:40px;border-radius:13px;background:var(--black);color:var(--gold-light);
+  display:grid;place-items:center;transition:all .3s var(--ease);
+}
+.add-btn:hover{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);transform:scale(1.08)}
+.add-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ============================================================
+   10 — Projects (dark)
+============================================================ */
+.dark-section{background:var(--black);color:#fff;position:relative;overflow:hidden}
+.dark-section .section-head p{color:rgba(255,255,255,.6)}
+.dark-section h2{color:#fff}
+.carousel-wrap{position:relative}
+.carousel{
+  display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding-bottom:10px;scrollbar-width:none;
+}
+.carousel::-webkit-scrollbar{display:none}
+.proj-card{
+  flex:0 0 min(420px,82vw);scroll-snap-align:start;border-radius:26px;overflow:hidden;
+  position:relative;aspect-ratio:4/4.6;
+  border:1px solid rgba(255,255,255,.1);
+}
+.proj-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.proj-card:hover img{transform:scale(1.06)}
+.proj-card::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,7,7,.92) 4%,transparent 55%);
+}
+.proj-info{
+  position:absolute;bottom:0;inset-inline:0;z-index:2;padding:30px;
+  transform:translateY(14px);transition:transform .4s var(--ease);
+}
+.proj-card:hover .proj-info{transform:none}
+.proj-info small{
+  display:inline-block;font-size:12.5px;font-weight:700;color:var(--gold-light);
+  border:1px solid rgba(230,194,122,.4);padding:3px 13px;border-radius:99px;margin-bottom:12px;
+  background:rgba(7,7,7,.4);backdrop-filter:blur(4px);
+}
+.proj-info b{font-size:23px;font-weight:800;display:block}
+.proj-info span{font-size:14.5px;color:rgba(255,255,255,.65)}
+.car-nav{display:flex;gap:12px;justify-content:center;margin-top:36px}
+.car-btn{
+  width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid rgba(255,255,255,.3);color:#fff;transition:all .3s;
+}
+.car-btn:hover{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);border-color:transparent}
+.car-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+.light .car-btn{border-color:var(--border);color:var(--black)}
+
+/* ============================================================
+   11 — Israel map
+============================================================ */
+.map-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.map-visual{
+  position:relative;background:var(--black-2);border-radius:32px;padding:40px;
+  display:grid;place-items:center;min-height:560px;overflow:hidden;
+}
+.map-visual::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(440px 320px at 30% 20%,rgba(199,154,75,.14),transparent 60%);
+}
+.map-visual svg{position:relative;z-index:1;height:520px;max-width:100%}
+.map-pin{cursor:pointer}
+.map-pin circle.dot{fill:var(--gold-light);transition:r .3s}
+.map-pin circle.halo{fill:none;stroke:var(--gold);stroke-width:1;opacity:.7;animation:halo 2.6s ease-out infinite}
+@keyframes halo{from{r:5;opacity:.8}to{r:18;opacity:0}}
+.map-pin.active circle.dot{fill:#fff}
+.city-list{display:flex;flex-direction:column;gap:6px}
+.city-row{
+  display:flex;align-items:center;gap:18px;padding:20px 26px;border-radius:18px;
+  border:1.5px solid var(--border);background:var(--white);cursor:pointer;
+  transition:all .35s var(--ease);text-align:start;width:100%;
+}
+.city-row:hover,.city-row.active{border-color:var(--gold);box-shadow:var(--shadow-soft);transform:translateX(-6px)}
+.city-row .num{
+  width:50px;height:50px;border-radius:14px;background:var(--black);color:var(--gold-light);
+  display:grid;place-items:center;font-weight:800;font-size:15px;flex:none;transition:background .3s,color .3s;
+}
+.city-row.active .num{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black)}
+.city-row b{font-size:18px;display:block}
+.city-row span{font-size:14px;color:var(--gray)}
+.city-row .go{margin-inline-start:auto;color:var(--gold);font-weight:700;font-size:14px;opacity:0;transition:opacity .3s}
+.city-row:hover .go,.city-row.active .go{opacity:1}
+
+/* ============================================================
+   12 — Inspiration masonry
+============================================================ */
+.masonry{columns:4;column-gap:20px}
+.m-item{
+  position:relative;border-radius:20px;overflow:hidden;margin-bottom:20px;
+  break-inside:avoid;display:block;
+}
+.m-item img{width:100%;transition:transform .7s var(--ease)}
+.m-item:hover img{transform:scale(1.06)}
+.m-item::after{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;
+  background:linear-gradient(to top,rgba(7,7,7,.8),transparent 60%);
+}
+.m-item:hover::after{opacity:1}
+.m-overlay{
+  position:absolute;bottom:0;inset-inline:0;z-index:2;padding:20px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  opacity:0;transform:translateY(10px);transition:all .4s var(--ease);
+}
+.m-item:hover .m-overlay{opacity:1;transform:none}
+.m-overlay b{font-size:15.5px}
+.m-save{
+  width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);
+  display:grid;place-items:center;color:#fff;flex:none;
+}
+.m-save:hover{background:var(--gold);color:var(--black)}
+.m-save svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ============================================================
+   13 — Testimonials
+============================================================ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tcard{
+  background:var(--white);border-radius:24px;padding:36px;border:1px solid var(--border);
+  display:flex;flex-direction:column;gap:18px;position:relative;
+  transition:transform .4s var(--ease),box-shadow .4s;
+}
+.tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.tcard::before{
+  content:"”";position:absolute;top:18px;inset-inline-end:28px;font-size:90px;line-height:1;
+  color:var(--gold-dim);font-weight:900;
+}
+.stars{color:var(--gold);font-size:17px;letter-spacing:3px}
+.tcard p{font-size:16.5px;line-height:1.75;color:#333;flex:1}
+.t-metric{
+  display:flex;gap:0;border:1px dashed var(--border);border-radius:14px;overflow:hidden;
+}
+.t-metric div{flex:1;padding:12px 16px;text-align:center}
+.t-metric div+div{border-inline-start:1px dashed var(--border);background:var(--gold-dim)}
+.t-metric span{font-size:12px;color:var(--gray);display:block}
+.t-metric b{font-size:17px}
+.t-person{display:flex;align-items:center;gap:14px}
+.avatar{
+  width:50px;height:50px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--black);color:var(--gold-light);font-weight:800;font-size:17px;
+}
+.t-person b{display:block;font-size:16px}
+.t-person span{font-size:13.5px;color:var(--gray)}
+
+/* ============================================================
+   14 — Benefits
+============================================================ */
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.bcard{
+  background:var(--white);border:1px solid var(--border);border-radius:24px;padding:38px 30px;
+  transition:all .4s var(--ease);position:relative;overflow:hidden;
+}
+.bcard::after{
+  content:"";position:absolute;bottom:0;inset-inline:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease);
+}
+.bcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.bcard:hover::after{transform:scaleX(1)}
+.bicon{
+  width:62px;height:62px;border-radius:18px;background:var(--gold-dim);color:var(--gold);
+  display:grid;place-items:center;margin-bottom:22px;
+}
+.bicon svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.7}
+.bcard b{font-size:19px;display:block;margin-bottom:8px}
+.bcard p{font-size:15px;color:var(--gray);line-height:1.65}
+
+/* ============================================================
+   15 — Knowledge center
+============================================================ */
+.know-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.kcard{
+  background:var(--white);border-radius:22px;overflow:hidden;border:1px solid var(--border);
+  transition:all .4s var(--ease);display:flex;flex-direction:column;
+}
+.kcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.kimg{aspect-ratio:16/10;overflow:hidden}
+.kimg img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.kcard:hover .kimg img{transform:scale(1.06)}
+.kbody{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.kbody small{font-size:12.5px;font-weight:700;color:var(--gold);letter-spacing:.1em}
+.kbody b{font-size:17.5px;line-height:1.45;flex:1}
+.klink{font-size:14.5px;font-weight:700;color:var(--black);display:inline-flex;align-items:center;gap:6px}
+.kcard:hover .klink{color:var(--gold)}
+
+/* ============================================================
+   16 — Final CTA
+============================================================ */
+.final{
+  position:relative;border-radius:36px;overflow:hidden;padding:100px 60px;text-align:center;
+  color:#fff;background:var(--black);
+}
+.final-bg{position:absolute;inset:0}
+.final-bg img{width:100%;height:100%;object-fit:cover;opacity:.42}
+.final::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 100% at 50% 100%,rgba(199,154,75,.22),transparent 70%);
+}
+.final>div{position:relative;z-index:2;max-width:640px;margin-inline:auto}
+.final h2{color:#fff;margin-bottom:16px}
+.final p{color:rgba(255,255,255,.75);font-size:20px;margin-bottom:38px}
+.final .hero-ctas{justify-content:center}
+
+/* ============================================================
+   17 — Footer
+============================================================ */
+.footer{background:var(--black);color:rgba(255,255,255,.7);padding:90px 0 0;font-size:15px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:50px;padding-bottom:60px}
+.footer .logo b{color:#fff;font-size:30px}
+.footer-about{margin-top:18px;line-height:1.8;max-width:300px}
+.f-contact{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.f-contact a{display:flex;align-items:center;gap:11px;transition:color .3s}
+.f-contact a:hover{color:var(--gold-light)}
+.f-contact svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.8;flex:none}
+.footer h4{color:#fff;font-size:16.5px;font-weight:800;margin-bottom:22px;position:relative;padding-bottom:12px}
+.footer h4::after{content:"";position:absolute;bottom:0;inset-inline-start:0;width:32px;height:2px;background:var(--gold)}
+.footer ul{display:flex;flex-direction:column;gap:11px}
+.footer ul a{transition:color .3s,padding .3s}
+.footer ul a:hover{color:var(--gold-light);padding-inline-start:5px}
+.newsletter p{line-height:1.8;margin-bottom:18px}
+.news-form{display:flex;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05)}
+.news-form input{
+  flex:1;background:none;border:none;outline:none;color:#fff;padding:14px 22px;font-family:inherit;font-size:15px;min-width:0;
+}
+.news-form input::placeholder{color:rgba(255,255,255,.4)}
+.news-form button{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);
+  font-weight:800;padding:0 28px;font-size:15px;transition:filter .3s;
+}
+.news-form button:hover{filter:brightness(1.08)}
+.socials{display:flex;gap:11px;margin-top:24px}
+.socials a{
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.18);
+  display:grid;place-items:center;color:#fff;transition:all .3s;
+}
+.socials a:hover{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);border-color:transparent;transform:translateY(-3px)}
+.socials svg{width:17px;height:17px;fill:currentColor}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);padding:24px 0 calc(24px + env(safe-area-inset-bottom));
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.45);
+}
+.footer-bottom a:hover{color:var(--gold-light)}
+
+/* ============================================================
+   Floating actions + mobile bottom nav
+============================================================ */
+.float-actions{
+  position:fixed;bottom:26px;inset-inline-start:26px;z-index:70;
+  display:flex;flex-direction:column;gap:13px;
+}
+.fab{
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  box-shadow:0 12px 34px rgba(7,7,7,.3);transition:transform .3s var(--ease);
+}
+.fab:hover{transform:scale(1.09)}
+.fab svg{width:26px;height:26px;fill:currentColor}
+.fab-wa{background:#23ad48}
+.fab-ai{
+  width:auto;border-radius:999px;padding:0 24px;height:54px;gap:9px;display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);
+  font-weight:800;font-size:15px;
+}
+.fab-ai svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2}
+.bottom-nav{
+  display:none;position:fixed;bottom:0;inset-inline:0;z-index:80;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(16px);
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+}
+.bottom-nav ul{display:flex}
+.bottom-nav li{flex:1}
+.bottom-nav a{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  font-size:11px;font-weight:600;color:rgba(255,255,255,.6);padding:5px 0;
+}
+.bottom-nav a.active,.bottom-nav a:hover{color:var(--gold-light)}
+.bottom-nav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+.bn-ai span{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;margin-top:-24px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);
+  box-shadow:0 8px 24px rgba(199,154,75,.5);
+}
+.bn-ai span svg{stroke:var(--black)}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:100px;inset-inline-start:50%;transform:translate(50%,20px);z-index:99;
+  background:var(--black);color:#fff;padding:14px 28px;border-radius:99px;font-size:15px;font-weight:600;
+  opacity:0;pointer-events:none;transition:all .4s var(--ease);box-shadow:var(--shadow-lift);
+  border:1px solid rgba(230,194,122,.4);
+}
+.toast.show{opacity:1;transform:translate(50%,0)}
+.toast b{color:var(--gold-light)}
+
+/* ============================================================
+   Responsive
+============================================================ */
+@media (max-width:1100px){
+  .quick-grid{grid-template-columns:repeat(5,1fr);padding:16px;gap:10px}
+  .qcard{padding:18px 8px;font-size:13.5px}
+  .planner-grid{grid-template-columns:1fr 1fr;padding:36px}
+  .planner-viz{grid-column:1/-1;order:-1;min-height:300px}
+  .planner-head{padding:48px 36px 0}
+  .cat-grid,.prod-grid{grid-template-columns:repeat(3,1fr)}
+  .benefits,.know-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+  .masonry{columns:3}
+  .map-grid{grid-template-columns:1fr;gap:40px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:780px){
+  :root{--section-pad:80px}
+  body{font-size:16.5px}
+  .topbar .container{justify-content:center}
+  .topbar-items span:nth-child(n+2){display:none}
+  .nav{display:none}
+  .header .btn{display:none}
+  .menu-toggle{display:grid}
+  .hero .container{padding-top:110px;padding-bottom:150px}
+  .hero-sub{font-size:18px}
+  .hero-stats{gap:22px;padding-top:26px}
+  .hstat{padding-inline-end:22px;margin-inline-end:0;flex:1 1 38%}
+  .hstat:nth-child(2n){border:none}
+  .scroll-hint{display:none}
+  .quick{margin-top:-66px}
+  .quick-grid{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+  }
+  .quick-grid::-webkit-scrollbar{display:none}
+  .qcard{flex:0 0 122px;scroll-snap-align:start}
+  .planner-grid{grid-template-columns:1fr;padding:26px;gap:18px}
+  .planner-head{padding:40px 26px 0}
+  .roi{grid-template-columns:1fr}
+  .roi-form,.roi-out{padding:38px 28px}
+  .cat-grid{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px;
+  }
+  .cat-grid::-webkit-scrollbar{display:none}
+  .cat-card{flex:0 0 72vw;scroll-snap-align:start}
+  .prod-grid{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px;
+  }
+  .prod-grid::-webkit-scrollbar{display:none}
+  .pcard{flex:0 0 76vw;scroll-snap-align:start}
+  .fav{opacity:1;transform:none}
+  .ba-stage{aspect-ratio:4/4.4}
+  .masonry{columns:2;column-gap:14px}
+  .m-overlay{opacity:1;transform:none}
+  .m-item::after{opacity:.85}
+  .testi-grid,.benefits,.know-grid{grid-template-columns:1fr}
+  .map-visual{min-height:440px;padding:24px}
+  .map-visual svg{height:400px}
+  .footer-grid{grid-template-columns:1fr;gap:38px}
+  .final{padding:70px 26px;border-radius:26px}
+  .bottom-nav{display:block}
+  .float-actions{bottom:88px}
+  .fab-ai{display:none}
+  body{padding-bottom:0}
+  .footer{padding-bottom:70px}
+}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<!-- ============ 01 TOP BAR ============ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-items">
+      <span><svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7zM7.5 18a1.5 1.5 0 1 0 0-.01M17.5 18a1.5 1.5 0 1 0 0-.01"/></svg>משלוחים לכל הארץ</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-6H6a6 6 0 1 1 12 0h-3v6h3a3 3 0 0 0 3-3V9a7 7 0 0 0-7-7z"/></svg>ייעוץ מקצועי חינם</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg>איסוף עצמי: מרכז לוגיסטי ראש העין</span>
+    </div>
+    <div class="topbar-contact">
+      <a href="tel:050-1234567" aria-label="התקשרו אלינו">050-1234567 ☎</a>
+      <a href="https://wa.me/972501234567" aria-label="WhatsApp">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 02 HEADER ============ -->
+<header class="header over-hero" id="header">
+  <div class="container">
+    <a href="#" class="logo" aria-label="MORALI — עמוד הבית">
+      <b>MORALI</b>
+      <small>מתקני תצוגה ועיצוב לחנויות</small>
+    </a>
+    <nav class="nav" aria-label="ניווט ראשי">
+      <a href="#" class="active">בית</a>
+      <a href="#categories">קטגוריות</a>
+      <a href="#products">מוצרים</a>
+      <a href="#projects">פרויקטים</a>
+      <a href="#planner">פתרונות לעסק</a>
+      <a href="#inspiration">השראה</a>
+      <a href="#knowledge">מרכז ידע</a>
+      <a href="#contact">צור קשר</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="חיפוש"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="icon-btn" aria-label="מועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+      <button class="icon-btn" aria-label="סל הצעת מחיר"><svg viewBox="0 0 24 24"><path d="M6 7h12l1.2 12a1.8 1.8 0 0 1-1.8 2H6.6a1.8 1.8 0 0 1-1.8-2zM9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="badge">3</span></button>
+      <a class="btn btn-gold" href="#contact">קבל הצעת מחיר</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="תפריט"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-bg" data-close-drawer></div>
+  <nav class="drawer-panel" aria-label="תפריט נייד">
+    <button class="drawer-close" data-close-drawer aria-label="סגירת תפריט">×</button>
+    <a href="#">בית</a>
+    <a href="#categories">קטגוריות</a>
+    <a href="#products">מוצרים</a>
+    <a href="#projects">פרויקטים</a>
+    <a href="#planner">פתרונות לעסק</a>
+    <a href="#inspiration">השראה</a>
+    <a href="#knowledge">מרכז ידע</a>
+    <a href="#contact">צור קשר</a>
+    <a href="#contact" style="color:var(--gold-light)">קבל הצעת מחיר ←</a>
+  </nav>
+</div>
+
+<!-- ============ 03 HERO ============ -->
+<section class="hero" aria-label="MORALI — אולם תצוגה דיגיטלי">
+  <div class="hero-bg ph">
+    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=2000&q=80&auto=format&fit=crop" alt="חנות בגדים יוקרתית עם מתקני תצוגה, בובות ראווה ותאורה מקצועית" onerror="this.remove()" fetchpriority="high">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-tag reveal in">אולם תצוגה דיגיטלי · MORALI</span>
+      <h1 class="reveal in d1">יוצרים חנויות<br><span class="gold">שמוכרות יותר.</span></h1>
+      <p class="hero-sub reveal in d2">פתרונות תצוגה, מידוף ועיצוב מקצועי לעסקים שרוצים להוביל — מתכנון ראשוני ועד התקנה מלאה.</p>
+      <div class="hero-ctas reveal in d3">
+        <a class="btn btn-gold" href="#contact">קבלו הצעת מחיר</a>
+        <a class="btn btn-ghost" href="#projects">לצפייה בפרויקטים</a>
+      </div>
+      <button class="video-chip reveal in d4" data-toast="סרטון התהליך ייפתח כאן בגרסה החיה">
+        <span class="play-ic"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        צפו איך אנחנו הופכים חנות
+      </button>
+      <div class="hero-stats reveal in d4">
+        <div class="hstat"><b class="counter" data-target="10000" data-suffix="+">0</b><span>עסקים בחרו בנו</span></div>
+        <div class="hstat"><b class="counter" data-target="15" data-suffix="+">0</b><span>שנות ניסיון</span></div>
+        <div class="hstat"><b class="counter" data-target="8500" data-suffix="+">0</b><span>פרויקטים הושלמו</span></div>
+        <div class="hstat"><b class="counter" data-target="100" data-suffix="%">0</b><span>התאמה אישית</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"></div>
+</section>
+
+<!-- ============ 04 QUICK ACTIONS ============ -->
+<div class="quick container">
+  <div class="quick-grid reveal">
+    <a class="qcard" href="#planner">
+      <span class="ai-pill">AI</span>
+      <span class="qicon"><svg viewBox="0 0 24 24"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 16l.7 1.6L7.4 18l-1.7.7L5 20.4l-.7-1.7L2.6 18l1.7-.4z"/></svg></span>
+      תכנון חנות AI
+    </a>
+    <a class="qcard" href="#categories">
+      <span class="qicon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></span>
+      קטגוריות מוצרים
+    </a>
+    <a class="qcard" href="#projects">
+      <span class="qicon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+      פרויקטים
+    </a>
+    <a class="qcard" href="#inspiration">
+      <span class="qicon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.7.5 1 1.3 1.1 2.1h4.8c.1-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z"/></svg></span>
+      השראה
+    </a>
+    <a class="qcard" href="#contact">
+      <span class="qicon"><svg viewBox="0 0 24 24"><path d="M21 14a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      ייעוץ מקצועי
+    </a>
+  </div>
+</div>
+
+<!-- ============ 05 AI STORE PLANNER ============ -->
+<section class="section" id="planner">
+  <div class="container">
+    <div class="planner-wrap reveal">
+      <div class="planner-head">
+        <span class="eyebrow" style="color:var(--gold-light)">מתכנן חנות חכם</span>
+        <h2>לא בטוחים איך החנות שלכם צריכה להיראות?</h2>
+        <p>ספרו לנו על העסק שלכם — וקבלו תוך שניות רעיון ראשוני לסגנון, מתקנים מומלצים וטווח תקציב.</p>
+      </div>
+      <div class="planner-grid">
+        <div class="panel">
+          <div class="panel-label"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>פרטי העסק</div>
+          <div class="field">
+            <label for="pBiz">תחום העסק</label>
+            <select id="pBiz">
+              <option value="fashion">חנות בגדים</option>
+              <option value="flowers">חנות פרחים</option>
+              <option value="cosmetics">קוסמטיקה</option>
+              <option value="pharm">פארם</option>
+              <option value="kiosk">קיוסק</option>
+              <option value="market">סופרמרקט</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pArea">שטח החנות (מ״ר)</label>
+            <input id="pArea" type="number" inputmode="numeric" min="10" max="2000" value="60" placeholder="לדוגמה: 60">
+          </div>
+          <div class="field">
+            <label for="pBudget">תקציב משוער</label>
+            <select id="pBudget">
+              <option value="low">עד 40,000 ₪</option>
+              <option value="mid" selected>40,000–100,000 ₪</option>
+              <option value="high">מעל 100,000 ₪</option>
+            </select>
+          </div>
+          <button class="btn btn-gold planner-cta" id="plannerBtn">✦ צור רעיון ראשוני</button>
+        </div>
+
+        <div class="planner-viz ph">
+          <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1200&q=80&auto=format&fit=crop" alt="הדמיית תכנון חלל חנות" onerror="this.remove()" loading="lazy">
+          <div class="grid-lines" aria-hidden="true"></div>
+          <div class="scan" aria-hidden="true"></div>
+          <span class="viz-tag" style="top:18%;inset-inline-start:12%"><i></i>קיר תצוגה ראשי</span>
+          <span class="viz-tag" style="top:52%;inset-inline-end:14%;animation-delay:1.2s"><i></i>דלפק מרכזי</span>
+          <span class="viz-tag" style="bottom:14%;inset-inline-start:30%;animation-delay:2.2s"><i></i>מסלול לקוח</span>
+        </div>
+
+        <div class="panel result-card">
+          <div class="panel-label"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>תוצאה ראשונית</div>
+          <div class="result-rows" id="plannerResult">
+            <div class="rrow"><span>סגנון מומלץ</span><b id="rStyle">מודרני־יוקרתי</b></div>
+            <div class="rrow"><span>מתקנים מומלצים</span><b id="rFix">מדפי קיר, סטנדים, דלפק מרכזי</b></div>
+            <div class="rrow"><span>טווח תקציב מותאם</span><b class="gold" id="rBudget">35,000–80,000 ₪</b></div>
+            <div class="rrow"><span>זמן הקמה משוער</span><b id="rTime">3–5 שבועות</b></div>
+          </div>
+          <p class="result-note">* התוצאה כוללת הדמיה ראשונית. מתכנן מומחה ייצור קשר להמשך.</p>
+          <a class="btn btn-ghost" style="width:100%" href="#contact">קבעו פגישת תכנון חינם</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 BEFORE / AFTER ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">הטרנספורמציה</span>
+      <h2>ראו את ההבדל שעיצוב נכון עושה</h2>
+      <p>לא מוכרים מדפים — יוצרים חנות שמרגישה נכון, נראית טוב ומוכרת יותר.</p>
+    </div>
+    <div class="ba-tabs reveal" id="baTabs" role="tablist" aria-label="קטגוריות לפני ואחרי">
+      <button class="chip active" data-ba="fashion" role="tab" aria-selected="true">בגדים</button>
+      <button class="chip" data-ba="flowers" role="tab" aria-selected="false">פרחים</button>
+      <button class="chip" data-ba="pharm" role="tab" aria-selected="false">פארם</button>
+      <button class="chip" data-ba="cosmetics" role="tab" aria-selected="false">קוסמטיקה</button>
+      <button class="chip" data-ba="phones" role="tab" aria-selected="false">טלפונים</button>
+    </div>
+    <div class="ba-stage reveal" id="baStage" aria-label="גררו להשוואה בין לפני לאחרי">
+      <div class="ba-img ba-before ph"><img id="baBeforeImg" src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1600&q=80&auto=format&fit=crop" alt="החנות לפני — חלל לא מנוצל" onerror="this.remove()" loading="lazy"></div>
+      <div class="ba-img ba-after ph" id="baAfter"><img id="baAfterImg" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&auto=format&fit=crop" alt="החנות אחרי — תצוגה מקצועית שמוכרת" onerror="this.remove()" loading="lazy"></div>
+      <span class="ba-label before">לפני</span>
+      <span class="ba-label after">אחרי</span>
+      <div class="ba-handle" id="baHandle" role="slider" aria-label="מחוון השוואה" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+    </div>
+    <div class="ba-caption reveal">
+      <span><b>לפני:</b> חלל ריק, תאורה שטוחה, מסלול לקוח לא ברור</span>
+      <span><b>אחרי:</b> תצוגה ממוקדת, תאורה חמה, אזורי מכירה שעובדים</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 ROI CALCULATOR ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="roi reveal">
+      <div class="roi-form">
+        <span class="eyebrow">מחשבון עסקי</span>
+        <h2>כמה שדרוג החנות יכול להחזיר לכם?</h2>
+        <p>שלושה נתונים — ותקבלו הערכת השקעה, זמן החזר וצפי שיפור במכירות.</p>
+        <div class="field">
+          <label for="roiBiz">תחום העסק</label>
+          <select id="roiBiz">
+            <option value="1.0">חנות בגדים</option>
+            <option value="0.8">חנות פרחים</option>
+            <option value="1.1">קוסמטיקה</option>
+            <option value="1.2">פארם</option>
+            <option value="0.7">קיוסק</option>
+            <option value="1.4">סופרמרקט</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="roiArea">שטח החנות: <span id="roiAreaVal" style="color:var(--gold);font-weight:800">80 מ״ר</span></label>
+          <div class="range-wrap">
+            <input type="range" id="roiArea" min="20" max="500" step="10" value="80">
+          </div>
+        </div>
+        <div class="field">
+          <label for="roiBudget">תקציב משוער: <span id="roiBudgetVal" style="color:var(--gold);font-weight:800">120,000 ₪</span></label>
+          <div class="range-wrap">
+            <input type="range" id="roiBudget" min="20000" max="500000" step="10000" value="120000">
+          </div>
+        </div>
+        <button class="btn btn-dark" style="width:100%" id="roiBtn">חשב ROI</button>
+      </div>
+      <div class="roi-out">
+        <h3>תחזית ההשקעה שלכם</h3>
+        <div class="roi-metric">
+          <span>השקעה משוערת</span>
+          <b><em id="roiInvest">₪120,000</em></b>
+        </div>
+        <div class="roi-metric">
+          <span>זמן החזר משוער</span>
+          <b id="roiPayback">14–18 חודשים</b>
+          <div class="roi-bar"><i id="roiBar1" style="width:55%"></i></div>
+        </div>
+        <div class="roi-metric">
+          <span>צפי שיפור במכירות</span>
+          <b id="roiUplift">30%–60%</b>
+          <div class="roi-bar"><i id="roiBar2" style="width:48%"></i></div>
+        </div>
+        <p class="roi-disc">* הנתונים להמחשה בלבד, מבוססים על ממוצעי פרויקטים — ואינם התחייבות לתוצאה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 CATEGORIES ============ -->
+<section class="section" id="categories" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">הקטלוג שלנו</span>
+      <h2>קטגוריות מובילות</h2>
+      <p>כל מה שחנות צריכה — מייצור ויבוא ישיר, זמין במלאי.</p>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card ph reveal" href="#products">
+        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&q=80&auto=format&fit=crop" alt="מערכות תלייה לחנויות בגדים" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>מערכות תלייה</b><small>42 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal d1" href="#products">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900&q=80&auto=format&fit=crop" alt="בובות ראווה לחלונות תצוגה" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>בובות ראווה</b><small>28 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal d2" href="#products">
+        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=900&q=80&auto=format&fit=crop" alt="קירות מחורצים ופתרונות קיר" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>קירות מחורצים</b><small>19 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal d3" href="#products">
+        <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=900&q=80&auto=format&fit=crop" alt="מידוף מקצועי לחנויות" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>מידוף לחנויות</b><small>56 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal" href="#products">
+        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=900&q=80&auto=format&fit=crop" alt="סטנדים לתצוגת מוצרים" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>סטנדים</b><small>34 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal d1" href="#products">
+        <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=900&q=80&auto=format&fit=crop" alt="דלפקים ועמדות קופה" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>דלפקים</b><small>21 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal d2" href="#products">
+        <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=900&q=80&auto=format&fit=crop" alt="קולבים מעוצבים לחנויות" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>קולבים</b><small>47 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+      <a class="cat-card ph reveal d3" href="#products">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" alt="סלסלות ועגלות קניות" onerror="this.remove()" loading="lazy">
+        <div class="cat-info"><div><b>סלסלות ועגלות</b><small>23 מוצרים</small></div><span class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg></span></div>
+      </a>
+    </div>
+    <div class="center-cta reveal"><a class="btn btn-line" href="#">לכל הקטגוריות ←</a></div>
+  </div>
+</section>
+
+<!-- ============ 09 PRODUCTS ============ -->
+<section class="section" id="products" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">מותאם לעסק שלך</span>
+      <h2>מוצרים מומלצים לעסק שלך</h2>
+      <p>בחרו את סוג העסק — ונציג את המתקנים שעובדים הכי טוב עבורו.</p>
+    </div>
+    <div class="prod-tabs reveal" id="prodTabs" role="tablist" aria-label="סינון מוצרים לפי סוג עסק">
+      <button class="chip active" data-cat="all" role="tab" aria-selected="true">הכל</button>
+      <button class="chip" data-cat="fashion" role="tab" aria-selected="false">חנויות בגדים</button>
+      <button class="chip" data-cat="flowers" role="tab" aria-selected="false">חנויות פרחים</button>
+      <button class="chip" data-cat="cosmetics" role="tab" aria-selected="false">קוסמטיקה</button>
+      <button class="chip" data-cat="pharm" role="tab" aria-selected="false">פארם</button>
+      <button class="chip" data-cat="kiosk" role="tab" aria-selected="false">קיוסקים</button>
+    </div>
+    <div class="prod-grid" id="prodGrid">
+      <article class="pcard reveal" data-cats="fashion">
+        <div class="pcard-img ph">
+          <span class="pbadge hot">נמכר ביותר</span>
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80&auto=format&fit=crop" alt="סטנד תלייה כפול שחור" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>מערכות תלייה</small>
+          <b>סטנד תלייה כפול שחור — פרופיל מתכת מחוזק</b>
+          <div class="price-row">
+            <span class="price">₪750 <s>₪890</s></span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · סטנד תלייה כפול" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal d1" data-cats="fashion cosmetics">
+        <div class="pcard-img ph">
+          <span class="pbadge rec">מומלץ</span>
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80&auto=format&fit=crop" alt="בובת ראווה גבר בגימור שחור מט" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>בובות ראווה</small>
+          <b>בובת ראווה גבר שחורה — גימור מט פרימיום</b>
+          <div class="price-row">
+            <span class="price">₪890</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · בובת ראווה גבר" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal d2" data-cats="flowers cosmetics kiosk">
+        <div class="pcard-img ph">
+          <span class="pbadge new">חדש</span>
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&auto=format&fit=crop" alt="מדף עץ דקורטיבי בגימור אלון" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>מידוף דקורטיבי</small>
+          <b>מדף עץ דקורטיבי — אלון טבעי עם מסגרת ברזל</b>
+          <div class="price-row">
+            <span class="price">₪690</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · מדף עץ דקורטיבי" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal d3" data-cats="fashion cosmetics pharm">
+        <div class="pcard-img ph">
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=800&q=80&auto=format&fit=crop" alt="דלפק תצוגה מרכזי עם משטח עליון מואר" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>דלפקים</small>
+          <b>דלפק תצוגה מרכזי — משטח מואר ואחסון נסתר</b>
+          <div class="price-row">
+            <span class="price">₪2,190</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · דלפק תצוגה מרכזי" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal" data-cats="pharm kiosk">
+        <div class="pcard-img ph">
+          <span class="pbadge new">חדש</span>
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=800&q=80&auto=format&fit=crop" alt="מערכת מבצעים מודולרית" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>סטנדים</small>
+          <b>מערכת מבצעים מודולרית — הרכבה ב־5 דקות</b>
+          <div class="price-row">
+            <span class="price">₪490</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · מערכת מבצעים" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal d1" data-cats="fashion">
+        <div class="pcard-img ph">
+          <span class="pbadge hot">נמכר ביותר</span>
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80&auto=format&fit=crop" alt="רלס בוטיק זהב לקולקציות" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>מערכות תלייה</small>
+          <b>רלס בוטיק זהב — ציפוי טיטניום מבריק</b>
+          <div class="price-row">
+            <span class="price">₪690</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · רלס בוטיק זהב" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal d2" data-cats="flowers kiosk pharm">
+        <div class="pcard-img ph">
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80&auto=format&fit=crop" alt="מידוף מתכת לבן 5 מדפים" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>מידוף לחנויות</small>
+          <b>מידוף מתכת לבן 5 מדפים — עומס עד 120 ק״ג</b>
+          <div class="price-row">
+            <span class="price">₪1,290</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · מידוף מתכת לבן" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <article class="pcard reveal d3" data-cats="fashion cosmetics">
+        <div class="pcard-img ph">
+          <span class="pbadge rec">מומלץ</span>
+          <button class="fav" aria-label="הוספה למועדפים"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80&auto=format&fit=crop" alt="רלס קיר שחור מינימליסטי" onerror="this.remove()" loading="lazy">
+          <button class="quickview" data-toast="צפייה מהירה תיפתח בגרסה החיה">צפייה מהירה</button>
+        </div>
+        <div class="pcard-body">
+          <small>מערכות תלייה</small>
+          <b>רלס קיר שחור — קו מינימליסטי לבוטיקים</b>
+          <div class="price-row">
+            <span class="price">₪490</span>
+            <button class="add-btn" data-toast="<b>נוסף לסל ההצעה</b> · רלס קיר שחור" aria-label="הוספה לסל"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="center-cta reveal"><a class="btn btn-dark" href="#">לכל המוצרים ←</a></div>
+  </div>
+</section>
+
+<!-- ============ 10 PROJECTS ============ -->
+<section class="section dark-section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--gold-light)">העבודות שלנו</span>
+      <h2>פרויקטים נבחרים</h2>
+      <p>חנויות אמיתיות שתכננו, עיצבנו והקמנו — מקיר לקיר.</p>
+    </div>
+    <div class="carousel-wrap reveal">
+      <div class="carousel" id="projCarousel">
+        <article class="proj-card ph">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000&q=80&auto=format&fit=crop" alt="פרויקט חנות בגדים בתל אביב" onerror="this.remove()" loading="lazy">
+          <div class="proj-info"><small>חנות בגדים</small><b>קונספט בוטיק שלם</b><span>תל אביב · 140 מ״ר · 4 שבועות</span></div>
+        </article>
+        <article class="proj-card ph">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1000&q=80&auto=format&fit=crop" alt="פרויקט בוטיק אופנה ברמת השרון" onerror="this.remove()" loading="lazy">
+          <div class="proj-info"><small>בוטיק אופנה</small><b>תצוגת פרימיום מוזהבת</b><span>רמת השרון · 85 מ״ר · 3 שבועות</span></div>
+        </article>
+        <article class="proj-card ph">
+          <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1000&q=80&auto=format&fit=crop" alt="פרויקט חנות ילדים בירושלים" onerror="this.remove()" loading="lazy">
+          <div class="proj-info"><small>חנות ילדים</small><b>חלל משחקי וצבעוני</b><span>ירושלים · 110 מ״ר · 5 שבועות</span></div>
+        </article>
+        <article class="proj-card ph">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1000&q=80&auto=format&fit=crop" alt="פרויקט רשת אופנה בחיפה" onerror="this.remove()" loading="lazy">
+          <div class="proj-info"><small>רשת אופנה</small><b>סטנדרט רשת אחיד — 6 סניפים</b><span>חיפה · 220 מ״ר · 8 שבועות</span></div>
+        </article>
+        <article class="proj-card ph">
+          <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1000&q=80&auto=format&fit=crop" alt="פרויקט חנות ספורט בראשון לציון" onerror="this.remove()" loading="lazy">
+          <div class="proj-info"><small>חנות ספורט</small><b>קיר נעליים פנורמי</b><span>ראשון לציון · 160 מ״ר · 4 שבועות</span></div>
+        </article>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" data-car="projCarousel" data-dir="next" aria-label="הקודם"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="car-btn" data-car="projCarousel" data-dir="prev" aria-label="הבא"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="center-cta reveal"><a class="btn btn-ghost" href="#">לצפייה בכל הפרויקטים ←</a></div>
+  </div>
+</section>
+
+<!-- ============ 11 ISRAEL MAP ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">פריסה ארצית</span>
+      <h2>פרויקטים בכל רחבי הארץ</h2>
+      <p>מקריית שמונה ועד אילת — אלפי חנויות כבר עובדות עם MORALI.</p>
+    </div>
+    <div class="map-grid">
+      <div class="map-visual reveal">
+        <svg viewBox="0 0 220 520" role="img" aria-label="מפת ישראל עם מיקומי פרויקטים">
+          <path d="M88 8 L120 6 L132 20 L128 48 L138 66 L134 96 L142 120 L136 150 L144 176 L138 206 L130 236 L122 268 L116 300 L110 332 L104 366 L98 398 L92 428 L86 458 L80 486 L74 506 L66 512 L60 496 L62 462 L58 430 L62 396 L58 362 L64 328 L60 294 L66 262 L62 230 L68 198 L64 168 L70 138 L66 108 L72 78 L70 46 L78 22 Z"
+            fill="rgba(255,255,255,.05)" stroke="rgba(230,194,122,.5)" stroke-width="1.5"/>
+          <g class="map-pin" data-city="ta" transform="translate(74,196)"><circle class="halo" r="6"/><circle class="dot" r="5"/></g>
+          <g class="map-pin" data-city="jlm" transform="translate(96,228)"><circle class="halo" r="6" style="animation-delay:.5s"/><circle class="dot" r="5"/></g>
+          <g class="map-pin" data-city="hfa" transform="translate(86,96)"><circle class="halo" r="6" style="animation-delay:1s"/><circle class="dot" r="5"/></g>
+          <g class="map-pin" data-city="rls" transform="translate(72,212)"><circle class="halo" r="6" style="animation-delay:1.5s"/><circle class="dot" r="5"/></g>
+          <g class="map-pin" data-city="asd" transform="translate(66,242)"><circle class="halo" r="6" style="animation-delay:2s"/><circle class="dot" r="5"/></g>
+          <text x="110" y="500" fill="rgba(255,255,255,.35)" font-size="11" text-anchor="middle" font-family="Heebo">MORALI · פריסה ארצית</text>
+        </svg>
+      </div>
+      <div class="city-list reveal d1">
+        <button class="city-row active" data-city="ta">
+          <span class="num">320</span>
+          <span><b>תל אביב</b><span>320 פרויקטים · בוטיקים, אופנה וקונספט</span></span>
+          <span class="go">צפה בפרויקטים ←</span>
+        </button>
+        <button class="city-row" data-city="jlm">
+          <span class="num">210</span>
+          <span><b>ירושלים</b><span>210 פרויקטים · פארם, מתנות וקמעונאות</span></span>
+          <span class="go">צפה בפרויקטים ←</span>
+        </button>
+        <button class="city-row" data-city="hfa">
+          <span class="num">180</span>
+          <span><b>חיפה</b><span>180 פרויקטים · רשתות וחנויות שכונתיות</span></span>
+          <span class="go">צפה בפרויקטים ←</span>
+        </button>
+        <button class="city-row" data-city="rls">
+          <span class="num">160</span>
+          <span><b>ראשון לציון</b><span>160 פרויקטים · ספורט, ילדים וסופרים</span></span>
+          <span class="go">צפה בפרויקטים ←</span>
+        </button>
+        <button class="city-row" data-city="asd">
+          <span class="num">90</span>
+          <span><b>אשדוד</b><span>90 פרויקטים · קוסמטיקה וקיוסקים</span></span>
+          <span class="go">צפה בפרויקטים ←</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 INSPIRATION ============ -->
+<section class="section" id="inspiration" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">גלריית רעיונות</span>
+      <h2>השראה לעסק שלך</h2>
+      <p>חנויות שמושכות לקוחות — רעיונות אמיתיים מהשטח, מוכנים להעתקה.</p>
+    </div>
+    <div class="ba-tabs reveal">
+      <button class="chip active" data-toast="סינון לפי קטגוריה זמין בגרסה החיה">הכל</button>
+      <button class="chip" data-toast="סינון לפי קטגוריה זמין בגרסה החיה">ביגוד</button>
+      <button class="chip" data-toast="סינון לפי קטגוריה זמין בגרסה החיה">פרחים</button>
+      <button class="chip" data-toast="סינון לפי קטגוריה זמין בגרסה החיה">קוסמטיקה</button>
+      <button class="chip" data-toast="סינון לפי קטגוריה זמין בגרסה החיה">פארם</button>
+      <button class="chip" data-toast="סינון לפי קטגוריה זמין בגרסה החיה">סופרמרקט</button>
+    </div>
+    <div class="masonry reveal">
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80&auto=format&fit=crop" alt="השראה — בוטיק אופנה מינימליסטי" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>בוטיק מינימליסטי</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=700&q=90&auto=format&fit=crop" alt="השראה — חנות פרחים" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>פינת פרחים חיה</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=700&q=80&auto=format&fit=crop" alt="השראה — תצוגת קוסמטיקה" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>קיר קוסמטיקה מואר</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80&auto=format&fit=crop" alt="השראה — חוויית קנייה" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>מסלול לקוח חכם</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=700&q=80&auto=format&fit=crop" alt="השראה — מידוף פארם" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>מידוף פארם נקי</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=700&q=80&auto=format&fit=crop" alt="השראה — תליית קולקציה" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>תליית קולקציה אוורירית</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=80&auto=format&fit=crop" alt="השראה — סופרמרקט בוטיק" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>סופר שכונתי מודרני</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+      <a class="m-item ph" href="#"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=80&auto=format&fit=crop" alt="השראה — חלון ראווה" onerror="this.remove()" loading="lazy"><div class="m-overlay"><b>חלון ראווה שעוצר</b><span class="m-save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div></a>
+    </div>
+    <div class="center-cta reveal"><a class="btn btn-line" href="#">לצפייה בכל ההשראות ←</a></div>
+  </div>
+</section>
+
+<!-- ============ 13 TESTIMONIALS ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">תוצאות אמיתיות</span>
+      <h2>מה הלקוחות שלנו אומרים</h2>
+      <p>בעלי עסקים שכבר עשו את השדרוג — והמספרים מאחוריהם.</p>
+    </div>
+    <div class="testi-grid">
+      <article class="tcard reveal">
+        <span class="stars" aria-label="חמישה כוכבים">★★★★★</span>
+        <p>העיצוב החדש הגדיל לנו את התנועה בחנות בצורה משמעותית. השירות היה מקצועי מהרגע הראשון — מהתכנון ועד הברגה אחרונה.</p>
+        <div class="t-metric">
+          <div><span>לפני</span><b>80 לקוחות ביום</b></div>
+          <div><span>אחרי</span><b>140 לקוחות ביום</b></div>
+        </div>
+        <div class="t-person">
+          <span class="avatar">נ</span>
+          <div><b>נועה לוי</b><span>בעלים, חנות בגדים · תל אביב</span></div>
+        </div>
+      </article>
+      <article class="tcard reveal d1">
+        <span class="stars" aria-label="חמישה כוכבים">★★★★★</span>
+        <p>שירות מקצועי, איכות ברמה הגבוהה ביותר והתוצאה פשוט מדויקת. הסניף שלנו נראה כמו רשת בינלאומית — בתקציב של עסק מקומי.</p>
+        <div class="t-metric">
+          <div><span>שיפור במכירות</span><b>+45%</b></div>
+          <div><span>זמן הקמה</span><b>3 שבועות</b></div>
+        </div>
+        <div class="t-person">
+          <span class="avatar">י</span>
+          <div><b>יוסי כהן</b><span>בעלים, מזכרה פארם · חיפה</span></div>
+        </div>
+      </article>
+      <article class="tcard reveal d2">
+        <span class="stars" aria-label="חמישה כוכבים">★★★★★</span>
+        <p>היחס האישי עשה את ההבדל. הם לא מכרו לנו מדפים — הם תכננו לנו חנות. כל מטר עובד, וכל לקוח שנכנס מרגיש את זה.</p>
+        <div class="t-metric">
+          <div><span>סל ממוצע</span><b>+32%</b></div>
+          <div><span>שטח מנוצל</span><b>+25 מ״ר</b></div>
+        </div>
+        <div class="t-person">
+          <span class="avatar">מ</span>
+          <div><b>מירב אזולאי</b><span>בעלים, בוטיק קוסמטיקה · אשדוד</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 BENEFITS ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">היתרון שלנו</span>
+      <h2>למה עסקים בוחרים ב־MORALI?</h2>
+    </div>
+    <div class="benefits">
+      <div class="bcard reveal">
+        <span class="bicon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></svg></span>
+        <b>שירות אישי</b>
+        <p>מנהל פרויקט אחד מלווה אתכם מהשיחה הראשונה ועד פתיחת החנות.</p>
+      </div>
+      <div class="bcard reveal d1">
+        <span class="bicon"><svg viewBox="0 0 24 24"><path d="M14 3l7 7-11 11H3v-7zM12 5l7 7"/></svg></span>
+        <b>פתרונות בהתאמה אישית</b>
+        <p>עיצוב, ייצור והתקנה — מותאמים בדיוק למידות ולמותג שלכם.</p>
+      </div>
+      <div class="bcard reveal d2">
+        <span class="bicon"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg></span>
+        <b>מלאי זמין</b>
+        <p>אלפי פריטים במלאי מיידי — אספקה מהירה לכל הארץ תוך ימים.</p>
+      </div>
+      <div class="bcard reveal d3">
+        <span class="bicon"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6M21 12h-2"/></svg></span>
+        <b>יבוא וייצור</b>
+        <p>שליטה מלאה בשרשרת — איכות גבוהה במחיר הטוב ביותר בשוק.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15 KNOWLEDGE ============ -->
+<section class="section" id="knowledge" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">מרכז ידע</span>
+      <h2>לומדים לפני שמשקיעים</h2>
+      <p>מדריכים מקצועיים מהשטח — בחינם, בלי אותיות קטנות.</p>
+    </div>
+    <div class="know-grid">
+      <a class="kcard reveal" href="#">
+        <div class="kimg ph"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80&auto=format&fit=crop" alt="מדריך תכנון חנות" onerror="this.remove()" loading="lazy"></div>
+        <div class="kbody"><small>מדריך · 8 דק׳ קריאה</small><b>איך לתכנן חנות שמוכרת יותר — שלב אחר שלב</b><span class="klink">לקריאה ←</span></div>
+      </a>
+      <a class="kcard reveal d1" href="#">
+        <div class="kimg ph"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=700&q=80&auto=format&fit=crop" alt="מדריך בחירת מדפים" onerror="this.remove()" loading="lazy"></div>
+        <div class="kbody"><small>מדריך · 6 דק׳ קריאה</small><b>איך לבחור מדפים לחנות בגדים בלי לטעות</b><span class="klink">לקריאה ←</span></div>
+      </a>
+      <a class="kcard reveal d2" href="#">
+        <div class="kimg ph"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=700&q=80&auto=format&fit=crop" alt="טעויות בעיצוב חנויות" onerror="this.remove()" loading="lazy"></div>
+        <div class="kbody"><small>טיפים · 5 דק׳ קריאה</small><b>7 טעויות נפוצות בעיצוב חנויות (ואיך נמנעים)</b><span class="klink">לקריאה ←</span></div>
+      </a>
+      <a class="kcard reveal d3" href="#">
+        <div class="kimg ph"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80&auto=format&fit=crop" alt="כמה עולה להקים חנות" onerror="this.remove()" loading="lazy"></div>
+        <div class="kbody"><small>תמחור · 10 דק׳ קריאה</small><b>כמה באמת עולה להקים חנות מעוצבת ב־2026?</b><span class="klink">לקריאה ←</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 FINAL CTA ============ -->
+<section class="section" id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="final reveal">
+      <div class="final-bg ph"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1800&q=80&auto=format&fit=crop" alt="" aria-hidden="true" onerror="this.remove()" loading="lazy"></div>
+      <div>
+        <span class="eyebrow" style="color:var(--gold-light)">בואו נתחיל</span>
+        <h2>רוצים לשדרג את החנות?</h2>
+        <p>אנחנו כאן כדי להפוך את החנות שלכם לנכס שמוכר יותר. שיחת ייעוץ ראשונה — עלינו.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="tel:050-1234567">דברו איתנו · 050-1234567</a>
+          <a class="btn btn-ghost" href="https://wa.me/972501234567">קבלו הצעת מחיר ב־WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17 FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo"><b>MORALI</b><small>מתקני תצוגה ועיצוב לחנויות</small></a>
+        <p class="footer-about">פתרונות מלאים לעסקים שרוצים למכור יותר — מתכנון ועיצוב, דרך ייצור ויבוא, ועד התקנה מקצועית בשטח.</p>
+        <div class="f-contact">
+          <a href="tel:050-1234567"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>050-1234567</a>
+          <a href="mailto:info@morali.co.il"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>info@morali.co.il</a>
+          <a href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.8 7-11a7 7 0 1 0-14 0c0 5.2 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>ראש העין, ישראל</a>
+          <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>א׳–ה׳ · 08:00–17:00</a>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="אינסטגרם"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.6 5.2a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2z"/></svg></a>
+          <a href="#" aria-label="פייסבוק"><svg viewBox="0 0 24 24"><path d="M14 8h3V5h-3a4 4 0 0 0-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="לינקדאין"><svg viewBox="0 0 24 24"><path d="M5 3.5A1.5 1.5 0 1 1 3.5 5 1.5 1.5 0 0 1 5 3.5zM3.8 8h2.4v12H3.8zM9 8h2.3v1.6A3.7 3.7 0 0 1 14.6 8c2.6 0 3.6 1.6 3.6 4.3V20h-2.4v-6.8c0-1.6-.6-2.6-1.9-2.6s-2.5 1-2.5 2.8V20H9z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>קטגוריות</h4>
+        <ul>
+          <li><a href="#categories">מדפים</a></li>
+          <li><a href="#categories">סטנדים</a></li>
+          <li><a href="#categories">קולבים</a></li>
+          <li><a href="#categories">בובות ראווה</a></li>
+          <li><a href="#categories">דלפקים</a></li>
+          <li><a href="#categories">סלסלות ועגלות</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>מידע שימושי</h4>
+        <ul>
+          <li><a href="#">שאלות ותשובות</a></li>
+          <li><a href="#">משלוחים והחזרות</a></li>
+          <li><a href="#">אחריות ושירות</a></li>
+          <li><a href="#knowledge">מרכז ידע</a></li>
+          <li><a href="#">תנאי שימוש</a></li>
+          <li><a href="#">מדיניות פרטיות</a></li>
+        </ul>
+      </div>
+      <div class="newsletter">
+        <h4>הצטרפו לניוזלטר</h4>
+        <p>טיפים לעיצוב חנויות, השראות והצעות שוות — ישירות למייל. בלי ספאם.</p>
+        <form class="news-form" id="newsForm">
+          <input type="email" placeholder="הזינו כתובת מייל" required aria-label="כתובת מייל לניוזלטר">
+          <button type="submit">הרשמה</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MORALI מתקני תצוגה · כל הזכויות שמורות</span>
+      <span><a href="#">נגישות</a> · <a href="#">מפת אתר</a> · בניית אתרים: WebTech</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating actions -->
+<div class="float-actions">
+  <a class="fab fab-wa" href="https://wa.me/972501234567" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.5.5 0 0 0 0-.5c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.7 11.4 11.4 0 0 0 4.4 3.9 5 5 0 0 0 3 .9 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.1-.3-.2-.6-.3z"/></svg>
+  </a>
+  <a class="fab fab-ai" href="#planner">
+    <svg viewBox="0 0 24 24"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/></svg>
+    תכנן לי חנות
+  </a>
+</div>
+
+<!-- Mobile bottom nav -->
+<nav class="bottom-nav" aria-label="ניווט תחתון">
+  <ul>
+    <li><a href="#" class="active"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>בית</a></li>
+    <li><a href="#categories"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>קטגוריות</a></li>
+    <li><a href="#planner" class="bn-ai"><span><svg viewBox="0 0 24 24"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/></svg></span>AI</a></li>
+    <li><a href="#products"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10"/></svg>מוצרים</a></li>
+    <li><a href="#contact"><svg viewBox="0 0 24 24"><path d="M21 14a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>צור קשר</a></li>
+  </ul>
+</nav>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===== Sticky header ===== */
+const header=document.getElementById('header');
+const onScroll=()=>header.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ===== Mobile drawer ===== */
+const drawer=document.getElementById('drawer');
+document.getElementById('menuToggle').addEventListener('click',()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false')});
+drawer.querySelectorAll('[data-close-drawer],a').forEach(el=>el.addEventListener('click',()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')}));
+
+/* ===== Scroll reveal ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== Counters ===== */
+const fmt=n=>n.toLocaleString('he-IL');
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,target=+el.dataset.target,suffix=el.dataset.suffix||'';
+  const t0=performance.now(),dur=1800;
+  const step=t=>{const p=Math.min((t-t0)/dur,1),ease=1-Math.pow(1-p,3);
+    el.textContent=fmt(Math.round(target*ease))+suffix;
+    if(p<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+}),{threshold:.4});
+document.querySelectorAll('.counter').forEach(el=>cio.observe(el));
+
+/* ===== Toast ===== */
+const toast=document.getElementById('toast');let toastT;
+function showToast(html){toast.innerHTML=html;toast.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>toast.classList.remove('show'),2600)}
+document.querySelectorAll('[data-toast]').forEach(el=>el.addEventListener('click',ev=>{ev.preventDefault();showToast(el.dataset.toast)}));
+
+/* ===== Favorites ===== */
+document.querySelectorAll('.fav').forEach(b=>b.addEventListener('click',()=>{
+  b.classList.toggle('on');
+  showToast(b.classList.contains('on')?'<b>נשמר במועדפים</b> ♥':'הוסר מהמועדפים');
+}));
+
+/* ===== AI Planner ===== */
+const plannerData={
+  fashion:{style:'מודרני־יוקרתי',fix:'רלסים שחורים, בובות ראווה, דלפק מרכזי מואר',time:'3–5 שבועות'},
+  flowers:{style:'טבעי־חם',fix:'מדפי עץ מדורגים, עמדות הגבהה, קירור תצוגה',time:'2–4 שבועות'},
+  cosmetics:{style:'נקי־זוהר',fix:'קירות תצוגה מוארים, מדפי זכוכית, מראות LED',time:'3–4 שבועות'},
+  pharm:{style:'פונקציונלי־בהיר',fix:'מידוף גונדולות, קצוות מבצעים, שילוט קטגוריות',time:'4–6 שבועות'},
+  kiosk:{style:'קומפקטי־חכם',fix:'מערכות מבצעים מודולריות, מתלי אימפולס, דלפק רב־שימושי',time:'1–2 שבועות'},
+  market:{style:'זרימה־מסחרית',fix:'גונדולות מרכזיות, מקררי תצוגה, עגלות וסלסלות',time:'5–8 שבועות'}
+};
+const budgetMap={low:'25,000–40,000 ₪',mid:'40,000–95,000 ₪',high:'100,000–250,000 ₪'};
+document.getElementById('plannerBtn').addEventListener('click',()=>{
+  const d=plannerData[document.getElementById('pBiz').value];
+  const area=+document.getElementById('pArea').value||60;
+  const b=budgetMap[document.getElementById('pBudget').value];
+  const rows=[['rStyle',d.style],['rFix',d.fix],['rBudget',b],['rTime',area>150?'6–10 שבועות':d.time]];
+  let i=0;
+  const typeRow=()=>{
+    if(i>=rows.length){showToast('<b>הרעיון מוכן!</b> מתכנן מומחה ישמח להמשיך מכאן');return}
+    const [id,val]=rows[i++];const el=document.getElementById(id);
+    el.textContent='';el.parentElement.classList.add('typing');
+    let c=0;const tick=()=>{el.textContent=val.slice(0,++c);
+      if(c<val.length)setTimeout(tick,16);else{el.parentElement.classList.remove('typing');setTimeout(typeRow,120)}};
+    tick();
+  };
+  typeRow();
+});
+
+/* ===== Before / After ===== */
+const baSets={
+  fashion:{b:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1600&q=80&auto=format&fit=crop',a:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&auto=format&fit=crop'},
+  flowers:{b:'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=80&auto=format&fit=crop',a:'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1600&q=80&auto=format&fit=crop'},
+  pharm:{b:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1600&q=80&auto=format&fit=crop',a:'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=80&auto=format&fit=crop'},
+  cosmetics:{b:'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=1600&q=80&auto=format&fit=crop',a:'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1600&q=80&auto=format&fit=crop'},
+  phones:{b:'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1600&q=80&auto=format&fit=crop',a:'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1600&q=80&auto=format&fit=crop'}
+};
+const baStage=document.getElementById('baStage'),baAfter=document.getElementById('baAfter'),baHandle=document.getElementById('baHandle');
+function setBA(p){
+  p=Math.max(4,Math.min(96,p));
+  baAfter.style.clipPath=`inset(0 ${100-p}% 0 0)`;
+  baHandle.style.insetInlineStart=p+'%';
+  baHandle.setAttribute('aria-valuenow',Math.round(p));
+}
+setBA(50);
+let dragging=false;
+const posFromEvent=ev=>{
+  const r=baStage.getBoundingClientRect();
+  const x=(ev.touches?ev.touches[0].clientX:ev.clientX)-r.left;
+  return (1-(x/r.width))*100; /* RTL: handle percent from right */
+};
+['pointerdown','touchstart'].forEach(t=>baStage.addEventListener(t,ev=>{dragging=true;setBA(posFromEvent(ev))}));
+['pointermove','touchmove'].forEach(t=>window.addEventListener(t,ev=>{if(dragging)setBA(posFromEvent(ev))},{passive:true}));
+['pointerup','touchend'].forEach(t=>window.addEventListener(t,()=>dragging=false));
+baHandle.addEventListener('keydown',ev=>{
+  const cur=+baHandle.getAttribute('aria-valuenow');
+  if(ev.key==='ArrowLeft')setBA(cur+4);
+  if(ev.key==='ArrowRight')setBA(cur-4);
+});
+document.querySelectorAll('#baTabs .chip').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('#baTabs .chip').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+  c.classList.add('active');c.setAttribute('aria-selected','true');
+  const s=baSets[c.dataset.ba];
+  document.getElementById('baBeforeImg')?.setAttribute('src',s.b);
+  document.getElementById('baAfterImg')?.setAttribute('src',s.a);
+  setBA(50);
+}));
+
+/* ===== ROI calculator ===== */
+const ils=n=>'₪'+Math.round(n).toLocaleString('he-IL');
+const roiArea=document.getElementById('roiArea'),roiBudget=document.getElementById('roiBudget');
+roiArea.addEventListener('input',()=>document.getElementById('roiAreaVal').textContent=roiArea.value+' מ״ר');
+roiBudget.addEventListener('input',()=>document.getElementById('roiBudgetVal').textContent=(+roiBudget.value).toLocaleString('he-IL')+' ₪');
+document.getElementById('roiBtn').addEventListener('click',()=>{
+  const k=+document.getElementById('roiBiz').value,area=+roiArea.value,budget=+roiBudget.value;
+  const invest=Math.max(budget,area*900*k*.8);
+  const upLow=Math.round(20+10*k),upHigh=Math.round(45+18*k);
+  const pbLow=Math.max(6,Math.round(invest/(area*420*k))),pbHigh=pbLow+4;
+  document.getElementById('roiInvest').textContent=ils(invest);
+  document.getElementById('roiPayback').textContent=`${pbLow}–${pbHigh} חודשים`;
+  document.getElementById('roiUplift').textContent=`${upLow}%–${upHigh}%`;
+  document.getElementById('roiBar1').style.width=Math.min(95,100-pbLow*2.4)+'%';
+  document.getElementById('roiBar2').style.width=Math.min(95,upHigh*1.3)+'%';
+  showToast('<b>התחזית עודכנה</b> · רוצים תחשיב מדויק? דברו איתנו');
+});
+
+/* ===== Product tabs ===== */
+document.querySelectorAll('#prodTabs .chip').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('#prodTabs .chip').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+  c.classList.add('active');c.setAttribute('aria-selected','true');
+  const cat=c.dataset.cat;
+  document.querySelectorAll('#prodGrid .pcard').forEach(p=>{
+    const show=cat==='all'||p.dataset.cats.split(' ').includes(cat);
+    p.style.display=show?'':'none';
+  });
+}));
+
+/* ===== Carousels ===== */
+document.querySelectorAll('.car-btn').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.car);
+  const amount=Math.min(el.clientWidth*.85,460)*(b.dataset.dir==='next'?-1:1); /* RTL scroll */
+  el.scrollBy({left:amount,behavior:'smooth'});
+}));
+
+/* ===== Map ===== */
+function selectCity(id){
+  document.querySelectorAll('.city-row').forEach(r=>r.classList.toggle('active',r.dataset.city===id));
+  document.querySelectorAll('.map-pin').forEach(p=>p.classList.toggle('active',p.dataset.city===id));
+}
+document.querySelectorAll('.city-row').forEach(r=>r.addEventListener('click',()=>selectCity(r.dataset.city)));
+document.querySelectorAll('.map-pin').forEach(p=>p.addEventListener('click',()=>selectCity(p.dataset.city)));
+selectCity('ta');
+
+/* ===== Newsletter ===== */
+document.getElementById('newsForm').addEventListener('submit',ev=>{
+  ev.preventDefault();
+  showToast('<b>נרשמתם בהצלחה!</b> נשלח רק דברים ששווים פתיחה');
+  ev.target.reset();
+});
+</script>
+</body>
+</html>
