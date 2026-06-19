@@ -10,12 +10,12 @@ const slides = [
     label: 'רשת ביגוד — תל אביב',
   },
   {
-    img: 'https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=1800&q=85',
-    label: 'חנות טכנולוגיה — ראשון לציון',
+    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1800&q=85',
+    label: 'בוטיק פרימיום — הרצליה',
   },
   {
-    img: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?w=1800&q=85',
-    label: 'פארמה פרימיום — ירושלים',
+    img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1800&q=85',
+    label: 'חנות קוסמטיקה — תל אביב',
   },
 ]
 

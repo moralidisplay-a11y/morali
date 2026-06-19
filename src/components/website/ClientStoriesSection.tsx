@@ -1,88 +1,90 @@
-const stories = [
+const cases = [
   {
-    client: 'רשת ביגוד | 5 סניפים | תל אביב',
-    challenge: 'חנויות עם תנועה גבוהה אך שיעורי המרה נמוכים. לקוחות נכנסים, מסתכלים, ויוצאים מבלי לקנות.',
-    solution: 'תכנון מחדש של מסלול הלקוח, החלפת כל מערכות התצוגה, הוספת אזורי הדגשה אסטרטגיים ותאורת מוצר ממוקדת.',
-    result: 'עלייה של 74% במכירות תוך 60 יום מהפתיחה מחדש.',
-    metric: '+74%',
-    metricLabel: 'עלייה במכירות',
+    index: '01',
+    type: 'רשת ביגוד',
+    location: 'תל אביב',
+    size: '5 סניפים · 280–420 מ״ר',
+    industry: 'Fashion Retail',
+    goal: 'שדרוג מערכות תצוגה בכל הרשת תוך שמירה על זהות אחידה בין הסניפים.',
+    approach: 'מיפוי מלא של כל סניף, תכנון פריסה חדשה שמתאימה לשטח הייחודי של כל מיקום, בחירת מתקנים אחידים עם אפשרות גמישות מקומית.',
+    execution: 'ייצור מרוכז, התקנה שלב-שלב בסניפים פעילים עם הפרעה מינימלית לפעילות.',
+    outcome: 'כל 5 הסניפים הושלמו בפרק זמן של 6 שבועות. המותג קיבל עקביות ויזואלית מלאה לראשונה.',
   },
   {
-    client: 'רשת פארמה | 12 סניפים | ארצי',
-    challenge: 'פריסה לא אחידה בין הסניפים שיצרה חוויה מבלבלת ללקוחות ופגעה במוניטין הרשת.',
-    solution: 'תקינה אחידה לכל 12 הסניפים: פריסת מדפים, שילוט, תאורה, ודלפקי שירות — ביצוע תוך 8 שבועות.',
-    result: 'שביעות רצון לקוחות עלתה ב-58%. 3 סניפים חדשים נפתחו עם אותה תקינה.',
-    metric: '+58%',
-    metricLabel: 'שביעות רצון',
+    index: '02',
+    type: 'פארמה רשת ארצית',
+    location: 'ירושלים, חיפה, באר שבע ועוד',
+    size: '12 סניפים · תקינה מאוחדת',
+    industry: 'Pharmacy Chain',
+    goal: 'יצירת חוויה אחידה בכל נקודות המכירה של הרשת לאחר מיזוג עם רשת אחרת.',
+    approach: 'פיתוח מפרט תצוגה אחיד שמתאים לשני סוגי הסניפים הקיימים, כולל מידוף, שילוט, ודלפקי שירות.',
+    execution: 'גל פריסה ראשון ב-4 סניפים פיילוט, אישור הנהלה, ואז פריסה מלאה תוך 8 שבועות.',
+    outcome: 'אחידות ויזואלית מלאה. הנהלת הרשת דיווחה על שיפור בחוויית הלקוח בסקרים פנימיים.',
   },
   {
-    client: 'בוטיק תכשיטים | הרצליה פיתוח',
-    challenge: 'חנות קטנה שלא הצליחה לבטא את רמת המחיר של המוצרים דרך עיצוב החלל.',
-    solution: 'ויטרינות תצוגה בהתאמה אישית, תאורת LED ייעודית לתכשיטים, ופריסה שיוצרת תחושת בוטיק יוקרתי.',
-    result: 'המחיר הממוצע לעסקה עלה ב-41%. הלקוחות מצלמים ומפנים אחרים.',
-    metric: '+41%',
-    metricLabel: 'עלייה בערך עסקה',
+    index: '03',
+    type: 'בוטיק תכשיטים',
+    location: 'הרצליה פיתוח',
+    size: 'חנות בודדת · 75 מ״ר',
+    industry: 'Jewelry & Luxury',
+    goal: 'עיצוב סביבת תצוגה שתשקף את רמת המחיר של המוצרים ותיצור חוויה יוקרתית.',
+    approach: 'ויטרינות תצוגה בהתאמה אישית מלאה, תאורת LED ייעודית לתכשיטים, פריסה שמנחה את הלקוח דרך קולקציות שונות.',
+    execution: 'ייצור ב-6 שבועות, התקנה בסוף שבוע אחד לפני פתיחה מחדש.',
+    outcome: 'החנות פתחה מחדש עם תור ביום הראשון. הבעלים פתח סניף שני תוך שנה.',
   },
 ]
 
 export default function ClientStoriesSection() {
   return (
-    <section className="py-24 lg:py-36" style={{ background: 'white' }}>
+    <section className="py-24 lg:py-40" style={{ background: 'white' }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2 mb-5 text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: 'var(--accent)' }}>
+        <div className="mb-20">
+          <div className="inline-flex items-center gap-2 mb-6 text-xs font-semibold tracking-[0.25em] uppercase" style={{ color: 'var(--accent)' }}>
             <span className="w-6 h-px" style={{ background: 'var(--accent)' }} />
-            סיפורי לקוחות
+            תיקי עבודות
           </div>
-          <h2 className="font-black leading-tight" style={{ fontSize: 'clamp(1.9rem, 3.8vw, 3rem)', color: 'var(--foreground)' }}>
-            תוצאות שמדברות
-            <br />
-            בשפה עסקית
+          <h2 className="font-black leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: 'var(--foreground)' }}>
+            פרויקטים שביצענו
           </h2>
         </div>
 
         <div className="space-y-0">
-          {stories.map((s, i) => (
+          {cases.map((c) => (
             <div
-              key={i}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-0 py-12 lg:py-16"
+              key={c.index}
+              className="py-14 lg:py-20"
               style={{ borderTop: '1px solid var(--border)' }}
             >
-              {/* Metric */}
-              <div className="lg:col-span-2 mb-6 lg:mb-0 flex items-start">
-                <div>
-                  <div
-                    className="font-black leading-none mb-1"
-                    style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--accent)' }}
-                  >
-                    {s.metric}
-                  </div>
-                  <div className="text-xs font-semibold tracking-wider uppercase" style={{ color: 'var(--text-muted)' }}>
-                    {s.metricLabel}
-                  </div>
+              {/* Top row */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+                <div className="lg:col-span-1">
+                  <span className="font-black" style={{ fontSize: '2rem', color: 'rgba(0,0,0,0.1)', lineHeight: 1 }}>{c.index}</span>
+                </div>
+                <div className="lg:col-span-4">
+                  <div className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: 'var(--accent)' }}>{c.industry}</div>
+                  <h3 className="text-2xl font-black mb-1" style={{ color: 'var(--foreground)' }}>{c.type}</h3>
+                  <div className="text-sm" style={{ color: 'var(--text-muted)' }}>{c.location}</div>
+                  <div className="text-sm mt-0.5" style={{ color: 'var(--text-muted)' }}>{c.size}</div>
+                </div>
+                <div className="lg:col-span-7">
+                  <p className="text-base leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: '540px' }}>{c.goal}</p>
                 </div>
               </div>
 
-              {/* Client */}
-              <div className="lg:col-span-3 mb-6 lg:mb-0">
-                <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: 'var(--accent)' }}>לקוח</div>
-                <div className="text-base font-bold" style={{ color: 'var(--foreground)' }}>{s.client}</div>
-              </div>
-
-              {/* Challenge → Solution → Result */}
-              <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Detail row */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:mr-[8.333%]">
                 <div>
-                  <div className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--text-muted)' }}>האתגר</div>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>{s.challenge}</p>
+                  <div className="text-xs font-bold tracking-[0.18em] uppercase mb-3" style={{ color: 'rgba(0,0,0,0.3)' }}>גישה</div>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>{c.approach}</p>
                 </div>
                 <div>
-                  <div className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--text-muted)' }}>הפתרון</div>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>{s.solution}</p>
+                  <div className="text-xs font-bold tracking-[0.18em] uppercase mb-3" style={{ color: 'rgba(0,0,0,0.3)' }}>ביצוע</div>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>{c.execution}</p>
                 </div>
                 <div>
-                  <div className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: 'var(--text-muted)' }}>התוצאה</div>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>{s.result}</p>
+                  <div className="text-xs font-bold tracking-[0.18em] uppercase mb-3" style={{ color: 'rgba(0,0,0,0.3)' }}>תוצאה</div>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>{c.outcome}</p>
                 </div>
               </div>
             </div>
