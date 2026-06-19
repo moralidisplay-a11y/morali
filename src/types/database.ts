@@ -19,8 +19,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['products']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['products']['Insert']>
       }
       categories: {
         Row: {
@@ -36,8 +36,8 @@ export interface Database {
           is_active: boolean
           created_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['categories']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['categories']['Insert']>
       }
       leads: {
         Row: {
@@ -54,8 +54,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['leads']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['leads']['Insert']>
       }
       deals: {
         Row: {
@@ -70,8 +70,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['deals']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['deals']['Insert']>
       }
       quotes: {
         Row: {
@@ -87,8 +87,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['quotes']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['quotes']['Insert']>
       }
       tasks: {
         Row: {
@@ -105,8 +105,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['tasks']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['tasks']['Insert']>
       }
       articles: {
         Row: {
@@ -125,8 +125,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['articles']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['articles']['Insert']>
       }
       projects: {
         Row: {
@@ -143,8 +143,8 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['projects']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['projects']['Insert']>
       }
       activities: {
         Row: {
@@ -156,8 +156,8 @@ export interface Database {
           user_id: string | null
           created_at: string
         }
-        Insert: Omit<this['Row'], 'id' | 'created_at'>
-        Update: Partial<this['Insert']>
+        Insert: Omit<Database['public']['Tables']['activities']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['activities']['Insert']>
       }
     }
   }
