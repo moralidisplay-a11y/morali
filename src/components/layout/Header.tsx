@@ -47,7 +47,7 @@ export default function Header() {
                 MORALI
               </div>
               <div className="text-[10px] font-medium tracking-widest uppercase" style={{ color: 'var(--accent)' }}>
-                Display Systems
+                Retail Environments
               </div>
             </div>
           </Link>
