@@ -11,10 +11,11 @@ const navItems = [
     children: [
       { label: 'מערכות תלייה', href: '/categories/hanging' },
       { label: 'בובות ראווה', href: '/categories/mannequins' },
-      { label: 'קירות מחורצים', href: '/categories/slatwall' },
       { label: 'מידוף לחנויות', href: '/categories/shelving' },
+      { label: 'קירות מחורצים', href: '/categories/slatwall' },
+      { label: 'דלפקים וויטרינות', href: '/categories/counters' },
+      { label: 'קולבים ואביזרים', href: '/categories/hangers' },
       { label: 'סטנדים ומחזיקים', href: '/categories/stands' },
-      { label: 'דלפקים', href: '/categories/counters' },
     ],
   },
   { label: 'מוצרים', href: '/products' },
@@ -23,6 +24,7 @@ const navItems = [
   { label: 'השראה', href: '/inspiration' },
   { label: 'בלוג', href: '/articles' },
   { label: 'אודות', href: '/about' },
+  { label: 'צור קשר', href: '/contact' },
 ]
 
 export default function Header() {
