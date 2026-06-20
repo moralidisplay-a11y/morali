@@ -15,12 +15,12 @@ export default function Footer() {
               <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center font-black text-white text-base">M</div>
               <div>
                 <div className="font-black text-white text-base tracking-tight">MORALI</div>
-                <div className="text-[10px] tracking-widest uppercase" style={{ color: 'var(--accent)' }}>Display Systems</div>
+                <div className="text-[10px] tracking-widest uppercase" style={{ color: 'var(--accent)' }}>Retail Environments</div>
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              מתקני תצוגה ועיצוב לחנויות.
-              פתרונות מלאים לעסקים שרוצים למכור יותר.
+              מתכננים, מייצרים ומתקינים סביבות מכירה
+              לרשתות קמעונאות ועסקים בכל הארץ.
             </p>
             <div className="flex gap-2">
               {[
@@ -50,24 +50,14 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-white mb-4 text-sm">קטגוריות</h3>
             <ul className="space-y-2.5 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              {['מדפים', 'סטנדים', 'קולבים', 'בובות ראווה', 'סלסלות ועגלות'].map((item) => (
-                <li key={item}>
-                  <Link href="/products" className="hover:text-white transition-colors">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Info */}
-          <div>
-            <h3 className="font-bold text-white mb-4 text-sm">מידע שימושי</h3>
-            <ul className="space-y-2.5 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
               {[
-                { label: 'שאלות ותשובות', href: '/faq' },
-                { label: 'משלוחים והחזרות', href: '/shipping' },
-                { label: 'אחריות ושירות', href: '/warranty' },
-                { label: 'תנאי שימוש', href: '/terms' },
-                { label: 'מדיניות פרטיות', href: '/privacy' },
+                { label: 'מערכות תלייה', href: '/categories/hanging' },
+                { label: 'בובות ראווה', href: '/categories/mannequins' },
+                { label: 'מידוף לחנויות', href: '/categories/shelving' },
+                { label: 'קירות מחורצים', href: '/categories/slatwall' },
+                { label: 'דלפקים וויטרינות', href: '/categories/counters' },
+                { label: 'קולבים ואביזרים', href: '/categories/hangers' },
+                { label: 'סטנדים ומחזיקים', href: '/categories/stands' },
               ].map(({ label, href }) => (
                 <li key={href}>
                   <Link href={href} className="hover:text-white transition-colors">{label}</Link>
@@ -76,20 +66,30 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter + Contact */}
+          {/* Links */}
           <div>
-            <h3 className="font-bold text-white mb-4 text-sm">הצטרפו לניוזלטר</h3>
-            <form className="flex gap-2 mb-5" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="כתובת מייל"
-                className="flex-1 px-3 py-2.5 text-sm rounded-xl bg-white/8 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-yellow-500/50"
-              />
-              <button type="submit" className="btn-gold" style={{ padding: '10px 16px', fontSize: '0.8rem' }}>
-                הרשמה
-              </button>
-            </form>
+            <h3 className="font-bold text-white mb-4 text-sm">ניווט מהיר</h3>
             <ul className="space-y-2.5 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              {[
+                { label: 'כל המוצרים', href: '/products' },
+                { label: 'פרויקטים', href: '/projects' },
+                { label: 'פתרונות לעסק', href: '/solutions' },
+                { label: 'השראה', href: '/inspiration' },
+                { label: 'בלוג', href: '/articles' },
+                { label: 'אודות', href: '/about' },
+                { label: 'צור קשר', href: '/contact' },
+              ].map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className="hover:text-white transition-colors">{label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="font-bold text-white mb-4 text-sm">יצירת קשר</h3>
+            <ul className="space-y-3 text-sm mb-6" style={{ color: 'rgba(255,255,255,0.45)' }}>
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--accent)' }} />
                 <a href="tel:050-1234567" className="hover:text-white transition-colors">050-1234567</a>
@@ -100,9 +100,16 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: 'var(--accent)' }} />
-                <span>ישראל</span>
+                <span>ישראל — שירות ארצי</span>
               </li>
             </ul>
+            <Link
+              href="/quote"
+              className="btn-gold w-full justify-center"
+              style={{ fontSize: '0.85rem', padding: '11px 20px' }}
+            >
+              קבלו הצעת מחיר
+            </Link>
           </div>
         </div>
 
@@ -111,10 +118,10 @@ export default function Footer() {
           className="mt-10 pt-6 border-t flex flex-col sm:flex-row justify-between items-center gap-3 text-xs"
           style={{ borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.3)' }}
         >
-          <p>© {new Date().getFullYear()} MORALI Display Systems. כל הזכויות שמורות.</p>
+          <p>© {new Date().getFullYear()} MORALI Retail Environments. כל הזכויות שמורות.</p>
           <div className="flex gap-4">
-            <Link href="/privacy" className="hover:text-white/60 transition-colors">פרטיות</Link>
-            <Link href="/terms" className="hover:text-white/60 transition-colors">תנאים</Link>
+            <Link href="/contact" className="hover:text-white/60 transition-colors">צור קשר</Link>
+            <Link href="/about" className="hover:text-white/60 transition-colors">אודות</Link>
           </div>
         </div>
       </div>
