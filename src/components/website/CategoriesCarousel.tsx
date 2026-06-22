@@ -5,14 +5,14 @@ import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const cats = [
-  { name: 'רלסים ומערכות תלייה', href: '/categories/hanging', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=90' },
-  { name: 'בובות ראווה', href: '/categories/mannequins', img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=700&q=90' },
-  { name: 'מידוף לחנויות', href: '/categories/shelving', img: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?w=700&q=90' },
+  { name: 'מערכות תלייה', href: '/categories/hanging', img: '/morali/IMG_4104.jpg' },
+  { name: 'בובות ראווה', href: '/categories/mannequins', img: '/morali/IMG_4096.jpg' },
+  { name: 'מידוף לחנויות', href: '/categories/shelving', img: '/morali/IMG_4132.jpg' },
   { name: 'קירות מחורצים', href: '/categories/slatwall', img: 'https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=700&q=90' },
   { name: 'דלפקים וויטרינות', href: '/categories/counters', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=90' },
-  { name: 'קולבים ואביזרים', href: '/categories/hangers', img: 'https://images.unsplash.com/photo-1603217039863-aa0c865404f7?w=700&q=90' },
-  { name: 'סטנדים ומחזיקים', href: '/categories/stands', img: 'https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=700&q=90' },
-  { name: 'סלסלות ועגלות', href: '/categories/hanging', img: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=700&q=90' },
+  { name: 'קולבים ואביזרים', href: '/categories/hangers', img: '/morali/IMG_4112.jpg' },
+  { name: 'סטנדים ומחזיקים', href: '/categories/stands', img: '/morali/IMG_4120.jpg' },
+  { name: 'סלסלות ועגלות', href: '/categories/baskets', img: '/morali/IMG_4136.jpg' },
 ]
 
 export default function CategoriesCarousel() {
