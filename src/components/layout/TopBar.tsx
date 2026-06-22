@@ -2,7 +2,7 @@ import { Truck, MessageCircle, MapPin, Phone } from 'lucide-react'
 
 export default function TopBar() {
   return (
-    <div className="hidden md:block text-white text-xs py-2.5 px-4" style={{ background: 'var(--primary)' }}>
+    <div className="hidden md:block text-white text-xs py-2 px-4" style={{ background: '#0a0a0a' }}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-6">
           <span className="flex items-center gap-1.5 opacity-80">

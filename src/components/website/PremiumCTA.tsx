@@ -1,54 +1,83 @@
-import { ArrowLeft } from 'lucide-react'
-
 export default function PremiumCTA() {
   return (
     <section
-      className="py-28 lg:py-48 relative overflow-hidden"
-      style={{ background: '#070707' }}
+      className="relative overflow-hidden"
+      style={{ background: '#070707', paddingTop: 'clamp(5rem, 12vw, 10rem)', paddingBottom: 'clamp(5rem, 12vw, 10rem)' }}
     >
+      {/* Subtle radial glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-px"
-        style={{ height: '100px', background: 'linear-gradient(to bottom, transparent, rgba(199,154,75,0.35))' }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(199,154,75,0.06) 0%, transparent 70%)',
+        }}
       />
 
-      <div className="max-w-3xl mx-auto px-6 lg:px-12 text-center relative z-10">
-        <div
-          className="inline-flex items-center gap-3 mb-10 text-xs font-semibold tracking-[0.25em] uppercase"
-          style={{ color: 'rgba(199,154,75,0.7)' }}
-        >
-          <span className="w-8 h-px" style={{ background: 'rgba(199,154,75,0.4)' }} />
-          בואו נדבר
-          <span className="w-8 h-px" style={{ background: 'rgba(199,154,75,0.4)' }} />
-        </div>
+      {/* Thin gold line top */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2"
+        style={{ width: '1px', height: '80px', background: 'linear-gradient(to bottom, transparent, rgba(199,154,75,0.3))' }}
+      />
 
-        <h2
-          className="font-black text-white leading-[1.05] mb-8"
-          style={{ fontSize: 'clamp(2.6rem, 6vw, 5rem)' }}
-        >
-          מתכננים חנות?
-          <br />
-          <span style={{ color: 'var(--accent)' }}>נשמח לשמוע.</span>
-        </h2>
+      <div className="relative z-10 text-center px-6">
 
+        {/* Eyebrow */}
         <p
-          className="leading-relaxed mb-14 mx-auto"
-          style={{ color: 'rgba(255,255,255,0.45)', maxWidth: '440px', fontSize: '1.1rem' }}
+          className="mb-8 text-[10px] font-bold tracking-[0.45em] uppercase"
+          style={{ color: 'rgba(199,154,75,0.5)' }}
         >
-          בין אם פותחים סניף חדש או משדרגים קיים —
-          ספרו לנו על הפרויקט ונחזור אליכם בהקדם.
+          בואו נדבר
         </p>
 
-        <a
-          href="https://wa.me/972500000000"
-          className="inline-flex items-center gap-3 font-bold text-base px-10 py-5 rounded-full transition-all hover:opacity-85"
+        {/* Headline — cinematic scale */}
+        <h2
+          className="font-black text-white mx-auto"
           style={{
-            background: 'var(--accent)',
-            color: 'white',
+            fontSize: 'clamp(3rem, 8vw, 8rem)',
+            lineHeight: 0.96,
+            letterSpacing: '-0.04em',
+            maxWidth: '14ch',
           }}
         >
-          שלחו לנו הודעה
-          <ArrowLeft className="w-4 h-4" />
-        </a>
+          מתכננים
+          <br />
+          <span style={{ color: 'var(--accent)' }}>חנות חדשה?</span>
+        </h2>
+
+        {/* Sub */}
+        <p
+          className="mt-8 mb-14 mx-auto leading-relaxed"
+          style={{
+            color: 'rgba(255,255,255,0.35)',
+            fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+            maxWidth: '42ch',
+          }}
+        >
+          בין אם פותחים סניף חדש, משדרגים קיים או מתכננים רשת —
+          אנחנו כאן מהרגע הראשון ועד לפתיחה.
+        </p>
+
+        {/* Two CTAs */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://wa.me/972501234567"
+            className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-full transition-all hover:opacity-85 hover:-translate-y-0.5"
+            style={{ background: 'var(--accent)', color: 'white', fontSize: '0.9rem' }}
+          >
+            שלחו הודעה ב-WhatsApp
+          </a>
+          <a
+            href="tel:050-1234567"
+            className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-full transition-all hover:bg-white/8"
+            style={{
+              color: 'rgba(255,255,255,0.55)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              fontSize: '0.9rem',
+            }}
+          >
+            050-1234567
+          </a>
+        </div>
+
       </div>
     </section>
   )
