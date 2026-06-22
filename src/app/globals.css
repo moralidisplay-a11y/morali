@@ -175,40 +175,49 @@ body {
   transform: translateY(-2px);
 }
 
-/* Section titles */
+/* Section titles — premium scale */
 .section-title {
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
   font-weight: 900;
   color: var(--foreground);
-  line-height: 1.06;
-  letter-spacing: -0.015em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 .section-subtitle {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-muted);
   max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.75;
+  line-height: 1.8;
 }
 .gold-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.68rem;
+  gap: 10px;
+  font-size: 0.65rem;
   font-weight: 700;
   color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   margin-bottom: 16px;
 }
 .gold-label::before {
   content: '';
-  width: 28px;
+  width: 24px;
   height: 1px;
   background: var(--accent);
   display: block;
-  opacity: 0.6;
+  opacity: 0.5;
 }
+
+/* Scrollbar hidden for carousels */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Premium hover image scale */
+.img-hover-scale img {
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-hover-scale:hover img { transform: scale(1.06); }
 
 /* Line separator */
 .separator {
