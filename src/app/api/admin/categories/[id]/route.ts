@@ -9,19 +9,21 @@ function adminClient() {
   )
 }
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const supabase = adminClient()
   const { data, error } = await supabase
     .from('categories')
     .select('*')
-    .or(`id.eq.${params.id},slug.eq.${params.id}`)
+    .or(`id.eq.${id},slug.eq.${id}`)
     .single()
 
   if (error) return NextResponse.json({ error: error.message }, { status: 404 })
   return NextResponse.json(data)
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const body = await request.json()
   const supabase = adminClient()
 
@@ -36,7 +38,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       order: body.order,
       is_active: body.is_active ?? true,
     })
-    .or(`id.eq.${params.id},slug.eq.${params.id}`)
+    .or(`id.eq.${id},slug.eq.${id}`)
     .select()
     .single()
 
@@ -44,12 +46,13 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   return NextResponse.json(data)
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const supabase = adminClient()
   const { error } = await supabase
     .from('categories')
     .delete()
-    .or(`id.eq.${params.id},slug.eq.${params.id}`)
+    .or(`id.eq.${id},slug.eq.${id}`)
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json({ ok: true })

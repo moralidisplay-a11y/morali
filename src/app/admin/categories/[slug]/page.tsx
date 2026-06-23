@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { ArrowLeft, Save, ExternalLink, Trash2, Camera, X } from 'lucide-react'
 
 type Category = {
@@ -17,8 +17,9 @@ type Category = {
   is_active: boolean
 }
 
-export default function AdminEditCategoryPage({ params }: { params: { slug: string } }) {
+export default function AdminEditCategoryPage() {
   const router = useRouter()
+  const { slug } = useParams<{ slug: string }>()
   const fileRef = useRef<HTMLInputElement>(null)
   const [cat, setCat] = useState<Category | null>(null)
   const [loading, setLoading] = useState(true)
@@ -35,7 +36,7 @@ export default function AdminEditCategoryPage({ params }: { params: { slug: stri
   const [error, setError] = useState('')
 
   useEffect(() => {
-    fetch(`/api/admin/categories/${params.slug}`)
+    fetch(`/api/admin/categories/${slug}`)
       .then(r => r.json())
       .then(data => {
         if (data.error) { setError('קטגוריה לא נמצאה'); setLoading(false); return }
@@ -49,7 +50,7 @@ export default function AdminEditCategoryPage({ params }: { params: { slug: stri
         setLoading(false)
       })
       .catch(() => { setError('שגיאה בטעינה'); setLoading(false) })
-  }, [params.slug])
+  }, [slug])
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]

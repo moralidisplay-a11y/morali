@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { ArrowLeft, Save, ExternalLink, Trash2, Camera, X } from 'lucide-react'
 
 type Category = { id: string; slug: string; name: string }
@@ -22,8 +22,9 @@ type Product = {
   is_active: boolean
 }
 
-export default function AdminEditProductPage({ params }: { params: { slug: string } }) {
+export default function AdminEditProductPage() {
   const router = useRouter()
+  const { slug } = useParams<{ slug: string }>()
   const fileRef = useRef<HTMLInputElement>(null)
   const [product, setProduct] = useState<Product | null>(null)
   const [categories, setCategories] = useState<Category[]>([])
@@ -43,7 +44,7 @@ export default function AdminEditProductPage({ params }: { params: { slug: strin
 
   useEffect(() => {
     Promise.all([
-      fetch(`/api/admin/products/${params.slug}`).then(r => r.json()),
+      fetch(`/api/admin/products/${slug}`).then(r => r.json()),
       fetch('/api/admin/categories').then(r => r.json()),
     ]).then(([prod, cats]) => {
       if (prod.error) { setError('מוצר לא נמצא'); setLoading(false); return }
@@ -58,7 +59,7 @@ export default function AdminEditProductPage({ params }: { params: { slug: strin
       if (Array.isArray(cats)) setCategories(cats)
       setLoading(false)
     }).catch(() => { setError('שגיאה בטעינה'); setLoading(false) })
-  }, [params.slug])
+  }, [slug])
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
