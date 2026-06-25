@@ -5,17 +5,12 @@ import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 
 import HeroSection from '@/components/website/HeroSection'
-import BeforeAfterSection from '@/components/website/BeforeAfterSection'
-import TrustStrip from '@/components/website/TrustStrip'
+import CategoryGrid from '@/components/website/CategoryGrid'
+import ProductRail from '@/components/website/ProductRail'
+import IndustryBanner from '@/components/website/IndustryBanner'
+import InspirationGrid from '@/components/website/InspirationGrid'
+import TestimonialsStrip from '@/components/website/TestimonialsStrip'
 import ClientLogosMarquee from '@/components/website/ClientLogosMarquee'
-import CategoriesCarousel from '@/components/website/CategoriesCarousel'
-import ProductsCarousel from '@/components/website/ProductsCarousel'
-import ProjectsCarousel from '@/components/website/ProjectsCarousel'
-import SolutionsCarousel from '@/components/website/SolutionsCarousel'
-import InspirationCarousel from '@/components/website/InspirationCarousel'
-import ROICalculatorSection from '@/components/website/ROICalculatorSection'
-import AIStorePlannerSection from '@/components/website/AIStorePlannerSection'
-import TestimonialsSection from '@/components/website/TestimonialsSection'
 import PremiumCTA from '@/components/website/PremiumCTA'
 
 export default function HomePage() {
@@ -25,45 +20,46 @@ export default function HomePage() {
       <Header />
       <main className="flex-1 pb-16 md:pb-0">
 
-        {/* 1 — Hero: full-screen slider */}
+        {/* 1 — Hero: cinematic, search bar, category chips */}
         <HeroSection />
 
-        {/* 2 — Before/After: drag slider, strongest conversion section */}
-        <BeforeAfterSection />
+        {/* 2 — Categories: editorial grid */}
+        <CategoryGrid />
 
-        {/* 3 — Trust numbers + benefits */}
-        <TrustStrip />
+        {/* 3 — Product rail: most popular / hanging */}
+        <ProductRail title="מוצרים מבוקשים — מערכות תלייה" categorySlug="hanging" />
 
-        {/* 4 — Client logos marquee */}
-        <ClientLogosMarquee />
-
-        {/* 5 — Categories horizontal carousel */}
-        <CategoriesCarousel />
-
-        {/* 6 — Featured Products carousel */}
-        <ProductsCarousel />
-
-        {/* 7 — Projects showcase: dark, premium */}
-        <ProjectsCarousel />
-
-        {/* 8 — Solutions by business type */}
-        <SolutionsCarousel />
-
-        {/* 9 — Inspiration gallery with tabs */}
-        <InspirationCarousel />
-
-        {/* 10 — ROI Calculator */}
-        <ROICalculatorSection />
-
-        {/* 11 — AI Store Planner */}
-        <div id="store-planner">
-          <AIStorePlannerSection />
+        {/* 4 — Product rail: shelving */}
+        <div style={{ borderTop: '1px solid var(--border)' }}>
+          <ProductRail title="מידוף לחנויות" categorySlug="shelving" />
         </div>
 
-        {/* 12 — Testimonials */}
-        <TestimonialsSection />
+        {/* 5 — Industry banner + CTA (dark) */}
+        <IndustryBanner />
 
-        {/* 13 — Final CTA */}
+        {/* 6 — Product rail: stands */}
+        <ProductRail title="סטנדים ומחזיקים" categorySlug="stands" />
+
+        {/* 7 — Product rail: mannequins */}
+        <div style={{ borderTop: '1px solid var(--border)' }}>
+          <ProductRail title="בובות ראווה" categorySlug="mannequins" />
+        </div>
+
+        {/* 8 — Product rail: hangers */}
+        <div style={{ borderTop: '1px solid var(--border)' }}>
+          <ProductRail title="קולבים ואביזרים" categorySlug="hangers" />
+        </div>
+
+        {/* 9 — Inspiration masonry gallery */}
+        <InspirationGrid />
+
+        {/* 10 — Client logos marquee */}
+        <ClientLogosMarquee />
+
+        {/* 11 — Testimonials */}
+        <TestimonialsStrip />
+
+        {/* 12 — Final CTA */}
         <PremiumCTA />
 
       </main>
