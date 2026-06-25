@@ -83,7 +83,7 @@ export default function AboutPage() {
             <h2 className="text-white font-black mb-5" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
               מתכננים חנות? נשמח לשמוע.
             </h2>
-            <a href="https://wa.me/972500000000" className="btn-gold">
+            <a href="https://wa.me/972505559491" className="btn-gold">
               שיחת WhatsApp
               <ArrowLeft className="w-4 h-4" />
             </a>

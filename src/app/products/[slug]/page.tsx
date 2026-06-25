@@ -6,8 +6,9 @@ import TopBar from '@/components/layout/TopBar'
 import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 import ProductGallery from '@/components/website/ProductGallery'
-import { getProductBySlug, getCategoryBySlug, getProductsByCategory, products } from '@/lib/catalog'
-import { Check, Package, MessageCircle, Phone, ChevronRight } from 'lucide-react'
+import { products } from '@/lib/catalog'
+import { getProductBySlug, getCategoryData, getProductsByCategory } from '@/lib/data'
+import { Check, MessageCircle, Phone, ChevronRight } from 'lucide-react'
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }))
@@ -15,7 +16,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const p = getProductBySlug(slug)
+  const p = await getProductBySlug(slug)
   if (!p) return {}
   return {
     title: `${p.name} | MORALI`,
@@ -24,13 +25,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
+export const dynamicParams = true
+
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const p = getProductBySlug(slug)
+  const p = await getProductBySlug(slug)
   if (!p) notFound()
 
-  const cat = getCategoryBySlug(p.categorySlug)
-  const related = getProductsByCategory(p.categorySlug).filter(r => r.slug !== p.slug).slice(0, 4)
+  const cat = await getCategoryData(p.categorySlug)
+  const related = (await getProductsByCategory(p.categorySlug)).filter(r => r.slug !== p.slug).slice(0, 4)
   const waMsg = encodeURIComponent(`שלום, אני מעוניין/ת במוצר: ${p.name} (${p.code}). אשמח לפרטים נוספים.`)
 
   return (
@@ -100,7 +103,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 {/* CTAs */}
                 <div className="flex flex-col gap-3 mb-8">
                   <a
-                    href={`https://wa.me/972501234567?text=${waMsg}`}
+                    href={`https://wa.me/972505559491?text=${waMsg}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2.5 py-4 rounded-2xl font-black text-white transition-all hover:opacity-90 active:scale-95"
@@ -110,12 +113,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     בקש הצעת מחיר ב-WhatsApp
                   </a>
                   <a
-                    href="tel:050-1234567"
+                    href="tel:050-555-9491"
                     className="flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-sm transition-all hover:bg-gray-50"
                     style={{ border: '1.5px solid var(--border)', color: 'var(--foreground)' }}
                   >
                     <Phone className="w-4 h-4" />
-                    050-1234567 — התקשרו אלינו
+                    050-555-9491 — התקשרו אלינו
                   </a>
                 </div>
 

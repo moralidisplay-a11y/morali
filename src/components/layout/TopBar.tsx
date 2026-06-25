@@ -19,12 +19,12 @@ export default function TopBar() {
           </span>
         </div>
         <a
-          href="tel:050-1234567"
+          href="tel:050-555-9491"
           className="flex items-center gap-1.5 font-semibold hover:opacity-100 opacity-80 transition-opacity"
           style={{ color: 'var(--accent)' }}
         >
           <Phone className="w-3.5 h-3.5" />
-          050-1234567
+          050-555-9491
         </a>
       </div>
     </div>

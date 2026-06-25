@@ -108,7 +108,7 @@ export default function ProductRail({ title, categorySlug, accentColor = 'var(--
             {/* WhatsApp CTA */}
             <div className="px-4 pb-4">
               <a
-                href={`https://wa.me/972501234567?text=שלום, אני מתעניין ב: ${p.name}`}
+                href={`https://wa.me/972505559491?text=שלום, אני מתעניין ב: ${p.name}`}
                 className="flex items-center justify-center gap-1.5 w-full py-2 rounded-xl text-xs font-bold transition-all hover:opacity-80"
                 style={{ background: '#f0f7f0', color: '#1a7a1a', border: '1px solid #c8e6c8' }}
               >

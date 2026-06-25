@@ -84,7 +84,7 @@ export default function IndustryBanner() {
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
             <a
-              href="https://wa.me/972501234567"
+              href="https://wa.me/972505559491"
               className="btn-gold whitespace-nowrap"
               style={{ fontSize: '0.875rem', padding: '13px 28px', borderRadius: '999px' }}
             >

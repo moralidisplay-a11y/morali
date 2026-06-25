@@ -118,7 +118,7 @@ export default function ProjectsPage() {
             <div className="text-xs font-bold tracking-[0.22em] uppercase mb-5" style={{ color: 'var(--accent)' }}>הפרויקט הבא</div>
             <h2 className="section-title mb-5">יכול להיות שלכם</h2>
             <p className="section-subtitle mb-10">מתכננים שדרוג לחנות או פתיחת סניף חדש? נשמח לשמוע.</p>
-            <a href="https://wa.me/972500000000" className="btn-gold">
+            <a href="https://wa.me/972505559491" className="btn-gold">
               דברו איתנו
               <ArrowLeft className="w-4 h-4" />
             </a>

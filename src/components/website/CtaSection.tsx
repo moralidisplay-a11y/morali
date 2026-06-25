@@ -35,7 +35,7 @@ export default function CtaSection() {
           <Link href="/quote" className="btn-gold animate-pulse-gold">
             קבלו הצעת מחיר <ArrowLeft className="w-4 h-4" />
           </Link>
-          <a href="tel:050-1234567" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+          <a href="tel:050-555-9491" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
             <Phone className="w-4 h-4" />
             דברו איתנו
           </a>

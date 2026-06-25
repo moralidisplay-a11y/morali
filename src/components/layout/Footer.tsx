@@ -92,7 +92,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm mb-6" style={{ color: 'rgba(255,255,255,0.45)' }}>
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--accent)' }} />
-                <a href="tel:050-1234567" className="hover:text-white transition-colors">050-1234567</a>
+                <a href="tel:050-555-9491" className="hover:text-white transition-colors">050-555-9491</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--accent)' }} />

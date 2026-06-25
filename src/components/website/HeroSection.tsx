@@ -149,7 +149,7 @@ export default function HeroSection() {
             עיון בקטלוג
           </Link>
           <a
-            href="https://wa.me/972501234567"
+            href="https://wa.me/972505559491"
             className="font-semibold text-sm transition-all hover:text-white"
             style={{
               color: 'rgba(255,255,255,0.6)',

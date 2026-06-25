@@ -42,7 +42,7 @@ export default function AdminSettingsPage() {
               <p className="text-xs" style={{ color: 'var(--text-muted)' }}>מספר לצ'אט וטופס ההצעה</p>
             </div>
           </div>
-          <ConfigRow label="מספר WhatsApp" value="972500000000" status="ok" note="עדכנו ב-globals + PremiumCTA + HeroSection" />
+          <ConfigRow label="מספר WhatsApp" value="972505559491" status="ok" note="עדכנו ב-globals + PremiumCTA + HeroSection" />
         </div>
 
         {/* Domain */}

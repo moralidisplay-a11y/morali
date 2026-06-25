@@ -85,7 +85,7 @@ export default function CategoriesPage() {
             <p className="text-xs font-bold tracking-[0.22em] uppercase mb-5" style={{ color: 'var(--accent)' }}>לא מצאתם מה שחיפשתם?</p>
             <h2 className="section-title mb-5">אנחנו מייצרים גם בהתאמה אישית</h2>
             <p className="section-subtitle mb-10">מוצרים מיוחדים, מידות שלא קיימות בקטלוג, גוונים לפי בחירה — דברו איתנו.</p>
-            <a href="https://wa.me/972500000000" className="btn-gold">
+            <a href="https://wa.me/972505559491" className="btn-gold">
               שלחו פרטים
               <ArrowLeft className="w-4 h-4" />
             </a>

@@ -59,14 +59,14 @@ export default function PremiumCTA() {
         {/* Two CTAs */}
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
-            href="https://wa.me/972501234567"
+            href="https://wa.me/972505559491"
             className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-full transition-all hover:opacity-85 hover:-translate-y-0.5"
             style={{ background: 'var(--accent)', color: 'white', fontSize: '0.9rem' }}
           >
             שלחו הודעה ב-WhatsApp
           </a>
           <a
-            href="tel:050-1234567"
+            href="tel:050-555-9491"
             className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-full transition-all hover:bg-white/8"
             style={{
               color: 'rgba(255,255,255,0.55)',
@@ -74,7 +74,7 @@ export default function PremiumCTA() {
               fontSize: '0.9rem',
             }}
           >
-            050-1234567
+            050-555-9491
           </a>
         </div>
 

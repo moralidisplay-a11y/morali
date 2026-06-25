@@ -164,7 +164,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               <ArrowLeft className="w-4 h-4 rotate-180" />
               כל הפרויקטים
             </Link>
-            <a href="https://wa.me/972500000000" className="btn-gold">
+            <a href="https://wa.me/972505559491" className="btn-gold">
               דברו איתנו
               <ArrowLeft className="w-4 h-4" />
             </a>

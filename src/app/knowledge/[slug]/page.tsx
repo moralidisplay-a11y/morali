@@ -144,7 +144,7 @@ export default function KnowledgeArticlePage({ params }: { params: { slug: strin
                 <ArrowLeft className="w-4 h-4 rotate-180" />
                 כל המאמרים
               </Link>
-              <a href="https://wa.me/972500000000" className="btn-gold">
+              <a href="https://wa.me/972505559491" className="btn-gold">
                 דברו איתנו
                 <ArrowLeft className="w-4 h-4" />
               </a>

@@ -69,7 +69,7 @@ export default function QuotePage() {
 
   function handleSend() {
     const msg = buildWhatsAppMessage()
-    window.open(`https://wa.me/972500000000?text=${msg}`, '_blank')
+    window.open(`https://wa.me/972505559491?text=${msg}`, '_blank')
     setSent(true)
   }
 
@@ -88,7 +88,7 @@ export default function QuotePage() {
               פתחנו שיחת WhatsApp עם כל הפרטים. נחזור אליכם תוך יום עסקים.
             </p>
             <div className="flex flex-col gap-3">
-              <a href="https://wa.me/972500000000" className="btn-gold w-full justify-center">
+              <a href="https://wa.me/972505559491" className="btn-gold w-full justify-center">
                 <MessageCircle className="w-4 h-4" />
                 המשיכו בשיחה
               </a>

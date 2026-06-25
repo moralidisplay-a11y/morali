@@ -6,15 +6,18 @@ import TopBar from '@/components/layout/TopBar'
 import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 import CategoryProducts from '@/components/website/CategoryProducts'
-import { getCategoryBySlug, getProductsByCategory, categories } from '@/lib/catalog'
+import { categories } from '@/lib/catalog'
+import { getCategoryData, getProductsByCategory } from '@/lib/data'
 
 export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }))
 }
 
+export const dynamicParams = true
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const cat = getCategoryBySlug(slug)
+  const cat = await getCategoryData(slug)
   if (!cat) return {}
   return {
     title: `${cat.name} | MORALI — מתקני תצוגה מקצועיים`,
@@ -24,9 +27,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const cat = getCategoryBySlug(slug)
+  const cat = await getCategoryData(slug)
   if (!cat) notFound()
-  const prods = getProductsByCategory(slug)
+  const prods = await getProductsByCategory(slug)
 
   return (
     <>
@@ -54,7 +57,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 {cat.name}
               </h1>
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-                {cat.count}+ מוצרים · {cat.desc}
+                {prods.length > 0 ? prods.length : cat.count}+ מוצרים{cat.desc ? ` · ${cat.desc}` : ''}
               </p>
             </div>
           </div>
@@ -90,7 +93,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <a
-                href="https://wa.me/972501234567"
+                href="https://wa.me/972505559491"
                 className="btn-gold"
                 style={{ padding: '13px 32px', borderRadius: '999px' }}
               >

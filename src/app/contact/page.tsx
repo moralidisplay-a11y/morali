@@ -13,7 +13,7 @@ export default function ContactPage() {
 
   function handleWhatsApp() {
     const text = encodeURIComponent(`שלום, אני ${name}.\nטלפון: ${phone}\n\n${msg}`)
-    window.open(`https://wa.me/972500000000?text=${text}`, '_blank')
+    window.open(`https://wa.me/972505559491?text=${text}`, '_blank')
   }
 
   return (
@@ -39,8 +39,8 @@ export default function ContactPage() {
                 <h2 className="font-black text-2xl mb-8" style={{ color: 'var(--foreground)' }}>פרטי התקשרות</h2>
                 <div className="space-y-6">
                   {[
-                    { icon: Phone, label: 'טלפון', value: '050-1234567', href: 'tel:050-1234567' },
-                    { icon: MessageCircle, label: 'WhatsApp', value: 'wa.me/972500000000', href: 'https://wa.me/972500000000' },
+                    { icon: Phone, label: 'טלפון', value: '050-555-9491', href: 'tel:050-555-9491' },
+                    { icon: MessageCircle, label: 'WhatsApp', value: 'wa.me/972505559491', href: 'https://wa.me/972505559491' },
                     { icon: Mail, label: 'מייל', value: 'info@morali.co.il', href: 'mailto:info@morali.co.il' },
                     { icon: MapPin, label: 'מיקום', value: 'ישראל — שירות ארצי', href: undefined },
                   ].map(({ icon: Icon, label, value, href }) => (

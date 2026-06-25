@@ -80,7 +80,7 @@ export default function SolutionsPage() {
             <h2 className="section-title mb-5">לא בטוחים מה מתאים לכם?</h2>
             <p className="section-subtitle mb-10">דברו איתנו — נאבחן יחד ונמליץ על הפתרון הנכון.</p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a href="https://wa.me/972500000000" className="btn-gold">
+              <a href="https://wa.me/972505559491" className="btn-gold">
                 <span>שיחת WhatsApp</span>
                 <ArrowLeft className="w-4 h-4" />
               </a>

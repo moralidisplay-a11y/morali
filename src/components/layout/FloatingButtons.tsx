@@ -51,7 +51,7 @@ export default function FloatingButtons() {
           תכנון AI
         </button>
         <a
-          href="https://wa.me/972501234567"
+          href="https://wa.me/972505559491"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-3 rounded-2xl text-white text-xs font-bold shadow-xl transition-all hover:scale-105"
