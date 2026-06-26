@@ -6,13 +6,11 @@ import TopBar from '@/components/layout/TopBar'
 import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 import ProductGallery from '@/components/website/ProductGallery'
-import { products } from '@/lib/catalog'
 import { getProductBySlug, getCategoryData, getProductsByCategory } from '@/lib/data'
 import { Check, MessageCircle, Phone, ChevronRight } from 'lucide-react'
 
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }))
-}
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -24,8 +22,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: { title: `${p.name} | MORALI`, description: p.desc, images: [p.img] },
   }
 }
-
-export const dynamicParams = true
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

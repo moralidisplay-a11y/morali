@@ -6,13 +6,9 @@ import TopBar from '@/components/layout/TopBar'
 import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 import CategoryProducts from '@/components/website/CategoryProducts'
-import { categories } from '@/lib/catalog'
 import { getCategoryData, getProductsByCategory } from '@/lib/data'
 
-export function generateStaticParams() {
-  return categories.map((c) => ({ slug: c.slug }))
-}
-
+export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
