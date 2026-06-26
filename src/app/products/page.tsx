@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Search, SlidersHorizontal } from 'lucide-react'
@@ -10,6 +10,14 @@ import TopBar from '@/components/layout/TopBar'
 import { products, categories } from '@/lib/catalog'
 
 export default function ProductsPage() {
+  return (
+    <Suspense>
+      <ProductsContent />
+    </Suspense>
+  )
+}
+
+function ProductsContent() {
   const searchParams = useSearchParams()
   const [activeCategory, setActiveCategory] = useState('all')
   const [query, setQuery] = useState('')
