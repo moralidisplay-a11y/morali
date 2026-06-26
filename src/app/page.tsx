@@ -5,78 +5,47 @@ import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 
 import HeroSection from '@/components/website/HeroSection'
-import BrandStrip from '@/components/website/BrandStrip'
-import CategoryGrid from '@/components/website/CategoryGrid'
-import EditorialProducts from '@/components/website/EditorialProducts'
+import BrandNumbers from '@/components/website/BrandNumbers'
+import CategoryShowcase from '@/components/website/CategoryShowcase'
+import WhoIsItFor from '@/components/website/WhoIsItFor'
+import ProcessTimeline from '@/components/website/ProcessTimeline'
 import ProjectsShowcase from '@/components/website/ProjectsShowcase'
 import InspirationGrid from '@/components/website/InspirationGrid'
-import ClientLogosMarquee from '@/components/website/ClientLogosMarquee'
+import TrustSection from '@/components/website/TrustSection'
 import FinalCTA from '@/components/website/FinalCTA'
 
-import { getProductsByCategory } from '@/lib/data'
-
-export default async function HomePage() {
-  const [hanging, shelving, mannequins] = await Promise.all([
-    getProductsByCategory('hanging'),
-    getProductsByCategory('shelving'),
-    getProductsByCategory('mannequins'),
-  ])
-
+export default function HomePage() {
   return (
     <>
       <TopBar />
       <Header />
       <main className="flex-1 pb-16 md:pb-0">
 
-        {/* 1 — Hero */}
+        {/* 1 — Cinematic Hero */}
         <HeroSection />
 
-        {/* 2 — Brand statement: white, confident, no cards */}
-        <BrandStrip />
+        {/* 2 — Brand numbers (dark) */}
+        <BrandNumbers />
 
-        {/* 3 — Categories: editorial asymmetric grid */}
-        <CategoryGrid />
+        {/* 3 — Category showcase: full-width sections */}
+        <CategoryShowcase />
 
-        {/* 4 — Editorial: מערכות תלייה */}
-        <EditorialProducts
-          title="מערכות תלייה"
-          subtitle="מוטות, זרועות ומתלים מקצועיים לחנויות ביגוד ואופנה — פתרונות גמישים לכל מרחב."
-          categorySlug="hanging"
-          categoryLabel="Hanging Systems"
-          products={hanging}
-        />
+        {/* 4 — Who is it for (dark) */}
+        <WhoIsItFor />
 
-        {/* 5 — Projects case studies */}
+        {/* 5 — Process timeline */}
+        <ProcessTimeline />
+
+        {/* 6 — Projects case studies */}
         <ProjectsShowcase />
 
-        {/* 6 — Editorial: מידוף (flipped layout) */}
-        <EditorialProducts
-          title="מידוף לחנויות"
-          subtitle="מדפי קיר, מדפי עמידה ומערכות מודולריות לסופרמרקטים, פארמה ועוד."
-          categorySlug="shelving"
-          categoryLabel="Store Shelving"
-          products={shelving}
-          flipped
-        />
-
-        {/* 7 — Editorial: בובות ראווה */}
-        <div style={{ borderTop: '1px solid #f0ede8' }}>
-          <EditorialProducts
-            title="בובות ראווה"
-            subtitle="אוסף רחב של בובות מלאות, חצי גוף וידיים — לכל סגנון חנות."
-            categorySlug="mannequins"
-            categoryLabel="Mannequins"
-            products={mannequins}
-          />
-        </div>
+        {/* 7 — Trust & testimonials */}
+        <TrustSection />
 
         {/* 8 — Inspiration gallery */}
         <InspirationGrid />
 
-        {/* 9 — Logos */}
-        <ClientLogosMarquee />
-
-        {/* 10 — Final CTA */}
+        {/* 9 — Final CTA */}
         <FinalCTA />
 
       </main>
