@@ -6,11 +6,14 @@ import MobileNav from '@/components/layout/MobileNav'
 
 import HeroSection from '@/components/website/HeroSection'
 import CategoryGrid from '@/components/website/CategoryGrid'
+import ShopByIndustry from '@/components/website/ShopByIndustry'
 import ProductRail from '@/components/website/ProductRail'
-import IndustryBanner from '@/components/website/IndustryBanner'
+import EditorialBanner from '@/components/website/EditorialBanner'
+import CollectionsSection from '@/components/website/CollectionsSection'
+import FeaturedProject from '@/components/website/FeaturedProject'
 import InspirationGrid from '@/components/website/InspirationGrid'
-import TestimonialsStrip from '@/components/website/TestimonialsStrip'
 import ClientLogosMarquee from '@/components/website/ClientLogosMarquee'
+import TestimonialsStrip from '@/components/website/TestimonialsStrip'
 import PremiumCTA from '@/components/website/PremiumCTA'
 import { getProductsByCategory } from '@/lib/data'
 
@@ -29,46 +32,66 @@ export default async function HomePage() {
       <Header />
       <main className="flex-1 pb-16 md:pb-0">
 
-        {/* 1 — Hero: cinematic, search bar, category chips */}
+        {/* 1 — Hero: cinematic full-screen */}
         <HeroSection />
 
-        {/* 2 — Categories: editorial grid */}
+        {/* 2 — Shop by Industry: 8 icons */}
+        <ShopByIndustry />
+
+        {/* 3 — Category Grid: Pinterest asymmetric */}
         <CategoryGrid />
 
-        {/* 3 — Product rail: most popular / hanging */}
+        {/* 4 — Rail: Hanging */}
         <ProductRail title="מוצרים מבוקשים — מערכות תלייה" categorySlug="hanging" products={hanging} />
 
-        {/* 4 — Product rail: shelving */}
-        <div style={{ borderTop: '1px solid var(--border)' }}>
-          <ProductRail title="מידוף לחנויות" categorySlug="shelving" products={shelving} />
-        </div>
+        {/* 5 — Editorial Banner: open a store */}
+        <EditorialBanner
+          eyebrow="פותחים חנות?"
+          headline={`אנחנו נתכנן\nלכם את הכל.`}
+          sub="מתכנון הפריסה, דרך בחירת המתקנים ועד ההתקנה — אנחנו עושים הכל תחת קורת גג אחת."
+          cta="קבלו ייעוץ חינם"
+          href="https://wa.me/972505559491?text=שלום, אשמח לקבל ייעוץ לפתיחת חנות"
+          variant="dark"
+        />
 
-        {/* 5 — Industry banner + CTA (dark) */}
-        <IndustryBanner />
+        {/* 6 — Collections: ready-made per business type */}
+        <CollectionsSection />
 
-        {/* 6 — Product rail: stands */}
-        <ProductRail title="סטנדים ומחזיקים" categorySlug="stands" products={stands} />
+        {/* 7 — Rail: Shelving */}
+        <ProductRail title="מידוף מקצועי לחנויות" categorySlug="shelving" products={shelving} />
 
-        {/* 7 — Product rail: mannequins */}
-        <div style={{ borderTop: '1px solid var(--border)' }}>
-          <ProductRail title="בובות ראווה" categorySlug="mannequins" products={mannequins} />
-        </div>
+        {/* 8 — Featured Project: magazine spread */}
+        <FeaturedProject />
 
-        {/* 8 — Product rail: hangers */}
-        <div style={{ borderTop: '1px solid var(--border)' }}>
-          <ProductRail title="קולבים ואביזרים" categorySlug="hangers" products={hangers} />
-        </div>
+        {/* 9 — Rail: Mannequins */}
+        <ProductRail title="בובות ראווה" categorySlug="mannequins" products={mannequins} accentColor="#C79A4B" />
 
-        {/* 9 — Inspiration masonry gallery */}
+        {/* 10 — Editorial Banner: light */}
+        <EditorialBanner
+          eyebrow="30 שנה בתחום"
+          headline="ניסיון שאין עליו ויכוח."
+          sub="מאז 1993 אנחנו מציידים חנויות ברחבי ישראל — מחנויות עצמאיות ועד רשתות גדולות."
+          cta="קראו עלינו"
+          href="/categories"
+          variant="light"
+        />
+
+        {/* 11 — Inspiration Gallery: masonry, no cards */}
         <InspirationGrid />
 
-        {/* 10 — Client logos marquee */}
+        {/* 12 — Rail: Hangers */}
+        <ProductRail title="קולבים ואביזרים" categorySlug="hangers" products={hangers} />
+
+        {/* 13 — Rail: Stands */}
+        <ProductRail title="סטנדים ומחזיקים" categorySlug="stands" products={stands} />
+
+        {/* 14 — Client logos */}
         <ClientLogosMarquee />
 
-        {/* 11 — Testimonials */}
+        {/* 15 — Testimonials */}
         <TestimonialsStrip />
 
-        {/* 12 — Final CTA */}
+        {/* 16 — Final CTA */}
         <PremiumCTA />
 
       </main>

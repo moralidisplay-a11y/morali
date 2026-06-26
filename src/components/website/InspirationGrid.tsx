@@ -1,69 +1,60 @@
-import Link from 'next/link'
-
 const PHOTOS = [
-  { src: '/morali/IMG_4098.jpg', label: 'חנות אופנה', size: 'tall' },
-  { src: '/morali/IMG_4104.jpg', label: 'מערכות תלייה', size: 'normal' },
-  { src: '/morali/IMG_4132.jpg', label: 'מידוף', size: 'normal' },
-  { src: '/morali/IMG_4096.jpg', label: 'בובות ראווה', size: 'tall' },
-  { src: '/morali/IMG_4100.jpg', label: 'פריסת חנות', size: 'normal' },
-  { src: '/morali/IMG_4120.jpg', label: 'סטנדים', size: 'normal' },
-  { src: '/morali/IMG_4133.jpg', label: 'מדפים מקצועיים', size: 'normal' },
-  { src: '/morali/IMG_4112.jpg', label: 'קולבים', size: 'normal' },
-  { src: '/morali/IMG_4108.jpg', label: 'אביזרי תצוגה', size: 'normal' },
+  { src: '/morali/IMG_4098.jpg', h: 360 },
+  { src: '/morali/IMG_4104.jpg', h: 240 },
+  { src: '/morali/IMG_4132.jpg', h: 240 },
+  { src: '/morali/IMG_4096.jpg', h: 360 },
+  { src: '/morali/IMG_4100.jpg', h: 280 },
+  { src: '/morali/IMG_4120.jpg', h: 280 },
+  { src: '/morali/IMG_4133.jpg', h: 240 },
+  { src: '/morali/IMG_4112.jpg', h: 320 },
+  { src: '/morali/IMG_4108.jpg', h: 240 },
 ]
 
 export default function InspirationGrid() {
   return (
-    <section className="py-20 lg:py-28" style={{ background: 'var(--background)' }}>
+    <section className="py-20 lg:py-28" style={{ background: '#f8f7f5' }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
-        {/* Header */}
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <div className="text-xs font-bold tracking-[0.3em] uppercase mb-2" style={{ color: 'var(--accent)' }}>
-              השראה
-            </div>
-            <h2 className="font-black leading-none" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: 'var(--primary)', letterSpacing: '-0.03em' }}>
-              פרויקטים מהשטח
-            </h2>
-          </div>
-          <Link
-            href="/inspiration"
-            className="hidden sm:block text-sm font-bold transition-opacity hover:opacity-60"
-            style={{ color: 'var(--primary)' }}
-          >
-            לגלריה המלאה →
-          </Link>
+        <div className="text-center mb-12">
+          <div className="gold-label justify-center mb-3">גלריית השראה</div>
+          <h2 className="font-black leading-none" style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: 'var(--primary)', letterSpacing: '-0.035em' }}>
+            פרויקטים מהשטח
+          </h2>
+          <p className="mt-3 text-sm" style={{ color: 'var(--text-muted)', maxWidth: '36ch', margin: '10px auto 0' }}>
+            כל תמונה היא חנות אמיתית שציידנו — ייתכן שהחנות הבאה היא שלכם
+          </p>
         </div>
 
-        {/* Masonry-style grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
+        {/* Masonry — no cards, just images */}
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-3">
           {PHOTOS.map((p, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-xl break-inside-avoid"
-              style={{ background: '#f5f5f5' }}
+              className="group relative overflow-hidden rounded-2xl mb-3 break-inside-avoid"
+              style={{ background: '#e8e4de' }}
             >
               <img
                 src={p.src}
-                alt={p.label}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ height: p.size === 'tall' ? '320px' : '200px', display: 'block' }}
+                alt={`השראה ${i + 1}`}
+                className="w-full object-cover block transition-transform duration-700 group-hover:scale-105"
+                style={{ height: `${p.h}px` }}
               />
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)' }}
-              >
-                <span className="text-white font-bold text-sm">{p.label}</span>
-              </div>
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                style={{ background: 'rgba(0,0,0,0.18)' }}
+              />
             </div>
           ))}
         </div>
 
-        <div className="mt-8 text-center sm:hidden">
-          <Link href="/inspiration" className="text-sm font-bold" style={{ color: 'var(--primary)' }}>
-            לגלריה המלאה →
-          </Link>
+        <div className="mt-10 text-center">
+          <a
+            href="https://wa.me/972505559491?text=שלום, אני מעוניין לדון בפרויקט חנות חדשה"
+            className="btn-gold"
+            style={{ padding: '14px 36px', borderRadius: '999px' }}
+          >
+            שוחח איתנו על הפרויקט שלך
+          </a>
         </div>
       </div>
     </section>
