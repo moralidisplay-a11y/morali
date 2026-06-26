@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { categories as staticCategories } from '@/lib/catalog'
 
 function adminClient() {
   return createClient(
@@ -11,13 +12,30 @@ function adminClient() {
 
 export async function GET() {
   const supabase = adminClient()
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('categories')
     .select('*')
     .order('order', { ascending: true })
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json(data)
+  const dbRows: Record<string, unknown>[] = data || []
+  const dbSlugs = new Set(dbRows.map((r: Record<string, unknown>) => r.slug as string))
+
+  // Merge: Supabase rows first, then static categories not yet in Supabase
+  const staticRows = staticCategories
+    .filter(c => !dbSlugs.has(c.slug))
+    .map((c, i) => ({
+      id: `static-${c.slug}`,
+      slug: c.slug,
+      name: c.name,
+      name_en: c.nameEn,
+      description: c.desc,
+      long_description: c.longDesc,
+      image: c.img,
+      order: 100 + i,
+      is_active: true,
+    }))
+
+  return NextResponse.json([...dbRows, ...staticRows])
 }
 
 export async function POST(request: NextRequest) {
