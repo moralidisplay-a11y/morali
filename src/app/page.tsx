@@ -12,8 +12,17 @@ import InspirationGrid from '@/components/website/InspirationGrid'
 import TestimonialsStrip from '@/components/website/TestimonialsStrip'
 import ClientLogosMarquee from '@/components/website/ClientLogosMarquee'
 import PremiumCTA from '@/components/website/PremiumCTA'
+import { getProductsByCategory } from '@/lib/data'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [hanging, shelving, stands, mannequins, hangers] = await Promise.all([
+    getProductsByCategory('hanging'),
+    getProductsByCategory('shelving'),
+    getProductsByCategory('stands'),
+    getProductsByCategory('mannequins'),
+    getProductsByCategory('hangers'),
+  ])
+
   return (
     <>
       <TopBar />
@@ -27,27 +36,27 @@ export default function HomePage() {
         <CategoryGrid />
 
         {/* 3 — Product rail: most popular / hanging */}
-        <ProductRail title="מוצרים מבוקשים — מערכות תלייה" categorySlug="hanging" />
+        <ProductRail title="מוצרים מבוקשים — מערכות תלייה" categorySlug="hanging" products={hanging} />
 
         {/* 4 — Product rail: shelving */}
         <div style={{ borderTop: '1px solid var(--border)' }}>
-          <ProductRail title="מידוף לחנויות" categorySlug="shelving" />
+          <ProductRail title="מידוף לחנויות" categorySlug="shelving" products={shelving} />
         </div>
 
         {/* 5 — Industry banner + CTA (dark) */}
         <IndustryBanner />
 
         {/* 6 — Product rail: stands */}
-        <ProductRail title="סטנדים ומחזיקים" categorySlug="stands" />
+        <ProductRail title="סטנדים ומחזיקים" categorySlug="stands" products={stands} />
 
         {/* 7 — Product rail: mannequins */}
         <div style={{ borderTop: '1px solid var(--border)' }}>
-          <ProductRail title="בובות ראווה" categorySlug="mannequins" />
+          <ProductRail title="בובות ראווה" categorySlug="mannequins" products={mannequins} />
         </div>
 
         {/* 8 — Product rail: hangers */}
         <div style={{ borderTop: '1px solid var(--border)' }}>
-          <ProductRail title="קולבים ואביזרים" categorySlug="hangers" />
+          <ProductRail title="קולבים ואביזרים" categorySlug="hangers" products={hangers} />
         </div>
 
         {/* 9 — Inspiration masonry gallery */}

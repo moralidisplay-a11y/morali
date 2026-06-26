@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { products as staticProducts } from '@/lib/catalog'
 
 function adminClient() {
   return createClient(
@@ -11,13 +12,33 @@ function adminClient() {
 
 export async function GET() {
   const supabase = adminClient()
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('products')
     .select('*')
     .order('created_at', { ascending: false })
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json(data)
+  const dbRows: Record<string, unknown>[] = data || []
+  const dbSlugs = new Set(dbRows.map((r: Record<string, unknown>) => r.slug as string))
+
+  const staticRows = staticProducts
+    .filter(p => !dbSlugs.has(p.slug))
+    .map(p => ({
+      id: `static-${p.slug}`,
+      slug: p.slug,
+      category_slug: p.categorySlug,
+      name: p.name,
+      code: p.code,
+      price: p.price,
+      description: p.desc,
+      img: p.img,
+      images: p.images,
+      features: p.features,
+      in_stock: p.inStock,
+      badge: p.badge || null,
+      is_active: true,
+    }))
+
+  return NextResponse.json([...dbRows, ...staticRows])
 }
 
 export async function POST(request: NextRequest) {

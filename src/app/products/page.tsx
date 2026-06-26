@@ -1,16 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Search, SlidersHorizontal } from 'lucide-react'
+import { Search, SlidersHorizontal } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import TopBar from '@/components/layout/TopBar'
 import { products, categories } from '@/lib/catalog'
 
 export default function ProductsPage() {
+  const searchParams = useSearchParams()
   const [activeCategory, setActiveCategory] = useState('all')
   const [query, setQuery] = useState('')
+
+  useEffect(() => {
+    const q = searchParams.get('q')
+    if (q) setQuery(q)
+  }, [searchParams])
 
   const filtered = products.filter((p) => {
     const matchCat = activeCategory === 'all' || p.categorySlug === activeCategory

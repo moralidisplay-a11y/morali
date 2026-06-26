@@ -3,17 +3,19 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react'
-import { products } from '@/lib/catalog'
+import { products as staticProducts } from '@/lib/catalog'
+import type { Product } from '@/lib/catalog'
 
 type Props = {
   title: string
   categorySlug: string
   accentColor?: string
+  products?: Product[]
 }
 
-export default function ProductRail({ title, categorySlug, accentColor = 'var(--accent)' }: Props) {
+export default function ProductRail({ title, categorySlug, accentColor = 'var(--accent)', products }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const items = products.filter(p => p.categorySlug === categorySlug).slice(0, 10)
+  const items = (products ?? staticProducts.filter(p => p.categorySlug === categorySlug)).slice(0, 10)
   if (items.length === 0) return null
 
   const scroll = (dir: 'l' | 'r') => {
