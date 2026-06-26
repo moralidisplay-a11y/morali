@@ -5,25 +5,21 @@ import FloatingButtons from '@/components/layout/FloatingButtons'
 import MobileNav from '@/components/layout/MobileNav'
 
 import HeroSection from '@/components/website/HeroSection'
+import BrandStrip from '@/components/website/BrandStrip'
 import CategoryGrid from '@/components/website/CategoryGrid'
-import ShopByIndustry from '@/components/website/ShopByIndustry'
-import ProductRail from '@/components/website/ProductRail'
-import EditorialBanner from '@/components/website/EditorialBanner'
-import CollectionsSection from '@/components/website/CollectionsSection'
-import FeaturedProject from '@/components/website/FeaturedProject'
+import EditorialProducts from '@/components/website/EditorialProducts'
+import ProjectsShowcase from '@/components/website/ProjectsShowcase'
 import InspirationGrid from '@/components/website/InspirationGrid'
 import ClientLogosMarquee from '@/components/website/ClientLogosMarquee'
-import TestimonialsStrip from '@/components/website/TestimonialsStrip'
-import PremiumCTA from '@/components/website/PremiumCTA'
+import FinalCTA from '@/components/website/FinalCTA'
+
 import { getProductsByCategory } from '@/lib/data'
 
 export default async function HomePage() {
-  const [hanging, shelving, stands, mannequins, hangers] = await Promise.all([
+  const [hanging, shelving, mannequins] = await Promise.all([
     getProductsByCategory('hanging'),
     getProductsByCategory('shelving'),
-    getProductsByCategory('stands'),
     getProductsByCategory('mannequins'),
-    getProductsByCategory('hangers'),
   ])
 
   return (
@@ -32,67 +28,56 @@ export default async function HomePage() {
       <Header />
       <main className="flex-1 pb-16 md:pb-0">
 
-        {/* 1 — Hero: cinematic full-screen */}
+        {/* 1 — Hero */}
         <HeroSection />
 
-        {/* 2 — Shop by Industry: 8 icons */}
-        <ShopByIndustry />
+        {/* 2 — Brand statement: white, confident, no cards */}
+        <BrandStrip />
 
-        {/* 3 — Category Grid: Pinterest asymmetric */}
+        {/* 3 — Categories: editorial asymmetric grid */}
         <CategoryGrid />
 
-        {/* 4 — Rail: Hanging */}
-        <ProductRail title="מוצרים מבוקשים — מערכות תלייה" categorySlug="hanging" products={hanging} />
-
-        {/* 5 — Editorial Banner: open a store */}
-        <EditorialBanner
-          eyebrow="פותחים חנות?"
-          headline={`אנחנו נתכנן\nלכם את הכל.`}
-          sub="מתכנון הפריסה, דרך בחירת המתקנים ועד ההתקנה — אנחנו עושים הכל תחת קורת גג אחת."
-          cta="קבלו ייעוץ חינם"
-          href="https://wa.me/972505559491?text=שלום, אשמח לקבל ייעוץ לפתיחת חנות"
-          variant="dark"
+        {/* 4 — Editorial: מערכות תלייה */}
+        <EditorialProducts
+          title="מערכות תלייה"
+          subtitle="מוטות, זרועות ומתלים מקצועיים לחנויות ביגוד ואופנה — פתרונות גמישים לכל מרחב."
+          categorySlug="hanging"
+          categoryLabel="Hanging Systems"
+          products={hanging}
         />
 
-        {/* 6 — Collections: ready-made per business type */}
-        <CollectionsSection />
+        {/* 5 — Projects case studies */}
+        <ProjectsShowcase />
 
-        {/* 7 — Rail: Shelving */}
-        <ProductRail title="מידוף מקצועי לחנויות" categorySlug="shelving" products={shelving} />
-
-        {/* 8 — Featured Project: magazine spread */}
-        <FeaturedProject />
-
-        {/* 9 — Rail: Mannequins */}
-        <ProductRail title="בובות ראווה" categorySlug="mannequins" products={mannequins} accentColor="#C79A4B" />
-
-        {/* 10 — Editorial Banner: light */}
-        <EditorialBanner
-          eyebrow="30 שנה בתחום"
-          headline="ניסיון שאין עליו ויכוח."
-          sub="מאז 1993 אנחנו מציידים חנויות ברחבי ישראל — מחנויות עצמאיות ועד רשתות גדולות."
-          cta="קראו עלינו"
-          href="/categories"
-          variant="light"
+        {/* 6 — Editorial: מידוף (flipped layout) */}
+        <EditorialProducts
+          title="מידוף לחנויות"
+          subtitle="מדפי קיר, מדפי עמידה ומערכות מודולריות לסופרמרקטים, פארמה ועוד."
+          categorySlug="shelving"
+          categoryLabel="Store Shelving"
+          products={shelving}
+          flipped
         />
 
-        {/* 11 — Inspiration Gallery: masonry, no cards */}
+        {/* 7 — Editorial: בובות ראווה */}
+        <div style={{ borderTop: '1px solid #f0ede8' }}>
+          <EditorialProducts
+            title="בובות ראווה"
+            subtitle="אוסף רחב של בובות מלאות, חצי גוף וידיים — לכל סגנון חנות."
+            categorySlug="mannequins"
+            categoryLabel="Mannequins"
+            products={mannequins}
+          />
+        </div>
+
+        {/* 8 — Inspiration gallery */}
         <InspirationGrid />
 
-        {/* 12 — Rail: Hangers */}
-        <ProductRail title="קולבים ואביזרים" categorySlug="hangers" products={hangers} />
-
-        {/* 13 — Rail: Stands */}
-        <ProductRail title="סטנדים ומחזיקים" categorySlug="stands" products={stands} />
-
-        {/* 14 — Client logos */}
+        {/* 9 — Logos */}
         <ClientLogosMarquee />
 
-        {/* 15 — Testimonials */}
-        <TestimonialsStrip />
-
-        {/* 16 — Final CTA */}
-        <PremiumCTA />
+        {/* 10 — Final CTA */}
+        <FinalCTA />
 
       </main>
       <Footer />
