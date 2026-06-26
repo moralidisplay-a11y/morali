@@ -1,13 +1,25 @@
 import Link from 'next/link'
-import { ArrowLeft, Package, Tag, FolderOpen, FileText, Users, TrendingUp, MessageCircle } from 'lucide-react'
-import { categories, products } from '@/lib/catalog'
+import { Package, Tag, FolderOpen, FileText } from 'lucide-react'
+import { createClient } from '@supabase/supabase-js'
 
-const stats = [
-  { label: 'קטגוריות', value: '7', icon: Tag, href: '/admin/categories', color: '#C79A4B' },
-  { label: 'מוצרים', value: products.length.toString(), icon: Package, href: '/admin/products', color: '#080808' },
-  { label: 'פרויקטים', value: '3', icon: FolderOpen, href: '/admin/projects', color: '#4B7EC7' },
-  { label: 'מאמרים', value: '0', icon: FileText, href: '/admin/articles', color: '#6B4BC7' },
-]
+export const dynamic = 'force-dynamic'
+
+async function getDashboardData() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  if (!url || !key) return { supabaseOk: false, categoryCount: 0, productCount: 0 }
+
+  try {
+    const db = createClient(url, key)
+    const [{ count: catCount }, { count: prodCount }] = await Promise.all([
+      db.from('categories').select('*', { count: 'exact', head: true }),
+      db.from('products').select('*', { count: 'exact', head: true }),
+    ])
+    return { supabaseOk: true, categoryCount: catCount ?? 0, productCount: prodCount ?? 0 }
+  } catch {
+    return { supabaseOk: false, categoryCount: 0, productCount: 0 }
+  }
+}
 
 const quickLinks = [
   { label: 'הוסף מוצר', href: '/admin/products/new', icon: Package },
@@ -16,10 +28,25 @@ const quickLinks = [
   { label: 'כתוב מאמר', href: '/admin/articles/new', icon: FileText },
 ]
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const { supabaseOk, categoryCount, productCount } = await getDashboardData()
+
+  const stats = [
+    { label: 'קטגוריות', value: categoryCount.toString(), icon: Tag, href: '/admin/categories', color: '#C79A4B' },
+    { label: 'מוצרים', value: productCount.toString(), icon: Package, href: '/admin/products', color: '#080808' },
+    { label: 'פרויקטים', value: '3', icon: FolderOpen, href: '/admin/projects', color: '#4B7EC7' },
+    { label: 'מאמרים', value: '0', icon: FileText, href: '/admin/articles', color: '#6B4BC7' },
+  ]
+
+  const systemStatus = [
+    { label: 'Supabase DB', status: supabaseOk ? 'מחובר' : 'לא מחובר', ok: supabaseOk },
+    { label: 'Vercel Deploy', status: 'פעיל', ok: true },
+    { label: 'WhatsApp CTA', status: 'פעיל', ok: true },
+    { label: 'דפים דינמיים', status: 'פעיל', ok: true },
+  ]
+
   return (
     <div>
-      {/* Header */}
       <div className="mb-8">
         <h1 className="font-black text-2xl mb-1" style={{ color: 'var(--foreground)' }}>ברוכים הבאים, MORALI 👋</h1>
         <p className="text-sm" style={{ color: 'var(--text-muted)' }}>לוח הניהול של האתר — ניהול מוצרים, פרויקטים, ומאמרים.</p>
@@ -45,10 +72,8 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      {/* Quick Links + Info */}
+      {/* Quick Links + Status */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-
-        {/* Quick Actions */}
         <div className="bg-white rounded-2xl p-6" style={{ border: '1px solid var(--border)' }}>
           <h2 className="font-black text-base mb-4" style={{ color: 'var(--foreground)' }}>פעולות מהירות</h2>
           <div className="grid grid-cols-2 gap-3">
@@ -66,16 +91,10 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* DB Status */}
         <div className="bg-white rounded-2xl p-6" style={{ border: '1px solid var(--border)' }}>
           <h2 className="font-black text-base mb-4" style={{ color: 'var(--foreground)' }}>סטטוס מערכת</h2>
           <div className="space-y-3">
-            {[
-              { label: 'Supabase DB', status: 'לא מחובר', ok: false },
-              { label: 'Vercel Deploy', status: 'פעיל', ok: true },
-              { label: 'WhatsApp CTA', status: 'פעיל', ok: true },
-              { label: 'SEO Pages', status: 'סטטי', ok: true },
-            ].map(({ label, status, ok }) => (
+            {systemStatus.map(({ label, status, ok }) => (
               <div key={label} className="flex items-center justify-between text-sm py-2.5" style={{ borderBottom: '1px solid var(--border)' }}>
                 <span style={{ color: 'var(--foreground)' }}>{label}</span>
                 <div className="flex items-center gap-2">
@@ -85,35 +104,35 @@ export default function AdminDashboard() {
               </div>
             ))}
           </div>
-          <div className="mt-5 p-4 rounded-xl text-xs leading-relaxed" style={{ background: 'var(--muted)', color: 'var(--text-muted)' }}>
-            <strong>לחיבור Supabase:</strong> הוסיפו NEXT_PUBLIC_SUPABASE_URL ו-NEXT_PUBLIC_SUPABASE_ANON_KEY בהגדרות הסביבה.
-          </div>
         </div>
       </div>
 
       {/* Categories preview */}
       <div className="bg-white rounded-2xl p-6" style={{ border: '1px solid var(--border)' }}>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="font-black text-base" style={{ color: 'var(--foreground)' }}>קטגוריות ({categories.length})</h2>
-          <Link href="/admin/categories" className="text-sm font-semibold flex items-center gap-1" style={{ color: 'var(--accent)' }}>
-            ניהול <ArrowLeft className="w-3.5 h-3.5" />
+          <h2 className="font-black text-base" style={{ color: 'var(--foreground)' }}>ניהול מהיר</h2>
+          <Link href="/admin/categories" className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>
+            כל הקטגוריות →
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {categories.map((c) => (
+          {[
+            { slug: 'hanging', name: 'מערכות תלייה' },
+            { slug: 'mannequins', name: 'בובות ראווה' },
+            { slug: 'shelving', name: 'מידוף לחנויות' },
+            { slug: 'slatwall', name: 'קירות מחורצים' },
+            { slug: 'counters', name: 'דלפקים וויטרינות' },
+            { slug: 'hangers', name: 'קולבים ואביזרים' },
+            { slug: 'stands', name: 'סטנדים ומחזיקים' },
+          ].map((c) => (
             <Link
               key={c.slug}
               href={`/admin/categories/${c.slug}`}
               className="flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all hover:bg-gray-50"
               style={{ border: '1px solid var(--border)', color: 'var(--foreground)' }}
             >
-              <div className="w-7 h-7 rounded-lg overflow-hidden shrink-0">
-                <img src={c.img} alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="min-w-0">
-                <div className="truncate text-xs font-bold">{c.name}</div>
-                <div className="text-[10px]" style={{ color: 'var(--text-muted)' }}>{c.count}+ מוצ'</div>
-              </div>
+              <Tag className="w-4 h-4 shrink-0" style={{ color: 'var(--accent)' }} />
+              <span className="truncate text-xs font-bold">{c.name}</span>
             </Link>
           ))}
         </div>
